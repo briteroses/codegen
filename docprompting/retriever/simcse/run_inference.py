@@ -1,6 +1,7 @@
 import json
 import os.path
 import pickle
+import sys
 
 import argparse
 import shlex
@@ -11,6 +12,10 @@ import torch
 from tqdm import tqdm
 import transformers
 from transformers import AutoModel, AutoTokenizer, AutoConfig
+
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
 from retriever.eval import eval_retrieval_from_file
 from model import RetrievalModel
 TQDM_DISABLED = os.environ['TQDM_DISABLED'] if 'TQDM_DISABLED' in os.environ else False

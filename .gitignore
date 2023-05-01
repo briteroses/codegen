@@ -1,7 +1,6 @@
-models/generator/*
-models/retriever/*
-!models/generator/.placeholder
-!models/retriever/.placeholder
+docprompting/models/generator/
+docprompting/models/retriever/
+docprompting/data
 **/.DS_Store
 data/.DS_Store
 data/*

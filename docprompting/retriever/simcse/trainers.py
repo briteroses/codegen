@@ -85,7 +85,13 @@ PATH_TO_DATA = './SentEval/data'
 # Import SentEval
 sys.path.insert(0, PATH_TO_SENTEVAL)
 import numpy as np
-from run_inference import config as retrieval_config
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
+from simcse.run_inference import config as retrieval_config
 from retriever.eval import eval_retrieval_from_file, eval_hit_from_file
 
 logger = logging.get_logger(__name__)

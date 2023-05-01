@@ -15,10 +15,14 @@ from transformers import (
     set_seed,
 )
 from transformers.trainer_utils import is_main_process
-from model import RetrievalModel
-from trainers import CLTrainer
-from data_utils import OurDataCollatorWithPadding, tok_sentences
-from arguments import ModelArguments, DataTrainingArguments, OurTrainingArguments, RetrieverArguments
+from simcse.model import RetrievalModel
+from simcse.trainers import CLTrainer
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
+from simcse.data_utils import OurDataCollatorWithPadding, tok_sentences
+from simcse.arguments import ModelArguments, DataTrainingArguments, OurTrainingArguments, RetrieverArguments
 logger = logging.getLogger(__name__)
 MODEL_CONFIG_CLASSES = list(MODEL_FOR_MASKED_LM_MAPPING.keys())
 MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
