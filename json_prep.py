@@ -1,58 +1,103 @@
-# write a script that reads in a json and prints the first 10 results
+'''
+Files to modify for intent:
+conala_nl.txt
+cmd_{split}.oracle_man.full.json (train / test / dev)
+dev_retriever.json
+fid.cmd_{split}.codet5.t10.json (train / test / dev)
+train_retriever_sup_unsup.json (specifically only the supervised part)
+'''
 
 import json
-import sys
-from datasets import load_dataset
 
-if len(sys.argv) != 2:
-    print("Usage: python json_prep.py <json_file>")
+# Load train, test and dev data
+with open('data/conala/output_train.json', 'r') as f:
+    train_data = json.load(f)
+    
+with open('data/conala/output_test.json', 'r') as f:
+    test_data = json.load(f)
 
+with open('data/conala/output_dev.json', 'r') as f:
+    dev_data = json.load(f)
+    
+split_types = ['train', 'test', 'dev']
+data_list = [train_data, test_data, dev_data]
 
+# Create a dictionary that maps question_id to gpt35_response
+train_gpt35_response_dict = {entry['question_id']: entry['gpt35_response'] for entry in train_data}
+test_gpt35_response_dict = {entry['question_id']: entry['gpt35_response'] for entry in test_data}
+dev_gpt35_response_dict = {entry['question_id']: entry['gpt35_response'] for entry in dev_data}
+dict_list = [train_gpt35_response_dict, test_gpt35_response_dict, dev_gpt35_response_dict]
 
-#file_name = 'data/conala/python_manual_firstpara.tok.txt'# 
-#file_name = 'data/conala/dev_retriever.json'
-file_name = 'data/conala/conala_nl.txt'
-encodings_to_try = [ 'ascii']
-good_encodings = ['utf-8', 'is-8859-1', 'iso-8859-2', 'iso-8859-15', 'windows-1250', 'windows-1251', 'windows-1252']
-content = None
+combined_gpt35_response_dict = {**train_gpt35_response_dict, **test_gpt35_response_dict, **dev_gpt35_response_dict}
 
-for encoding in encodings_to_try:
-    try:
-        with open(file_name, 'r', encoding=encoding) as file:
-            content = file.read()
-        print(f"File successfully read using {encoding} encoding.")
-        break
-    except UnicodeDecodeError:
-        print(f"Failed to read the file using {encoding} encoding.")
-        continue
+# 1. Process conala_nl.txt and conala_nl.id
+with open('data/conala/conala_nl.txt', 'r') as nl_file, open('data/conala/conala_nl.id', 'r') as id_file, open('data/conala/conala_nl_modified.txt', 'w') as out_file:
+    for nl_line, id_line in zip(nl_file, id_file):
+        question_id = id_line.strip()
+        gpt35_response = combined_gpt35_response_dict.get(question_id)
+        if gpt35_response:
+            out_file.write(gpt35_response + '\n')
+        else:
+            out_file.write(nl_line)
 
-if content is not None:
-    print(content)
-else:
-    print("Could not read the file using any of the tried encodings.")
-#dataset = load_dataset('json', data_files=file_name)
+# 2. Process cmd_train.oracle_man.full.json
+for split in range(3):
+    split_type = split_types[split]
+    with open(f'data/conala/cmd_{split_type}.oracle_man.full.json', 'r') as f:
+        cmd_train_data = json.load(f)
 
-print(len(content))
-print(type(content))
+    for entry in cmd_train_data:
+        question_id = entry['question_id']
+        gpt35_response = dict_list[split].get(question_id)
+        if gpt35_response:
+            entry['nl'] = gpt35_response
 
-# with open(file_name) as f:
-#     dataset = []
-#     for line in f:
-#         print(line)
-#         dataset.append(json.loads(line.decode('utf-8').strip()))
-#     print(len(dataset))
-#     #logger.info(f'size of the eval data: {len(dataset)}')
+    with open(f'data/conala/cmd_{split_type}.oracle_man.full_modified.json', 'w') as f:
+        json.dump(cmd_train_data, f, indent=2)
 
-with open(file_name, 'r', encoding='ascii') as f:
-    data = f.read()
-    #content = f.read()
-    print(data)
-    print(data[:100])
+# 3. Process train_retriever_sup_unsup.json
+with open('data/conala/train_retriever_sup_unsup.json', 'r') as f:
+    train_retriever_data = json.load(f)
 
-print('here')
-print(data.count('x'))
+for i, entry in enumerate(train_retriever_data[573085:], start=573085):
+    train_entry = train_data[i - 573085]
+    if entry['text1'] == train_entry['nl']:
+        entry['text1'] = train_entry['gpt35_response']
 
-for i in range(10):
-    print(content[i]['nl'])
-    print(content[i]['gpt35_response'])
-    print()
+with open('data/conala/train_retriever_sup_unsup_modified.json', 'w') as f:
+    json.dump(train_retriever_data, f, indent=2)
+
+# 4. Process dev_retriever.json
+with open('data/conala/dev_retriever.json', 'r') as f:
+    dev_retriever_data = json.load(f)
+
+current_text1 = None
+dev_data_idx = 0
+
+for entry in dev_retriever_data:
+    if current_text1 != entry['text1']:
+        current_text1 = entry['text1']
+        if dev_data_idx < len(dev_data):
+            gpt35_response = dev_data[dev_data_idx]['gpt35_response']
+            dev_data_idx += 1
+        else:
+            gpt35_response = None
+
+    if gpt35_response:
+        entry['text1'] = gpt35_response
+
+with open('data/conala/dev_retriever_modified.json', 'w') as f:
+    json.dump(dev_retriever_data, f, indent=2)
+
+# 5. Process fid.cmd_train.codet5.t10.json
+for split in range(3):
+    split_type = split_types[split]
+    with open(f'data/conala/fid.cmd_{split_type}.codet5.t10.json', 'r') as f:
+        fid_data = json.load(f)
+
+    for fid_entry, orig_entry in zip(fid_data, data_list[split]):
+        if fid_entry['id'] == orig_entry['question_id']:
+            fid_entry['question'] = orig_entry['gpt35_response']
+
+    with open(f'data/conala/fid.cmd_{split_type}.codet5.t10_modified.json', 'w') as f:
+        json.dump(fid_data, f, indent=2)
