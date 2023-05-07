@@ -307,8 +307,6 @@ def star_for_code(exemplars_per_prompt=4):
     return
 
 
-
-
 def post_process_gpt3_response(response):
     if response is None or response["choices"][0]["finish_reason"] == "length":
         return []

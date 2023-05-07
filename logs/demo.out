@@ -1,0 +1,29 @@
+Prompt:
+'John and Mary went to the beach. Who did John take pictures for?'
+
+
+
+Completion:
+('John and Mary went to the beach. Who did John take pictures for?\n'
+ 'John and Mary went to the beach. Who did John take pictures for?\n'
+ 'A. John took pictures for Mary.\n'
+ 'B. John took pictures for John.\n'
+ 'C. John took pictures for himself.\n'
+ 'D. John took pictures for the beach.\n'
+ 'John and Mary went to the beach. Who did John take pictures for? A. John '
+ 'took pictures for Mary. B. John took pictures for John. C. John took '
+ 'pictures for himself. D. John took pictures for the beach.\n'
+ 'Weegy: John and Mary went to the beach. Who did John take pictures for? A. '
+ 'John took pictures for Mary. (More)\n'
+ 'John and Mary went to the beach. Who did John take pictures for? John took '
+ 'pictures for Mary.\n'
+ 'John and Mary went to the beach. Who did John take pictures for? A. John '
+ 'took pictures for Mary. B. John took pictures for John. C. John took '
+ 'pictures for himself. D. John took pictures for the beach.\n'
+ 'John and Mary went to the beach. Who did John take pictures for? John took '
+ 'pictures for Mary.\n'
+ 'John and Mary went to the beach. Who did John take pictures for? A. John '
+ 'took pictures for Mary. B. John took pictures for John. C. John took '
+ 'pictures for himself. D. John took pictures for the beach.\n'
+ 'John and Mary went to the beach. Who did John take pictures for? John took '
+ 'pictures for Mary.')
