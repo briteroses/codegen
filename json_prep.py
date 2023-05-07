@@ -11,13 +11,13 @@ import json
 
 # Load train, test and dev data
 with open('data/conala/output_train.json', 'r') as f:
-    train_data = json.load(f)
+    train_data = [json.loads(line) for line in f]
     
 with open('data/conala/output_test.json', 'r') as f:
-    test_data = json.load(f)
+    test_data = [json.loads(line) for line in f]
 
 with open('data/conala/output_dev.json', 'r') as f:
-    dev_data = json.load(f)
+    dev_data = [json.loads(line) for line in f]
     
 split_types = ['train', 'test', 'dev']
 data_list = [train_data, test_data, dev_data]
