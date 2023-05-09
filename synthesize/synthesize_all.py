@@ -35,6 +35,7 @@ FIRST_PARA_IDS = str(ROOT_DIR / "docprompting/data/conala-modified/python_manual
 FIRST_PARA_DESCRIPTIONS = str(ROOT_DIR / "docprompting/data/conala-modified/python_manual_firstpara.tok.txt")
 
 TOP_K = 3
+RATIONALE_EXEMPLARS_PER_PROMPT = 2
 
 '''
 Hard-coded prompts were based directly on prompts that Self-Instruct and CoT did
@@ -65,17 +66,19 @@ def encode_rationales(rationale_exemplars, input_query, input_retrieval):
     prompt = "You are an expert language model in code generation. "
     prompt += "Come up with a series of rationales for code generation problems under the following specification. "
     prompt += "Given a query for a coding task and a list of code documentation, "
-    prompt += "please reason through the provided documentation to arrive at the answer code, "
-    prompt += "and print the answer at the end of the output, in the format \"Therefore, the answer is \" with your answer code stated afterwards.\n\n"
+    prompt += "please reason through the provided documentation to arrive at the answer code "
+    prompt += "and print the answer at the end of the output. "
+    prompt += "A few examples of (query, relevant documentation, rationale) have been provided. "
+    prompt += "Please emulate the format of the provided examples and return only the final rationale for the final query.\n\n"
     for idx, (query, retrieval, rationale) in enumerate(rationale_exemplars):
         query = re.sub(r"\s+", " ", query).strip().rstrip(":")
-        retrieval = re.sub(r"\s+", " ", retrieval).strip().rstrip(":")
+        retrieval = re.sub(r"\s+", " ", retrieval)
         rationale = re.sub(r"\s+", " ", rationale).strip().rstrip(":")
         prompt += f"Query: {query}\n"
-        prompt += f"Relevant documentation: {retrieval}\n"
+        prompt += f"Relevant code documentation: {retrieval}\n"
         prompt += f"Rationale: {rationale}\n\n"
     input_query = re.sub(r"\s+", " ", input_query).strip().rstrip(":")
-    input_retrieval = re.sub(r"\s+", " ", input_retrieval).strip().rstrip(":")
+    input_retrieval = re.sub(r"\s+", " ", input_retrieval)
     prompt += f"Query: {input_query}\n"
     prompt += f"Relevant code documentation: {input_retrieval}\n"
     prompt += "Rationale: "
@@ -120,15 +123,12 @@ def synthesize_queries(queries, exemplars_per_prompt=6):
             engine=args.engine,
             prompts=batch_prompts,
             max_tokens=1024,
-            temperature=0.7,
-            top_p=0.5,
+            temperature=1,
+            top_p=1,
             frequency_penalty=0,
             presence_penalty=0,
             stop_sequences=["Query:", "Query :", "\n\n"],
-            logprobs=1,
-            n=1,
-            best_of=1,
-            api_key=args.api_key,
+            api_key=args.apikey,
             organization=args.organization,
         )
         for query_id, input_query, result in zip(query_ids, input_queries, results):
@@ -162,15 +162,15 @@ def retrieve_for_query(query_ids, truncate=False):
     descriptions_for_retrieval = [[descriptions_base[f] for f in single_retrieval] for single_retrieval in functions_for_retrieval]
     retrievals = []
     for f_list, d_list in zip(functions_for_retrieval, descriptions_for_retrieval):
-        current_retrieval = "\n"
+        current_retrieval = ""
         for f, d in zip(f_list, d_list):
             current_retrieval += f + "    "
-            current_retrieval += d
+            current_retrieval += d.strip().rstrip(":") + "    "
         retrievals.append(current_retrieval)
     return retrievals
 
 
-def synthesize_rationales(queries, exemplars_per_prompt=4):
+def synthesize_rationales(queries, truncate=False):
     # input_queries should take the form of a list of tuples. [(query_id, query), ...]
 
     args = parse_args()
@@ -195,35 +195,27 @@ def synthesize_rationales(queries, exemplars_per_prompt=4):
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
 
     query_ids, input_queries = [t[0] for t in queries], [t[1] for t in queries]
-    input_retrievals = retrieve_for_query(query_ids)
-
-    print(len(input_queries))
-    print(len(input_retrievals))
+    input_retrievals = retrieve_for_query(query_ids, truncate=truncate)
 
     with open(GPT3_RATIONALES, "a") as fout:
         batch_prompts = []
         for input_query, input_retrieval in zip(input_queries, input_retrievals):            
             sample_synthetic = random.sample(gpt3_seed_exemplars, min(2, len(gpt3_seed_exemplars)))
-            sample_human = random.sample(seed_exemplars, exemplars_per_prompt - len(sample_synthetic))
+            sample_human = random.sample(seed_exemplars, RATIONALE_EXEMPLARS_PER_PROMPT - len(sample_synthetic))
             rationale_exemplars = sample_synthetic + sample_human
             random.shuffle(rationale_exemplars)
             prompt = encode_rationales(rationale_exemplars, input_query, input_retrieval)
-            return prompt
             batch_prompts.append(prompt)
-        return
         results = make_gpt3_requests(
             engine=args.engine,
             prompts=batch_prompts,
             max_tokens=1024,
-            temperature=0.7,
+            temperature=0.5,
             top_p=0.5,
             frequency_penalty=0,
             presence_penalty=0,
             stop_sequences=["Query:", "Query :", "\n\n"],
-            logprobs=1,
-            n=1,
-            best_of=1,
-            api_key=args.api_key,
+            api_key=args.apikey,
             organization=args.organization,
         )
         for query_id, input_query, input_retrieval, result in zip(query_ids, input_queries, input_retrievals, results):
@@ -242,7 +234,7 @@ def synthesize_rationales(queries, exemplars_per_prompt=4):
     return
 
 
-def star_for_code(exemplars_per_prompt=4):
+def star_for_code():
     args = parse_args()
 
     print("Patching incorrect synthetic samples with rationalization...")
@@ -292,10 +284,10 @@ def star_for_code(exemplars_per_prompt=4):
 
         batch_prompts = []
         for _, query, retrieval in to_be_rationalized:
-            plus_hint = query + f"(Hint: the answer is {answer_key[query_id]})\n"
+            plus_hint = query + f" (Hint: the answer is {answer_key[query_id]})"
             
             sample_synthetic = random.sample(gpt3_rationales, min(2, len(gpt3_rationales)))
-            sample_human = random.sample(human_rationales, exemplars_per_prompt - len(sample_synthetic))
+            sample_human = random.sample(human_rationales, RATIONALE_EXEMPLARS_PER_PROMPT - len(sample_synthetic))
             rationale_exemplars = random.shuffle(sample_synthetic + sample_human)
             prompt = encode_rationales(rationale_exemplars, plus_hint, retrieval)
             batch_prompts.append(prompt)
@@ -304,15 +296,12 @@ def star_for_code(exemplars_per_prompt=4):
             engine=args.engine,
             prompts=batch_prompts,
             max_tokens=1024,
-            temperature=0.7,
+            temperature=0.5,
             top_p=0.5,
             frequency_penalty=0,
             presence_penalty=0,
             stop_sequences=["Query:", "Query :", "\n\n"],
-            logprobs=1,
-            n=1,
-            best_of=1,
-            api_key=args.api_key,
+            api_key=args.apikey,
             organization=args.organization,
         )
 
@@ -346,7 +335,32 @@ def post_process_gpt3_response(response):
     return raw_response
 
 
+def regenerate_human_rationales():
+    human_rationales = []
+    with open(HUMAN_RATIONALES, "r") as fin:
+        for line in fin:
+            exemplar = json.loads(line)
+            human_rationales.append(exemplar)
+        print(f"Loaded {len(human_rationales)} human-written seed exemplars")
+        print(f"Loaded {len(human_rationales)} human-written seed exemplars", file=sys.stderr)
+    
+    write_new = ""
+    with open(HUMAN_RATIONALES, "w") as fout:
+        for exemplar in human_rationales:
+            retrieval = retrieve_for_query([exemplar["question_id"]], truncate=True)
+            exemplar["retrieval"] = retrieval[0]
+            write_new += json.dumps({
+                "question_id": exemplar["question_id"],
+                "query": exemplar["query"],
+                "retrieval": exemplar["retrieval"],
+                "rationale": exemplar["rationale"],
+            }) + "\n"
+        fout.write(write_new)
+
+
 def script_synthesize_conala_train():
+    regenerate_human_rationales()
+
     finished_query_ids = set()
 
     with open(HUMAN_RATIONALES, "r") as fin:
@@ -369,7 +383,10 @@ def script_synthesize_conala_train():
     all_query_ids = list(all_query_ids - finished_query_ids)
     all_queries = [query_id_to_query[id] for id in all_query_ids]
 
-    return synthesize_rationales(list(zip(all_query_ids, all_queries)))
+    for_synthesis = list(zip(all_query_ids, all_queries))
+    for_synthesis = for_synthesis[:5]
+
+    return synthesize_rationales(for_synthesis, truncate=True)
 
 
 def parse_args():
@@ -381,7 +398,7 @@ def parse_args():
         help="The engine to use."
     )
     parser.add_argument(
-        "--api_key",
+        "--apikey",
         type=str,
         help="The API key to use. If not provided, synthetic data generation will not run."
     )
@@ -395,5 +412,6 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    # print(script_synthesize_conala_train())
-    pprint(retrieve_for_query(["348196-52"], truncate=True))
+    print(script_synthesize_conala_train())
+    # script_reformat_human_rationales()
+    # print(retrieve_for_query(["17757450-20"], truncate=True))

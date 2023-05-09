@@ -1,12 +1,3 @@
-{
-    "query": "Create list `instancelist` containing 29 objects of type MyClass.",
-    "augmentation": "This requires creating list ` instancelist `, creating 29 objects of type MyClass, and adding them to the list." 
-}
-{
-    "query": "Taking the results of a bash command \"awk '{print $10, $11}' test.txt > test2.txt\".",
-    "augmentation": "This requires executing bash command \"awk '{print $10, $11}' test.txt > test2.txt\" and storing the results."
-}
-{
-    "query": "Save matplotlib graph to image file `filename.png` at a resolution of `300 dpi`.",
-    "augmentation": "This requires saving matplotlib graph to image file `filename.png` and specifying the resolution of `300 dpi`."
-}
+{"question_id": "348196-52", "query": "Create list `instancelist` containing 29 objects of type MyClass", "augmentation": "This requires creating list ` instancelist `, creating 29 objects of type MyClass, and adding them to the list."}
+{"question_id": "5744980-30", "query": "Taking the results of a bash command \"awk '{print $10, $11}' test.txt > test2.txt\"", "augmentation": "This requires executing bash command \"awk '{print $10, $11}' test.txt > test2.txt\" and storing the results."}
+{"question_id": "39870642-22", "query": "Save matplotlib graph to image file `filename.png` at a resolution of `300 dpi`", "augmentation": "This requires saving matplotlib graph to image file `filename.png` and specifying the resolution of `300 dpi`."}

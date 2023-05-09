@@ -5,6 +5,5 @@
 #SBATCH --partition=urop
 #SBATCH --output=logs/demo.out
 #SBATCH --error=logs/demo.err
-#SBATCH --exclude=deep-chungus-[1-6,11]
 
-python llama/general_inference.py
+python inference_alpaca.py

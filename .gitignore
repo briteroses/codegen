@@ -8,3 +8,4 @@ data/*
 
 llama/llama_hf_7b
 llama/alpaca
+synthesize/synth.sbatch

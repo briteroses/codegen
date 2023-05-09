@@ -10,7 +10,7 @@ import time
 
 def make_requests(
         engine, prompts, max_tokens, temperature, top_p, 
-        frequency_penalty, presence_penalty, stop_sequences, logprobs, n, best_of, retries=3, api_key=None, organization=None
+        frequency_penalty, presence_penalty, stop_sequences, retries=3, api_key=None, organization=None
     ):
     response = None
     target_length = max_tokens
@@ -22,18 +22,15 @@ def make_requests(
     backoff_time = 30
     while retry_cnt <= retries:
         try:
-            response = openai.Completion.create(
-                engine=engine,
-                prompt=prompts,
+            response = openai.ChatCompletion.create(
+                model=engine,
+                messages=[{"role": "user", "content": prompts}],
                 max_tokens=target_length,
                 temperature=temperature,
                 top_p=top_p,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
                 stop=stop_sequences,
-                logprobs=logprobs,
-                n=n,
-                best_of=best_of,
             )
             break
         except openai.error.OpenAIError as e:
