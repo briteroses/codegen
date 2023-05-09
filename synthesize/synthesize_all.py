@@ -198,27 +198,24 @@ def synthesize_rationales(queries, truncate=False):
     input_retrievals = retrieve_for_query(query_ids, truncate=truncate)
 
     with open(GPT3_RATIONALES, "a") as fout:
-        batch_prompts = []
-        for input_query, input_retrieval in zip(input_queries, input_retrievals):            
+        for query_id, input_query, input_retrieval in zip(query_ids, input_queries, input_retrievals):            
             sample_synthetic = random.sample(gpt3_seed_exemplars, min(2, len(gpt3_seed_exemplars)))
             sample_human = random.sample(seed_exemplars, RATIONALE_EXEMPLARS_PER_PROMPT - len(sample_synthetic))
             rationale_exemplars = sample_synthetic + sample_human
             random.shuffle(rationale_exemplars)
             prompt = encode_rationales(rationale_exemplars, input_query, input_retrieval)
-            batch_prompts.append(prompt)
-        results = make_gpt3_requests(
-            engine=args.engine,
-            prompts=batch_prompts,
-            max_tokens=1024,
-            temperature=0.5,
-            top_p=0.5,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop_sequences=["Query:", "Query :", "\n\n"],
-            api_key=args.apikey,
-            organization=args.organization,
-        )
-        for query_id, input_query, input_retrieval, result in zip(query_ids, input_queries, input_retrievals, results):
+            result = make_gpt3_requests(
+                engine=args.engine,
+                prompt=prompt,
+                max_tokens=1024,
+                temperature=0.5,
+                top_p=0.5,
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop_sequences=["Query:", "Query :", "\n\n"],
+                api_key=args.apikey,
+                organization=args.organization,
+            )
             rationale = post_process_gpt3_response(result["response"])
             print(f"Writing new rationale\n")
             print(f" || Original query: {input_query}\n")
@@ -330,7 +327,7 @@ def star_for_code():
 def post_process_gpt3_response(response):
     if response is None or response["choices"][0]["finish_reason"] == "length":
         return []
-    raw_response = response["choices"][0]["text"]
+    raw_response = response["choices"][0]["message"]["content"]
     raw_response = re.sub(r"\s+", " ", raw_response).strip()
     return raw_response
 

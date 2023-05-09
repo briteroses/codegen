@@ -9,7 +9,7 @@ import time
     
 
 def make_requests(
-        engine, prompts, max_tokens, temperature, top_p, 
+        engine, prompt, max_tokens, temperature, top_p, 
         frequency_penalty, presence_penalty, stop_sequences, retries=3, api_key=None, organization=None
     ):
     response = None
@@ -24,7 +24,7 @@ def make_requests(
         try:
             response = openai.ChatCompletion.create(
                 model=engine,
-                messages=[{"role": "user", "content": prompts}],
+                messages=[{"role": "user", "content": prompt}],
                 max_tokens=target_length,
                 temperature=temperature,
                 top_p=top_p,
@@ -44,23 +44,12 @@ def make_requests(
                 backoff_time *= 1.5
             retry_cnt += 1
     
-    if isinstance(prompts, list):
-        results = []
-        for j, prompt in enumerate(prompts):
-            data = {
-                "prompt": prompt,
-                "response": {"choices": response["choices"][j * n: (j + 1) * n]} if response else None,
-                "created_at": str(datetime.now()),
-            }
-            results.append(data)
-        return results
-    else:
-        data = {
-            "prompt": prompts,
-            "response": response,
-            "created_at": str(datetime.now()),
-        }
-        return [data]
+    data = {
+        "prompt": prompt,
+        "response": response,
+        "created_at": str(datetime.now()),
+    }
+    return data
 
 
 def parse_args():
