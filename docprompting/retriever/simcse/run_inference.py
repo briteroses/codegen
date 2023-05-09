@@ -102,6 +102,7 @@ class CodeT5Retriever:
     @staticmethod
     def retrieve(source_embed_file, target_embed_file, source_id_file, target_id_file, top_k, save_file):
         print(f'source: {source_embed_file}, target: {target_embed_file}')
+        print(f'source id: {source_id_file}, target id: {target_id_file}')
         with open(source_id_file, "r") as f:
             source_id_map = {}
             for idx, line in enumerate(f):

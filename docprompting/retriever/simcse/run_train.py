@@ -15,12 +15,12 @@ from transformers import (
     set_seed,
 )
 from transformers.trainer_utils import is_main_process
-from simcse.model import RetrievalModel
-from simcse.trainers import CLTrainer
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
+from simcse.model import RetrievalModel
+from simcse.trainers import CLTrainer
 from simcse.data_utils import OurDataCollatorWithPadding, tok_sentences
 from simcse.arguments import ModelArguments, DataTrainingArguments, OurTrainingArguments, RetrieverArguments
 logger = logging.getLogger(__name__)
