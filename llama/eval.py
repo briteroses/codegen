@@ -1,11 +1,15 @@
+import json
+from collections import OrderedDict
+import evaluate
+
+import numpy as np
+
 """
-- wrangle bleu-4, recall, recall_unseen into some nice modular functions
+one eval pipeline for bleu-4, recall, recall_unseen.
 input: json file with one dictionary
-    the keys are metadata on the experiment, like i can do a tuple "(n icl exemplars, 
-    true/false retrieval, true/false rationale)"
-    the values are a list of 3-tuples, each 3-tuple is a pairing (question id, LLM output code) 
-    snippet as a string, oracle/ground truth code snippet as a string), 
-    and the list spans the whole eval set for that experiment
+    the keys are metadata on the experiment, as a tuple (n icl exemplars, true/false retrieval, true/false rationale)
+    the values are a list of 3-tuples, each 3-tuple is a pairing (question id, LLM output code snippet as a string, oracle/ground truth code snippet as a string), 
+        and the list spans the whole eval set for that experiment
 output: 3-tuple of float values, (bleu_4, recall, recall_unseen)
 """
 
@@ -13,12 +17,6 @@ output: 3-tuple of float values, (bleu_4, recall, recall_unseen)
 file_name = 'data/seen_fxn.txt'
 with open(file_name) as file:
     SEEN_FXN = [line.rstrip() for line in file]
-
-import json
-from collections import OrderedDict
-import evaluate
-
-import numpy as np
 
 TOP_K = [1, 3, 5, 8, 10, 12, 15, 20, 30, 50, 100, 200]
 

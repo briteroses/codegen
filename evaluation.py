@@ -2,9 +2,9 @@ import os
 import sys 
 import json
 
-# Append the docpormpting home directory so we can do the imports
+# Append the docprompting home directory so we can do the imports
 sys.path.append(os.path.join(os.getcwd(), "../docprompting"))
-from dataset_helper.tldr.gen_metric import tldr_metrics
+from dataset_helper.conala.gen_metric import _bleu as conala_bleu
 
 # If needed, pull the results from json file and save two files (y and y_pred)
 # Where each line is a matching set of 

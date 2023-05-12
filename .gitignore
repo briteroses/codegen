@@ -6,6 +6,8 @@ data/.DS_Store
 data/*
 .idea
 
-llama/llama_hf_7b
-llama/alpaca
+llama/models/
+llama/logs
+llama/stash
 synthesize/synth.sbatch
+synthesize/logs

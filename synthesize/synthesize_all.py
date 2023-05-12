@@ -64,7 +64,7 @@ def encode_rationales(rationale_exemplars, input_query, input_retrieval):
     # rationale_exemplars can be any combination & length of human- or machine-written exemplars; this is decided exogenously to this function
     # retrievals in rationale_exemplars should be genuine retrievals from a fully-trained SimCSE; please enforce this exogenously
     prompt = "You are an expert language model in code generation. "
-    prompt += "Come up with a series of rationales for code generation problems under the following specification. "
+    prompt += "Come up with a rationale for a code generation problem under the following specification. "
     prompt += "Given a query for a coding task and a list of code documentation, "
     prompt += "please reason through the provided documentation to arrive at the answer code "
     prompt += "and print the answer at the end of the output. "
@@ -85,14 +85,46 @@ def encode_rationales(rationale_exemplars, input_query, input_retrieval):
     return prompt
 
 
-def synthesize_queries(queries, exemplars_per_prompt=6):
-    # input_queries should take the form of a list of tuples. [(query_id, query), ...]
+def retrieve_for_query(query_ids, truncate=False):
+    with open(RETRIEVAL_RESULTS, "r") as fin:
+        results_base = json.load(fin)
+    functions_for_retrieval = [results_base[query_id]['retrieved'][:TOP_K] for query_id in query_ids]
+    if truncate:
+        with open(FIRST_PARA_IDS, "r") as fin:
+            descriptions_functions = [line.rstrip('\n') for line in fin.readlines()]
+        with open(FIRST_PARA_DESCRIPTIONS, "r") as fin:
+            descriptions_descriptions = [line.rstrip('\n') for line in fin.readlines()]
+        assert len(descriptions_functions) == len(descriptions_descriptions)
+        descriptions_base = {f: d for f, d in zip(descriptions_functions, descriptions_descriptions)}
+    else:
+        with open(CODE_DESCRIPTIONS, "r") as fin:
+            descriptions_base = json.load(fin)
+    descriptions_for_retrieval = [[descriptions_base[f] for f in single_retrieval] for single_retrieval in functions_for_retrieval]
+    retrievals = []
+    for f_list, d_list in zip(functions_for_retrieval, descriptions_for_retrieval):
+        current_retrieval = ""
+        for f, d in zip(f_list, d_list):
+            current_retrieval += f + "    "
+            current_retrieval += d.strip().rstrip(":") + "    "
+        retrievals.append(current_retrieval)
+    return retrievals
 
-    args = parse_args()
 
-    print("Synthesizing new queries...")
-    print("Synthesizing new queries...", file=sys.stderr)
+def get_enhanced_queries(query_ids):
+    all_enhancements = {}
+    with open(GPT3_QUERY_AUGMENTATIONS, "r") as fin:
+        for line in fin:
+            exemplar = json.loads(line)
+            all_enhancements[exemplar["question_id"]] = exemplar["query"], exemplar["augmentation"]
+    enhanced = []
+    for query_id in query_ids:
+        query, augmentation = all_enhancements[query_id]
+        current_enhancement = query + ". " + augmentation
+        enhanced.append(current_enhancement)
+    return enhanced
 
+
+def get_seed_queries():
     seed_exemplars = []
     with open(HUMAN_QUERY_AUGMENTATIONS, "r") as fin:
         for line in fin:
@@ -100,7 +132,6 @@ def synthesize_queries(queries, exemplars_per_prompt=6):
             seed_exemplars.append((exemplar["query"], exemplar["augmentation"]))
     print(f"Loaded {len(seed_exemplars)} human-written seed exemplars")
     print(f"Loaded {len(seed_exemplars)} human-written seed exemplars", file=sys.stderr)
-
     gpt3_seed_exemplars = []
     with open(GPT3_QUERY_AUGMENTATIONS, "r") as fin:
         for line in fin:
@@ -108,6 +139,39 @@ def synthesize_queries(queries, exemplars_per_prompt=6):
             gpt3_seed_exemplars.append((exemplar['query'], exemplar['augmentation']))
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars")
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
+    return seed_exemplars, gpt3_seed_exemplars
+
+
+def get_seed_rationales():
+    seed_exemplars = []
+    with open(HUMAN_RATIONALES, "r") as fin:
+        for line in fin:
+            exemplar = json.loads(line)
+            seed_exemplars.append((exemplar["query"], exemplar["retrieval"], exemplar["rationale"]))
+        print(f"Loaded {len(seed_exemplars)} human-written seed exemplars")
+        print(f"Loaded {len(seed_exemplars)} human-written seed exemplars", file=sys.stderr)
+    gpt3_seed_exemplars = []
+    with open(GPT3_RATIONALES, "r") as fin:
+        for line in fin:
+            exemplar = json.loads(line)
+            gpt3_seed_exemplars.append((exemplar['query'], exemplar['retrieval'], exemplar['rationale']))
+        print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars")
+        print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
+    return seed_exemplars, gpt3_seed_exemplars
+
+
+def synthesize_queries(queries, exemplars_per_prompt=6):
+    '''
+    UNUSED, but could be reused later
+    '''
+    # input_queries should take the form of a list of tuples. [(query_id, query), ...]
+
+    args = parse_args()
+
+    print("Synthesizing new queries...")
+    print("Synthesizing new queries...", file=sys.stderr)
+
+    seed_exemplars, gpt3_seed_exemplars = get_seed_queries()
     
     query_ids, input_queries = [t[0] for t in queries], [t[1] for t in queries]
 
@@ -145,56 +209,16 @@ def synthesize_queries(queries, exemplars_per_prompt=6):
     return
 
 
-def retrieve_for_query(query_ids, truncate=False):
-    with open(RETRIEVAL_RESULTS, "r") as fin:
-        results_base = json.load(fin)
-    functions_for_retrieval = [results_base[query_id]['retrieved'][:TOP_K] for query_id in query_ids]
-    if truncate:
-        with open(FIRST_PARA_IDS, "r") as fin:
-            descriptions_functions = [line.rstrip('\n') for line in fin.readlines()]
-        with open(FIRST_PARA_DESCRIPTIONS, "r") as fin:
-            descriptions_descriptions = [line.rstrip('\n') for line in fin.readlines()]
-        assert len(descriptions_functions) == len(descriptions_descriptions)
-        descriptions_base = {f: d for f, d in zip(descriptions_functions, descriptions_descriptions)}
-    else:
-        with open(CODE_DESCRIPTIONS, "r") as fin:
-            descriptions_base = json.load(fin)
-    descriptions_for_retrieval = [[descriptions_base[f] for f in single_retrieval] for single_retrieval in functions_for_retrieval]
-    retrievals = []
-    for f_list, d_list in zip(functions_for_retrieval, descriptions_for_retrieval):
-        current_retrieval = ""
-        for f, d in zip(f_list, d_list):
-            current_retrieval += f + "    "
-            current_retrieval += d.strip().rstrip(":") + "    "
-        retrievals.append(current_retrieval)
-    return retrievals
-
-
-def synthesize_rationales(queries, truncate=False):
-    # input_queries should take the form of a list of tuples. [(query_id, query), ...]
+def synthesize_rationales(query_ids, truncate=False):
 
     args = parse_args()
 
     print("Synthesizing new rationales...")
     print("Synthesizing new rationales...", file=sys.stderr)
-
-    seed_exemplars = []
-    with open(HUMAN_RATIONALES, "r") as fin:
-        for line in fin:
-            exemplar = json.loads(line)
-            seed_exemplars.append((exemplar["query"], exemplar["retrieval"], exemplar["rationale"]))
-        print(f"Loaded {len(seed_exemplars)} human-written seed exemplars")
-        print(f"Loaded {len(seed_exemplars)} human-written seed exemplars", file=sys.stderr)
-
-    gpt3_seed_exemplars = []
-    with open(GPT3_RATIONALES, "r") as fin:
-        for line in fin:
-            exemplar = json.loads(line)
-            gpt3_seed_exemplars.append((exemplar['query'], exemplar['retrieval'], exemplar['rationale']))
-        print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars")
-        print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
-
-    query_ids, input_queries = [t[0] for t in queries], [t[1] for t in queries]
+    
+    seed_exemplars, gpt3_seed_exemplars = get_seed_rationales()
+    
+    input_queries = get_enhanced_queries(query_ids)
     input_retrievals = retrieve_for_query(query_ids, truncate=truncate)
 
     with open(GPT3_RATIONALES, "a") as fout:
@@ -221,6 +245,10 @@ def synthesize_rationales(queries, truncate=False):
             print(f" || Original query: {input_query}\n")
             print(f" || Original retrieval: {input_retrieval}\n")
             print(f" || New rationale: {rationale}\n\n\n")
+            print(f"Writing new rationale\n", file=sys.stderr)
+            print(f" || Original query: {input_query}\n", file=sys.stderr)
+            print(f" || Original retrieval: {input_retrieval}\n", file=sys.stderr)
+            print(f" || New rationale: {rationale}\n\n\n", file=sys.stderr)
             fout.write(json.dumps({
                 "question_id": query_id,
                 "query": input_query,
@@ -276,35 +304,38 @@ def star_for_code():
                 }) + "\n"
         
         if not to_be_rationalized:
+            print("Perfect answers. gpt did a great job!!")
+            print("Perfect answers. gpt did a great job!!", file=sys.stderr)
             fout.write(star_rationales)
             return
 
-        batch_prompts = []
-        for _, query, retrieval in to_be_rationalized:
+        for query_id, query, retrieval in to_be_rationalized:
             plus_hint = query + f" (Hint: the answer is {answer_key[query_id]})"
             
             sample_synthetic = random.sample(gpt3_rationales, min(2, len(gpt3_rationales)))
             sample_human = random.sample(human_rationales, RATIONALE_EXEMPLARS_PER_PROMPT - len(sample_synthetic))
             rationale_exemplars = random.shuffle(sample_synthetic + sample_human)
             prompt = encode_rationales(rationale_exemplars, plus_hint, retrieval)
-            batch_prompts.append(prompt)
+            pprint(prompt)
+            return
 
-        results = make_gpt3_requests(
-            engine=args.engine,
-            prompts=batch_prompts,
-            max_tokens=1024,
-            temperature=0.5,
-            top_p=0.5,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop_sequences=["Query:", "Query :", "\n\n"],
-            api_key=args.apikey,
-            organization=args.organization,
-        )
+            result = make_gpt3_requests(
+                engine=args.engine,
+                prompt=prompt,
+                max_tokens=1024,
+                temperature=0.5,
+                top_p=0.5,
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop_sequences=["Query:", "Query :", "\n\n"],
+                api_key=args.apikey,
+                organization=args.organization,
+            )
 
-        for (query_id, query, retrieval), result in zip(to_be_rationalized, results):
             rationalization = post_process_gpt3_response(result["response"])
             rationalization = re.sub(r"\s+", " ", rationalization).strip().rstrip('.').rstrip(':')
+            # this implements exact match as the correctness metric for rationalization metric
+            # in future iteration, we could implement a softer metric?
             maybe_correct = rationalization.endswith(answer_key[query_id])
             if maybe_correct:
                 star_rationales += json.dumps({
@@ -338,12 +369,12 @@ def regenerate_human_rationales():
         for line in fin:
             exemplar = json.loads(line)
             human_rationales.append(exemplar)
-        print(f"Loaded {len(human_rationales)} human-written seed exemplars")
-        print(f"Loaded {len(human_rationales)} human-written seed exemplars", file=sys.stderr)
     
     write_new = ""
     with open(HUMAN_RATIONALES, "w") as fout:
         for exemplar in human_rationales:
+            enhanced = get_enhanced_queries([exemplar["question_id"]])
+            exemplar["query"] = enhanced[0]
             retrieval = retrieve_for_query([exemplar["question_id"]], truncate=True)
             exemplar["retrieval"] = retrieval[0]
             write_new += json.dumps({
@@ -355,7 +386,7 @@ def regenerate_human_rationales():
         fout.write(write_new)
 
 
-def script_synthesize_conala_train():
+def script_synthesize_conala_train(num_samples=50):
     regenerate_human_rationales()
 
     finished_query_ids = set()
@@ -371,17 +402,20 @@ def script_synthesize_conala_train():
             finished_query_ids.add(exemplar["question_id"])
     
     all_query_ids = set()
-    query_id_to_query = {}
     with open(TRAIN_ORACLE, "r") as fin:
         full_oracle = json.load(fin)
         for exemplar in full_oracle:
             all_query_ids.add(exemplar["question_id"])
-            query_id_to_query[exemplar["question_id"]] = exemplar["nl"]
     all_query_ids = list(all_query_ids - finished_query_ids)
-    all_queries = [query_id_to_query[id] for id in all_query_ids]
+    if not all_query_ids:
+        print("Nothing to synthesize!")
+        print("Nothing to synthesize!", file=sys.stderr)
+        return
 
-    for_synthesis = list(zip(all_query_ids, all_queries))
-    for_synthesis = for_synthesis[:5]
+    for_synthesis = all_query_ids if num_samples > len(all_query_ids) else all_query_ids[:num_samples]
+
+    print(f"Synthesizing {len(for_synthesis)} new examples...")
+    print(f"Synthesizing {len(for_synthesis)} new examples...", file=sys.stderr)
 
     return synthesize_rationales(for_synthesis, truncate=True)
 
@@ -409,6 +443,7 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    print(script_synthesize_conala_train())
+    star_for_code()
+    # script_synthesize_conala_train(num_samples=1000)
     # script_reformat_human_rationales()
     # print(retrieve_for_query(["17757450-20"], truncate=True))

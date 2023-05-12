@@ -1,59 +1,6 @@
-Loaded 4 human-written seed exemplars
+2121
+Nothing to synthesize!
+Synthesizing 0 new examples...
 Synthesizing new rationales...
 Loaded 4 human-written seed exemplars
-Loaded 0 synthetic seed exemplars
-Writing new rationale
-
- || Original query: convert scientific notation of variable `a` to decimal
-
- || Original retrieval: python.library.decimal#decimal.Decimal    python decimal Decimal: Construct a new Decimal object based from value.    python.library.functions#round    python round: Return number rounded to ndigits precision after the decimal point. If ndigits is omitted or is None, it returns the nearest integer to its input.    python.library.functions#float    python float: Return a floating point number constructed from a number or string x.    
-
- || New rationale: decimal.Decimal(a) converts variable ‘a’ to a decimal object. float(decimal.Decimal(a)) converts the decimal object to a floating point number. round(float(decimal.Decimal(a)), 2) rounds the floating point number to 2 decimal places. The answer is round(float(decimal.Decimal(a)), 2).
-
-
-
-Writing new rationale
-
- || Original query: plot categorical data in series `df` with kind `bar` using pandas and matplotlib
-
- || Original retrieval: pandas.reference.api.pandas.dataframe.plot    pandas dataframe plot: Make plots of Series or DataFrame.    pandas.reference.api.pandas.categorical    pandas categorical: Represent a categorical variable in classic R / S-plus fashion.    pandas.reference.api.pandas.dataframe.set_index    pandas dataframe set_index: Set the DataFrame index using existing columns.    
-
- || New rationale: df.plot(kind='bar') plots the categorical data in series df with kind bar using pandas and matplotlib. The answer is df.plot(kind='bar').
-
-
-
-Writing new rationale
-
- || Original query: Sort a structured numpy array 'df' on multiple columns 'year', 'month' and 'day'.
-
- || Original retrieval: python.library.operator#operator.itemgetter    python operator itemgetter: Return a callable object that fetches item from its operand using the operand’s __getitem__() method. If multiple items are specified, returns a tuple of lookup values. For example    pandas.reference.api.pandas.index.argsort    pandas index argsort: Return the integer indices that would sort the index.    pandas.reference.api.pandas.dataframe.sort_values    pandas dataframe sort_values: Sort by the values along either axis.    
-
- || New rationale: df.sort_values(by=['year', 'month', 'day'], inplace=True) sorts the structured numpy array ‘df’ on multiple columns ‘year’, ‘month’ and ‘day’. The answer is df.sort_values(by=['year', 'month', 'day'], inplace=True).
-
-
-
-OpenAIError: Rate limit reached for default-gpt-3.5-turbo in organization org-h7rtrJI35HBiXqyX0CZA43qO on requests per min. Limit: 3 / min. Please try again in 20s. Contact us through our help center at help.openai.com if you continue to have issues. Please add a payment method to your account to increase your rate limit. Visit https://platform.openai.com/account/billing to add a payment method..
-Retrying in 30 seconds...
-Writing new rationale
-
- || Original query: Sort Pandas Dataframe by Date
-
- || Original retrieval: pandas.reference.api.pandas.series.sort_index    pandas series sort_index: Sort Series by index labels.    pandas.reference.api.pandas.dataframe.sort_values    pandas dataframe sort_values: Sort by the values along either axis.    pandas.reference.api.pandas.dataframe.sort_index    pandas dataframe sort_index: Sort object by labels (along an axis).    
-
- || New rationale: df.sort_values(by='Date') sorts the Pandas dataframe `df` by the values in the 'Date' column in ascending order. The answer is df.sort_values(by='Date').
-
-
-
-OpenAIError: Rate limit reached for default-gpt-3.5-turbo in organization org-h7rtrJI35HBiXqyX0CZA43qO on requests per min. Limit: 3 / min. Please try again in 20s. Contact us through our help center at help.openai.com if you continue to have issues. Please add a payment method to your account to increase your rate limit. Visit https://platform.openai.com/account/billing to add a payment method..
-Retrying in 30 seconds...
-Writing new rationale
-
- || Original query: check if a pandas dataframe `df`'s index is sorted
-
- || Original retrieval: pandas.reference.api.pandas.index.argsort    pandas index argsort: Return the integer indices that would sort the index.    numpy.reference.generated.numpy.isin    numpy isin: Calculates element in test_elements, broadcasting over element only. Returns a boolean array of the same shape as element that is True where an element of element is in test_elements and False otherwise.    pandas.reference.api.pandas.series.sort_index    pandas series sort_index: Sort Series by index labels.    
-
- || New rationale: df.index.is_monotonic returns True if the index is sorted in non-descending order. The answer is df.index.is_monotonic.
-
-
-
-None
+Loaded 2117 synthetic seed exemplars
