@@ -1,8 +1,9 @@
 import json
-from collections import OrderedDict
 import evaluate
-
+import math
+import re
 import numpy as np
+from pathlib import Path
 
 """
 one eval pipeline for bleu-4, recall, recall_unseen.
@@ -13,137 +14,168 @@ input: json file with one dictionary
 output: 3-tuple of float values, (bleu_4, recall, recall_unseen)
 """
 
-### READ IN SEEN/UNSEEN SPLIT
-file_name = 'data/seen_fxn.txt'
-with open(file_name) as file:
-    SEEN_FXN = [line.rstrip() for line in file]
+DEVICE_ID = "cuda" if torch.cuda.is_available() else "cpu"
+USE_DEVICE = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 
-TOP_K = [1, 3, 5, 8, 10, 12, 15, 20, 30, 50, 100, 200]
+ROOT_DIR = Path(__file__).resolve().parents[1]
 
-def calc_recall(src, pred, print_result=True, top_k=None):
-    top_k = TOP_K if top_k is None else top_k
-    recall_n = {x: 0 for x in top_k}
-    precision_n = {x: 0 for x in top_k}
+BLEU_EVALUATOR = evaluate.load("neulab/python_bleu")
 
-    for s, p in zip(src, pred):
-        # cmd_name = s['cmd_name']
-        oracle_man = s
-        pred_man = p
 
-        for tk in recall_n.keys():
-            cur_result_vids = pred_man[:tk]
-            cur_hit = sum([x in cur_result_vids for x in oracle_man])
-            # recall_n[tk] += cur_hit / (len(oracle_man) + 1e-10)
-            recall_n[tk] += cur_hit / (len(oracle_man)) if len(oracle_man) else 1
-            precision_n[tk] += cur_hit / tk
-    recall_n = {k: v / len(pred) for k, v in recall_n.items()}
-    precision_n = {k: v / len(pred) for k, v in precision_n.items()}
+def _get_ngrams(segment, max_order):
+    """Extracts all n-grams upto a given maximum order from an input segment.
 
-    if print_result:
-        for k in sorted(recall_n.keys()):
-            print(f"{recall_n[k] :.3f}", end="\t")
-        print()
-        for k in sorted(precision_n.keys()):
-            print(f"{precision_n[k] :.3f}", end="\t")
-        print()
-        for k in sorted(recall_n.keys()):
-            print(f"{2 * precision_n[k] * recall_n[k] / (precision_n[k] + recall_n[k] + 1e-10) :.3f}", end="\t")
-        print()
+  Args:
+    segment: text segment from which n-grams will be extracted.
+    max_order: maximum length in tokens of the n-grams returned by this
+        methods.
 
-    return {'recall': recall_n, 'precision': precision_n}
+  Returns:
+    The Counter containing all n-grams upto max_order in segment
+    with a count of how many times each n-gram occurred.
+  """
+    ngram_counts = collections.Counter()
+    for order in range(1, max_order + 1):
+        for i in range(0, len(segment) - order + 1):
+            ngram = tuple(segment[i:i + order])
+            ngram_counts[ngram] += 1
+    return ngram_counts
 
-def calc_recall_unseen(src, pred, print_result=True, top_k=None):
-    top_k = TOP_K if top_k is None else top_k
-    recall_n = {x: 0 for x in top_k}
-    precision_n = {x: 0 for x in top_k}
 
-    for s, p in zip(src, pred):
-        # cmd_name = s['cmd_name']
-        oracle_man = s
-        pred_man = p
+def compute_bleu(reference_corpus, translation_corpus, max_order=4,
+                 smooth=False):
+    """Computes BLEU score of translated segments against one or more references.
 
-        ###FILTER TO UNSEEN ONLY
-        oracle_man_unseen = [x for x in oracle_man if x not in SEEN_FXN]
+  Args:
+    reference_corpus: list of lists of references for each translation. Each
+        reference should be tokenized into a list of tokens.
+    translation_corpus: list of translations to score. Each translation
+        should be tokenized into a list of tokens.
+    max_order: Maximum n-gram order to use when computing BLEU score.
+    smooth: Whether or not to apply Lin et al. 2004 smoothing.
 
-        for tk in recall_n.keys():
-            cur_result_vids = pred_man[:tk]
-            cur_result_vids_unseen = [x for x in cur_result_vids if x not in SEEN_FXN]
-            cur_hit = sum([x in cur_result_vids_unseen for x in oracle_man_unseen])
-            # recall_n[tk] += cur_hit / (len(oracle_man) + 1e-10)
-            recall_n[tk] += cur_hit / (len(oracle_man_unseen)) if len(oracle_man_unseen) else 1
-            precision_n[tk] += cur_hit / tk
-    recall_n = {k: v / len(pred) for k, v in recall_n.items()}
-    precision_n = {k: v / len(pred) for k, v in precision_n.items()}
+  Returns:
+    3-Tuple with the BLEU score, n-gram precisions, geometric mean of n-gram
+    precisions and brevity penalty.
+  """
+    matches_by_order = [0] * max_order
+    possible_matches_by_order = [0] * max_order
+    reference_length = 0
+    translation_length = 0
+    for (references, translation) in zip(reference_corpus,
+                                         translation_corpus):
+        reference_length += min(len(r) for r in references)
+        translation_length += len(translation)
 
-    if print_result:
-        for k in sorted(recall_n.keys()):
-            print(f"{recall_n[k] :.3f}", end="\t")
-        print()
-        for k in sorted(precision_n.keys()):
-            print(f"{precision_n[k] :.3f}", end="\t")
-        print()
-        for k in sorted(recall_n.keys()):
-            print(f"{2 * precision_n[k] * recall_n[k] / (precision_n[k] + recall_n[k] + 1e-10) :.3f}", end="\t")
-        print()
+        merged_ref_ngram_counts = collections.Counter()
+        for reference in references:
+            merged_ref_ngram_counts |= _get_ngrams(reference, max_order)
+        translation_ngram_counts = _get_ngrams(translation, max_order)
+        overlap = translation_ngram_counts & merged_ref_ngram_counts
+        for ngram in overlap:
+            matches_by_order[len(ngram) - 1] += overlap[ngram]
+        for order in range(1, max_order + 1):
+            possible_matches = len(translation) - order + 1
+            if possible_matches > 0:
+                possible_matches_by_order[order - 1] += possible_matches
 
-    return {'recall': recall_n, 'precision': precision_n}
+    precisions = [0] * max_order
+    for i in range(0, max_order):
+        if smooth:
+            precisions[i] = ((matches_by_order[i] + 1.) /
+                             (possible_matches_by_order[i] + 1.))
+        else:
+            if possible_matches_by_order[i] > 0:
+                precisions[i] = (float(matches_by_order[i]) /
+                                 possible_matches_by_order[i])
+                # print(i, f"{precisions[i]:.03f}={float(matches_by_order[i]):.03f}/{possible_matches_by_order[i]}")
+            else:
+                precisions[i] = 0.0
+    # print("========")
+    if min(precisions) > 0:
+        p_log_sum = sum((1. / max_order) * math.log(p) for p in precisions)
+        geo_mean = math.exp(p_log_sum)
+    else:
+        geo_mean = 0
 
-def eval_retrieval_from_file(data_file, retrieval_file, question_ids,
-                             oracle_entry='oracle_man', retrieval_entry='retrieved', top_k=None):
+    ratio = float(translation_length) / reference_length
 
-    assert 'oracle_man.full' in data_file or 'conala' not in data_file, (data_file)
-    # for conala
-    with open(data_file, "r") as f:
-        d = json.load(f)
+    if ratio > 1.0:
+        bp = 1.
+    else:
+        bp = math.exp(1 - 1. / ratio)
 
-    ### TODO: calculate gold such that it only includes question_ids in question_ids
-    gold = [item[oracle_entry] for item in d]
+    bleu = geo_mean * bp
 
-    with open(retrieval_file, "r") as f:
-        r_d = json.load(f)
-    pred = [r_d[q_id][retrieval_entry] for q_id in question_ids]
+    # print(bleu, precisions, bp, ratio, translation_length, reference_length)
+    return (bleu, precisions, bp, ratio, translation_length, reference_length)
 
-    recall_metrics = calc_recall(gold, pred, top_k=top_k, print_result=False)
-    recall_metrics_unseen = calc_recall_unseen(gold, pred, top_k=top_k, print_result=False)
-    return recall_metrics, recall_metrics_unseen
 
-'''
-retrieval_file: dictionary of question_id: retrieved documentation
-'''
-def get_metrics(results_file, retrieval_file):
+""" The tokenizer that we use for code submissions, from Wang Ling et al., Latent Predictor Networks for Code Generation (2016)
+    @param code: string containing a code snippet
+    @return: list of code tokens
+"""
+
+
+def tokenize_for_bleu_eval(code):
+    code = re.sub(r'([^A-Za-z0-9_])', r' \1 ', code)
+    code = re.sub(r'([a-z])([A-Z])', r'\1 \2', code)
+    code = re.sub(r'\s+', ' ', code)
+    code = code.replace('"', '`')
+    code = code.replace('\'', '`')
+    tokens = [t for t in code.split(' ') if t]
+    return tokens
+
+
+def _bleu(ref_file, trans_file, subword_option=None, smooth=True, code_tokenize=False):
+    assert code_tokenize
+    assert not smooth
+    max_order = 4
+    ref_files = [ref_file]
+    reference_text = []
+    for reference_filename in ref_files:
+        with open(reference_filename) as fh:
+            reference_text.append(fh.readlines())
+    per_segment_references = []
+    for references in zip(*reference_text):
+        reference_list = []
+        for reference in references:
+            if code_tokenize:
+                reference_list.append(tokenize_for_bleu_eval(reference.strip()))
+            else:
+                reference_list.append(reference.strip().split())
+        per_segment_references.append(reference_list)
+    translations = []
+    with open(trans_file) as fh:
+        for line in fh:
+            if code_tokenize:
+                translations.append(tokenize_for_bleu_eval(line.strip()))
+            else:
+                translations.append(line.strip().split())
+    print(f'src length: {len(per_segment_references)}, tgt length: {len(translations)}')
+    bleu_score, _, _, _, _, _ = compute_bleu(per_segment_references, translations, max_order, smooth)
+    return round(100 * bleu_score, 2)
+
+
+def get_metrics(results_file):
     ### LOAD IN JSON
-    with open(results_file, 'r') as file:
+    with open(results_file, 'r') as fin:
         # Read the contents of the file
-        json_string = file.read()
+        json_string = fin.read()
 
     # Parse the JSON string into a dictionary
-    data = json.loads(json_string)
-
-    # Create a new dictionary variable and assign the parsed data
-    experiments = dict(data)
+    experiments = json.load(json_string)
 
     results_dict = {}
 
-    for experiment in experiment:
-        dataset = experiments[experiment]
+    for experiment, results in experiments.items():
         predictions = []
         references = []
         question_ids = []
         ### loop thru dataset, get predictions and references
-        for line in dataset:
+        for line in results:
             question_ids.append(line[0])
             predictions.append(line[1])
             references.append(line[2])
 
-        bleu = evaluate.load("neulab/python_bleu")
-        results = bleu.compute(predictions=predictions, references=references)
-        bleu_4 = results["bleu_score"]
-
-        recall_metrics, recall_metrics_unseen = eval_retrieval_from_file('data/conala/cmd_test.oracle_man.full', retrieval_file, question_ids)
-
-        recall = recall_metrics['recall'][1]
-        recall_unseen = recall_metrics_unseen['recall'][1]
-
-        results_dict[experiment] = (bleu_4, recall, recall_unseen)
-
-    return results_dict
+        

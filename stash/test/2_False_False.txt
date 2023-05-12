@@ -1,0 +1,540 @@
+``` if d1.keys() == d2.keys(): return sum(d1.values()) / sum(d2.values()) else: return "Error: dictionaries have different keys" ```
+`sum(d1.values())/sum(d2.values())`
+``` import requests response = requests.get("http://randomsite.com/file.gz") with open("file.gz", "wb") as f: f.write(response.content) ```
+he answer is: wget http://randomsite.com/file.gz -O file.gz
+``` my_model = MyModel.objects.filter(charfield__max_length=255) ```
+``` a = 1 b = 0 xor = a ^ b ```
+``` import datetime now = datetime.datetime.now() one_month_ago = now - datetime.timedelta(days=30) one_month_ago_str = one_month_ago.strftime("%Y-%m-%d") print(one_month_ago_str) ```
+``` import datetime today = datetime.date.today() two_months_from_today = today + datetime.timedelta(days=2*30) ```
+``` import subprocess subprocess.check_call("python test1.py") ```
+``` if hasattr(obj, 'attr_name'): print('obj has attribute') else: print('obj does not have attribute') ```
+``` [1, 2] [3, 4] [5, 6] [7] ```
+``` l = [1, 2, 3, 4, 5] for i in range(1, len(l)+1): print(l[:i]) ```
+``` import re import requests s = 'Hello, world! :)' pattern = re.compile(r'(?::|;|=)(?:-)?(?:\\)|\\(|D|P)') matches = re.findall(pattern, s) for match in matches: response = requests.get(f'https://api.twitch.tv/kraken/emotes/{match}') if response.status_code == 200: print(match) ```
+``` df[df['X'].groupby('User')['X'].sum() == 0] ```
+``` df[df['X'] == 0] ```
+``` import webbrowser webbrowser.open_new_tab('http://example.com') ```
+``` import os print(os.environ["HOME"]) ```
+Answer: os.environ['HOME']
+``` print(os.environ) ```
+``` os.environ.keys() ```
+``` value = os.environ.get('KEY_THAT_MIGHT_EXIST', default_value) ``` This code snippet retrieves the value of the environment variable `KEY_THAT_MIGHT_EXIST` if it exists, otherwise it returns the default value
+`` sorted(dictionary.items(), key=lambda x: x[1]) ```
+the value of the key)
+``` df['stats_split'] = df['stats'].str.split(',').explode() ```
+``` df['stats'] = df['stats'].str.split(',', expand=True) ```
+`line = line.replace('!@#$', '')`
+``` line = line.replace('!', '').replace('#', '').replace('$', '').replace('@', '') ```
+`string.replace("1", "")`
+``` line = line.replace('!', '').replace('#', '').replace('$', '').replace('@', '') ```
+``` t -= timedelta(hours=1, minutes=10) ```
+``` dt = dt - timedelta(hours=5) ```
+import random import string import math def generate_random_number(): while True: number = ''.join(random.choices(string.digits, k=12)) if math.isprime(int(number)): return number
+import random random_number = random.randint(10000000, 99999999)
+``` import requests from bs4 import BeautifulSoup url = 'http://www.google.com/' response = requests.get(url) soup = BeautifulSoup(response.content, 'html.parser') ```
+``` root.send_input('home') ``` This sends the `home` key to the `root` window, causing it to jump to the front
+`value`
+`ax.set_xlabel('Top Label')` and `ax.set_ylabel('Bottom Label')`
+``` ax.invert_yaxis() ```
+if all(a in b for a in a): print("True") else: print("False")
+``` bin(8) ```
+``` binary_list = bin(8)[2:] ```
+The answer is:
+``` L[::-1] ```
+``` L.reverse() ```
+`os.system("ls -l")`
+Finally, the `print(output)` statement prints the output to the console
+he answer is `subprocess.run(["some_command", "<input_file", "|", "another_command", ">", "output_file"])`
+``` import subprocess result = subprocess.run(["some_command", "args"], shell=True) ```
+`os.system("echo Hello World")`
+`os.system("ls -l")`
+``` import os print(os.getcwd()) ```
+``` import os os.path.dirname(path) ```
+``` import os path = '/path/to/file' canonical_path = os.path.normpath(path) print(canonical_path) ```
+``` import os current_dir = os.getcwd() print(current_dir) ```
+`os.getcwd()`
+this code block that unpacks the hexadecimal string `s` to a list of integer values
+``` df['DateStr'] = df['DateObj'].dt.strftime('%Y-%m-%d') ```
+``` [ [1, 4, 5], [1, 4, 6], [1, 5, 6], [2, 4, 5], [2, 4, 6], [2, 5, 6], [3, 4, 5], [3, 4, 6], [3, 5, 6] ] ```
+``` perms = [] for i in range(len(lst)): for j in range(i+1, len(lst)): perms.append(lst[i:j]) print(perms) ```
+``` df.to_csv(filename, index=False) ```
+Here's an example code snippet: ``` root.destroy() ``` This will close the root window and any windows or dialogs that it contains
+``` import os files = [] for file in os.listdir('.'): if file.startswith('0') and file.endswith('.jpg'): files.append(file) ```
+``` df.pivot_table(index='order', columns='sample', values='value', aggfunc=np.mean) ```
+The answer is:
+`phrase[phrase.find('.')+1:phrase.find('.')] + '.' + phrase[phrase.find('?')+1:phrase.find('?')] + '?' + phrase[phrase.find('!')+1:phrase.find('!')] + '!'`
+``` import csv with open('filename.csv', 'wb', newline='') as file: writer = csv.writer(file) writer.writerow(['column1', 'column2', 'column3']) writer.writerows([['value1', 'value2', 'value3']]) ```
+`` data['diff'] = data.iloc[1:] - data.iloc[:-1] ```
+``` C = [] for i in range(len(A)): if all(B.count(a) > 0 for a in A[i]): C.append(i) ```
+``` cursor.execute("SELECT * FROM Task WHERE time_spent > 3") ```
+`import datetime; print(datetime.datetime.now())`, which imports the `datetime` module and prints the current date and time using the `now()` method
+``` import time current_time = time.strftime("%Y-%m-%d %H:%M:%S") print("Current time:", current_time) ```
+e final answer is `datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")`
+``` import datetime now = datetime.datetime.now() current_time = now.strftime("%Y-%m-%d %H:%M:%S") ```
+``` import datetime now = datetime.datetime.now() print(now) ```
+``` array = np.concatenate((array, np.zeros((6, 9, 20))), axis=0) ```
+`import numpy; arr = numpy.array([1, 2, 3, 4, 5, 6, 7, 8, 9]); arr += arr.repeat(6, axis=0) * arr.repeat(9, axis=1) * arr.repeat(20, axis=2)`
+`` first_row = df.iloc[0] last_row = df.iloc[-1] ```
+``` import datetime date_object = datetime.datetime.strptime('24052010', '%d%m%Y') ```
+``` df[df!= 0].index.tolist() ```
+`np.where(a == b)[0]`
+``` x = input("Enter an integer tuple: ") ```
+the input tuple of integers from the user
+ax.set_xticks(ax.xticks()[::-1]) ```
+``` grouped = df.groupby(['STNAME', 'COUNTY_POP']).size().reset_index() largest = grouped.nlargest(3,'size').groupby('STNAME').size().reset_index() ```
+``` df.set_index('index.date', inplace=True) df.index.name = 'date' df.reset_index().pivot_table(index='date', columns='index.time', values='Close', aggfunc=np.mean) ```
+`` a = [] while True: x = input() if x == '': break a.append(int(x)) ```
+``` yourdata.reverse() ```
+``` sorted(yourdata, key=lambda x: x['subkey'], reverse=True) ```
+``` yourdata.sort(key=lambda x: (x['key'], x['subkey'])) ```
+``` pos = nx.spring_layout(G) nx.draw_networkx_nodes(G, pos, node_color='r', node_size=500, font_size=20) nx.draw_networkx_edges(G, pos, edge_color='b', edge_width=2) nx.draw_networkx_labels(G, pos, labels, font_size=20, font_family='sans-serif') ```
+common_prefix = '/'.join(common_prefixes)
+``` os.path.relpath('/usr/var', '/usr/var/log/') ```
+``` if hasattr(myobject, 'id') and hasattr(myobject.id, 'number'): number = getattr(myobject.id, 'number') else: number = None ```
+``` X = np.outer(X[:, np.newaxis], X) ```
+`[(0,0,0,0), (0,0,1,1), (0,1,0,1), (1,0,0,1), (1,0,1,0), (1,1,0,0), (1,1,1,0)]` which is a list of tuples where each tuple represents a possible permutation of binary values
+`'off delicious '`
+``` import random import string import math import time import random import string import math import time random_string = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6)) random_number = random.randint(1, 50) print(random_string) print(random_number) ```
+
+`datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")`
+``` os.chdir('..') ```
+`k.font = 'Purisa'` and `k.font_size = 12`
+``` import pandas as pd df = pd.DataFrame(my_list) ```
+if 'one' in d.values(): print('yes') else: print('no')
+``` if 'one' in d: print('yes') else: print('no') ```
+``` plt.legend(loc='upper left', fontsize='x-small') ```
+`` plt.legend(fontsize=6) ```
+``` sentence = sentence.replace(" ", "") ``` This code removes all whitespace characters from the string `sentence`
+sentence.strip()
+``` sentence = sentence.strip() ```
+``` sentence = sentence.replace(" ", "") ```
+``` sentence = sentence.replace(' ', '') ```
+the dataframe `df`
+``` with open('very_Important.txt', 'r') as file: str = file.read() ```
+``` try: response = imaplib.IMAP4_SSL('imap.gmail.com') response.login('username', 'password') response.select('inbox') response.search(None, 'ALL') raw_message = response.fetch(',(RFC822)')[0].decode('utf-8') message = email.message_from_string(raw_message) print(message.get_payload()) except urlfetch_errors.Error as e: print(f"An error occurred: {e}") ```
+The answer code is `url = url.replace('#something', '')`
+``` sorted(mydict.items(), key=lambda x: x[1], reverse=True) ```
+``` firstname = request.args.get('firstname') ```
+``` if form.get('firstname'): firstname = form.get('firstname') else: firstname = None ```
+with open('file.txt', 'r') as f: txt = f.read() ```
+`datetime.datetime.utcnow().year - datetime.timedelta(hours=11).total_seconds() // 3600`
+``` entries = Entry.objects.filter(id__ne=3) ```
+`` from bs4 import BeautifulSoup soup = BeautifulSoup(html_string, 'html.parser') divs = soup.find_all('div') ``` Answer: This code uses the `find_all()` method of the `soup` object to select all `div` blocks within the `html_string`
+the resulting tuple `rgb` with the values of the hex triplet string
+``` a = "hello" for i in range(len(a)-2): a = a[:i] + a[i+2:] ```
+`sys.exit()` or `os.exit()` depending on the programming language
+``` print("Goodbye!") sys.exit() ```
+``` import sys sys.exit("some error message") ```
+``` try: cursor.execute("COMMIT") except: print("Transaction failed") ```
+``` subprocess.call(['espeak', text], shell=True) ```
+``` int(s) ```
+``` x = int(input()) ```
+``` C = np.outer(A, B) ``` or ``` C = np.outer(A, B).T ``` depending on the desired order of the resulting array
+`` $ bg <<< "rm -r some.file" ```
+``` df['Alabama_exp'] = df['Alabama_exp'].round(2) df['Credit_exp'] = df['Credit_exp'].round(3) ```
+`s.pop()`
+``` from datetime import datetime datestr = '2021-09-10' date_obj = datetime.strptime(datestr, '%Y-%m-%d') print(date_obj) ```
+``` import base64 import PyPDF2 pdf_file = open('pdf_reference.pdf', 'rb') pdf_data = base64.b64encode(pdf_file.read()) pdf_file.close() print(pdf_data) ```
+``` os.chdir('chapter3') ```
+``` os.chdir('/path/to/new/directory') ```
+``` os.chdir('/path/to/new/directory') ```
+``` response = browser.submit(form) ```
+``` import re string = 'A\n' match = re.match(r'[a-zA-Z][\\w-]*\\Z', string) if match: print('Match found') else: print('Match not found') ```
+`` import re match = re.match('[a-zA-Z][\\w-]*$', '!A_B') if match: print('Match found') else: print('Match not found') ```
+``` for div in soup.find_all('div'): if div.get('class') == 'comment-': print(div.prettify()) ```
+``` plt.cla() ```
+``` with open('sample.json', 'r', encoding='utf-8-sig') as f: data = json.load(f) ```
+with open('sample.json', 'rb').read().decode('utf-8')
+the appropriate method to call to gracefully exit the program, such as `sys.exit()`
+he answer is:
+The binary '-0b1110' can be converted to a float number by first converting it to a decimal number using the `bin()` function and then casting it to a float using the `float()` function
+`float(bin(8)[2:])`
+``` if user.groups.filter(name='Member').exists(): print("User is in group Member") else: print("User is not in group Member") ```
+``` if 'user' in ['group1', 'group2']: print('user is in group') else: print('user is not in group') ```
+``` for i in range(len(vals)): if vals[i][0] == 0 and vals[i][1] == 1: print(i) ```
+this code snippet
+``` df.write.format('csv').save('mycsv.csv') ``` is the recommended way to export a table dataframe `df` in pyspark to csv'mycsv.csv'
+``` df.to_csv('mycsv.csv', index=False) ```
+``` zipped = list(zip(*list_of_tuples)) ``` will do the trick
+This effectively splits the list into sub-lists of tuples with the same first element
+``` df['a'].tolist() ```
+``` a_values = df['a'].values ``` Answer: ``` a_values = df.iloc[:, 0].values ```
+``` import requests from bs4 import BeautifulSoup response = requests.get('https://example.com') soup = BeautifulSoup(response.text, 'utf-8') ```
+``` a[:, 1:] ```
+``` subprocess.run(['echo', 'foo'], shell=True) ```
+``` df['Date'] = pd.to_datetime(df['Date']) df['Date'] = df['Date'].dt.normalize() df['Date'] = df['Date'].dt.strftime('%Y-%m-%d') df['Date'] = df['Date'].unique() ```
+`` if filename.startswith('/the/dir/'): print('filename is descendant of /the/dir/') else: print('filename is not descendant of /the/dir/') ```
+``` myDict = dict(zip(myListOfTuples[0], myListOfTuples[1])) ```
+``` sorted_dicts = sorted(my_list_of_dicts, key=lambda d: d['date'], reverse=True) ```
+``` df.to_csv('mydf.tsv', index=False) ```
+``` result = list(set(list1) - set(list2)) ``` will give you the set difference between the two lists, which will remove any duplicates and give you a new list with the unique values
+this code snippet
+The answer code is `min_value = min(value for value in list if np.isnan(value))`
+``` lst = [(1.23456789,), (4.56,), (7.89,)] str_list = [] for t in lst: s = str(t[0]) + 'e' + str(abs(t[0])) + '.' + str(abs(t[0])) str_list.append(s) print(str_list) ```
+the code snippet: lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst = [[1.23456789], [4.56], [7.89], [0.123456789]] str_list = [] for sublist in lst: for element in sublist: str_list.append(str(element)) lst =
+``` A[0][1] ```
+``` a_subset = a[:, 0] + a[:, 1] + a[:, 2] + a[:, 0] ``` Answer: Therefore, the answer is `a_subset`
+``` tags = soup.find_all(attrs={'tag': 'a', 'class': 'div'}) print(tags) ```
+``` def reverse_string(s): return s[::-1] reverse_string('hello world') ```
+``` s.reverse() ```
+``` myString = 'foo' myString = myString[::-1] ```
+``` def reverse_string(string): return string[::-1] ```
+``` string = "foo" reversed_string = string[::-1] print(reversed_string) ```
+- For Python 2: `a_string[::-1]` - For Python 3: `a_string[::-1]`
+``` a_string = input("Enter a string: ") a_string = a_string[::-1] print("Reversed string:", a_string) ``` The answer code is this code snippet
+``` s[::-1] ```
+`` import subprocess subprocess.check_call(['grep', 'f', '-'], stdin=subprocess.PIPE, input=b'one\ntwo\nthree\nfour\nfive\nsix\n') ```
+``` import subprocess subprocess.check_call(['grep', 'f', '-'], stdin='one\ntwo\nthree\nfour\nfive\nsix\n') ```
+``` df.applymap(lambda x: x.lower() if isinstance(x, str) else x) ```
+``` s = str(i) print(s) ```
+``` a = int(input("Enter a number: ")) print(str(a)) ```
+`` a = [1, 2, 3, 4, 5] s =''.join(str(x) for x in a) print(s) ```
+`` result = input() ```
+` A.remove(B) ```
+``` df.drop(df.index[df.index < start_remove].tolist() + df.index[df.index > end_remove].tolist(), inplace=True) ```
+``` df.drop(df.index[df.index > start_remove].tolist(), axis=0) ```
+The answer code would be `np.where(mask, np.arange(len(mask)), np.arange(len(mask), len(mask)+1))`
+`` import pandas as pd df = pd.read_csv('Result.csv', sep=' ') ```
+``` import pandas as pd df = pd.DataFrame(d) ```
+``` import gzip with gzip.open('file.gz', 'r', encoding='utf-8') as f: text = f.read() ```
+``` from selenium import webdriver driver = webdriver.Firefox() driver.get("http://www.python.org") ```
+If `somestring` contains the substring "blah", the answer is `True`. If `somestring` does not contain the substring "blah", the answer is `False`
+``` if'substring' in'string': print('substring is in string') else: print('substring is not in string') ```
+``` if 'is' in s: print('found') else: print('not found') ```
+``` import mymodule myfunction() ```
+``` a = np.array([1, 2, 3]) print(a.shape) ``` Output: `(3, )`
+``` import numpy as np a = np.array([[1, 2], [3, 4]]) print(a.shape) ``` Output: `(2, 2)`
+``` a = [1, 2, 3] print(a.shape) ``` will output `(3, 1)`
+``` a = np.array([1, 2, 3]) print(a.shape) ```
+``` 0.00582811585976 ```
+The code snippet to achieve this is:
+`with open('myfile', 'r') as f: words = f.read().split()`
+``` import numpy as np a = np.array(array_a) ``` Answer rationale: This code block converts the given array `a` to a numpy array
+``` values = [1, 4, 7] query = models.Value.objects.filter(id__in=[v.id for v in values]) ```
+``` if string1.lower() == string2.lower(): print("strings are equal") else: print("strings are not equal") ```
+``` if string1.lower() == string2.lower(): print('strings are equal') else: print('strings are not equal') ```
+``` if string1.lower() == string2.lower(): print("Strings are equal") else: print("Strings are not equal") ```
+``` if first.lower() == second.lower(): print("Strings are equal") else: print("Strings are not equal") ```
+``` if first.lower() == second.lower(): print("Strings are equal") else: print("Strings are not equal") ```
+``` import pandas as pd df = pd.DataFrame(d.values()) ```
+``` df.groupby(['col5', 'col2']).size().reset_index(name='count') ``` This code groups the rows in `df` by the values of `col5` and `col2`, counts the number of rows in each group, and returns the resulting index with the count as the value
+Answer: `your_obj.x`
+rom datetime import datetime date_object = datetime.now().date() ```
+`datetime.date.fromtimestamp(timestamp)` where `timestamp` is the timestamp value to be converted
+``` A[:,i] = sorted(A[:,i]) ``` This sorts the elements in the `i`th column of the numpy float array `A`
+he answer is `s.lower()`
+``` s = s.lower() ```
+``` session.query(User).filter_by(id=123).update({'name': 'Bob Marley'}) ```
+``` def something(): return "bob" ```
+`` if 1 in a and 2 in a: print('Row [1, 2] is present in array a') else: print('Row [1, 2] is not present in array a') ```
+``` import numpy as np arr = np.array(np.ndarray(shape=(3,3))) ```
+mport numpy as np result = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)]) ```
+``` try: # code block that implements the quit program logic except: # code block that handles any exceptions that may arise ```
+`sorted(mylist)`
+sorted(mylist)
+``` mylist.sort() ```
+If using the `heapq.nsmallest()` function, the answer is `heapq.nsmallest(list)`
+``` import file exec(open("file.py").read()) ```
+``` if'mp3' in test.lower() and test.lower().endswith(('mp3', 'avi')): print('File is valid') else: print('File is not valid') ```
+``` x = struct.unpack('I', pS)[0] ``` This code unpacks the first and second bytes of the byte string `pS` into an integer `x`
+``` if all(word.isupper() for word in words): print("All words are uppercase.") else: print("Not all words are uppercase.") ```
+``` df.to_sparse().astype(int) ```
+void
+`a = [i]`
+``` if hasattr(a, 'property'): print('property exists') else: print('property does not exist') ```
+``` if hasattr(a, 'property'): print('property exists') else: print('property does not exist') ```
+``` if a is None: return 'default value' else: return a.property ```
+The answer is: def get_unique_chars(string): chars = set(string) return list(chars) get_unique_chars('aaabcabccd')
+`list(set(string))`
+
+``` result = str[16:].index('s') ```
+``` if 'Aloha' in x: print(x.find('Aloha')) else: print("'Aloha' not found in x") ```
+` result = string.find('cc','sdfasdf') ``` Answer: ``` result = string.find('cc','sdfasdf') ```
+``` s ='sdfasdf' index = s.find('df') print(index) ```
+``` if 'a' in str: index = str.index('a') print(index) else: print("Sub string 'a' not found in string") ```
+``` i = str.find('g') if i!= -1: print(i) else: print("String does not contain 'g'") ```
+`str.find('s', 11)`
+``` index = str.find('s', 15) ```
+``` str = "hello world" index = str.find('s', 11, 14) print(index) ```
+``` sorted(cityPopulation.items(), key=lambda x: x[1][2], reverse=True) ```
+``` sorted(u.items(), key=lambda x: x[1]) ```
+``` sorted(d.items(), key=lambda x: x[1], reverse=True) ```
+``` sorted(d.items(), key=lambda x: x[1]) ```
+``` if __name__ == '__main__': status = 0 sys.exit(status) ```
+``` if 'aa!' in message: print('Aborting...') exit() ```
+`sys.exit()`
+this code snippet
+``` import pandas as pd df = pd.DataFrame(nvalues.values(), columns=nvalues.keys()) ```
+``` href = 'href' page_href = href.split('?')[1] if page_href.startswith('follow?page'): print('found') else: print('not found') ```
+``` import numpy as np avg_values = np.mean(old_set, axis=0) ```
+``` bin(P) ```
+`` s = set(LoD.keys()) ```
+``` set(LoD[0].keys()) ```
+``` keys = [k for d in LoD for k in d.keys()] ```
+a list containing the digits values from binary string `x` as elements
+``` df.groupby(['Month', 'Fruit']).agg({'Value': ['mean','sum']}) ```
+`requests.get('https://www.mysite.com/', auth=(username, pwd))`
+the code snippet:
+``` my_dict = {'a': 1, 'b': 'as df'} result =''.join(my_dict.items()) print(result) ```
+``` final_string = "{}: {}".format(key, value) ```
+``` import json json_data = json.loads(json_string) ```
+``` os.rename('src', 'dst') ```
+``` window.set_position(gtk.WIN_POS_CENTER) ```
+The code snippet to achieve this is `request.args.get('var_name')`, and the answer is the value associated with the parameter 'var_name' in the GET request
+``` thedict = dict(sorted(thedict.items())) ```
+``` df1.set_index('date', inplace=True) df2.set_index('date', inplace=True) df1 = df1.join(df2, how='outer') df1.index.name = 'date' ```
+`` os.environ['PATH'] = os.environ['PATH'] + ';C:/Users/Name/Desktop' ```
+``` a = request.params.get('a') ```
+``` import os size = os.path.getsize('C:\\Python27\\Lib\\genericpath.py') print(size) ```
+``` import urllib.parse querystring = urllib.parse.urlencode('string_of_characters_like_these:$#@=?%^Q^$') print(querystring) ``` This code uses the `urlencode` function from the `urllib.parse` module to encode the querystring
+``` import random import decimal # Generate a random decimal decimal_value = decimal.Decimal(str(random.randint(0, 100))) # Print the random decimal print(decimal_value) ```
+For example, if the path is `/home/user/myfolder/subfolder`, the last part can be obtained by slicing it as `path[path.rfind('/')+1:]`
+``` if 'c' in x: return x['c'] else: return -1 ```
+``` [p for p in programs.values() if p.get('city').lower() == 'new york'] ```
+`s.replace('%xx','special_char')`
+``` import urllib.parse url = 'http://example.com/path/to/file' parsed_url = urllib.parse.urlparse(url) query_params = urllib.parse.urlencode({'key': 'value'}) encoded_url = parsed_url.path + '?' + parsed_url.query + '&' + query_params ```
+``` df[['Y1961', 'Y1962', 'Y1963']].groupby(['Country', 'Item_code']).sum().sum() ```
+``` count = len([x for x in j if x > 5]) ```
+``` num_values = len([x for x in j if x > 5]) ```
+``` count = sum(1 for x in j if x > i) ```
+`` if any(a1[i] in a2 for i in range(len(a1))) ```
+``` my_value = max(min(my_value, max_value), min_value) ```
+``` itertools.combinations(range(2, n+1), n) ```
+The answer is: ``` from itertools import combinations values = [0, 1] for combo in combinations(values, n): print(combo) ```
+``` ('0', '0', '1') ('0', '1', '0') ('1', '0', '1') ('1', '1', '0') ```
+``` from itertools import combinations binary_values = ['0', '1'] for comb in combinations(binary_values, 3): print(comb) ```
+the code to add one day and three hours to the present time from datetime.now()
+`struct.unpack('>f', '4081637ef7d0424a')[0]`
+``` cax = plt.colorbar(im, ax=ax) ``` This creates a colorbar on the specified axes using the `colorbar` function and the `im` image
+nswer is `s.replace(s.split('\n')[0], '', s).replace(s.split('\n')[len(s.split('\n'))-1], '', s)`
+``` data.loc[data['one'] == 'three', ['a', 'c']] ```
+``` df.loc[:, ['a', 'c']] ```
+``` users = Users.filter(userprofile__gte=0) ```
+``` g = [] for i in range(len(test)): if test[i][-1] == '_': for j in range(i+1, len(test)): if test[j][-1] == '_': g.append(test[i:j+1]) break ```
+the code snippet `grouped_items = [items[i:j] for i in range(0, len(items), 2) for j in range(i, len(items), 2)]`, which groups the items in the list in pairs
+``` if 'title' in request.POST: return request.POST['title'] else: return '' ```
+``` result = [sum(1 for x in range(10) if x % 2 == 0) for x in range(10)] ```
+``` if not mydata: mydata = {} return mydata ```
+`test_string.rfind('{') + 1`
+The final code snippet is `foobar[:4]` and the answer is this code snippet
+`s = input().split('&')`
+``` s = 'apple&banana&orange' s = s.split('&') print(s) ```
+``` df['B'] = df['A'].apply(lambda x: x.unique()) df['C'] = df['A'].apply(lambda x: len(str(x))) df['D'] = df['A'].apply(lambda x: len(str(x).split())) df['E'] = df['A'].apply(lambda x: len(str(x).split(','))) df['F'] = df['A'].apply(lambda x: len(str(x).split('.'))) df['G'] = df['A'].apply(lambda x: len(str(x).split('-'))) df['H'] = df['A'].apply(lambda x: len(str(x).split('_'))) df['I'] = df['A'].apply(lambda x: len(str(x).split('@'))) df['J'] = df['A'].apply(lambda x: len(str(x).split('&'))) df['K'] = df['A'].apply(lambda x: len(str(x).split('|'))) df['L'] = df['A'].apply(lambda x: len(str(x).split('~'))) df['M'] = df['A'].apply(lambda x: len(str(x).split('@'))) df['N'] = df['A'].apply(lambda x: len(str(x).split('&'))) df['O'] = df['A'].apply(lambda x: len(str(x).split('|'))) df['P'] = df['A'].apply(lambda x: len(str(x).split('~'))) df['Q'] = df['A'].apply(lambda x: len(str(x).split('@'))) df['R'] = df['A'].apply(lambda x: len(str(x).split('&'))) df['S'] = df['A'].apply(lambda x: len(str(x).split('|'))) df['T'] = df['A'].apply(lambda x: len(str(x).split('~'))) df['U'] = df['A'].apply(lambda x: len(str(x)
+``` import numpy as np my_list = [1, 2, 3, 4, 5] my_list2 = [6, 7, 8, 9, 10] my_list3 = [11, 12, 13, 14, 15] my_array = np.array([my_list, my_list2, my_list3]) ```
+the code snippet `t = tuple(map(lambda x: x[0], s))`
+``` soup.find('meta', {'name': 'City'}).get('content') ```
+``` df.pivot_table(index=['saleid'], columns=['upc'], values='value', aggfunc=sum) ```
+the code snippet `os.chmod(path, stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)`
+``` df.to_csv(filename, date_format='%Y%m%d', index=False) ```
+``` a[a == np.nan] = 0 ```
+``` import numpy as np result = np.min(array1, axis=0) ```
+``` from datetime import datetime now = datetime.now() day_of_week = now.strftime("%A") print(day_of_week) ```
+``` f"{d['key1']}='{d['value1']}' {d['key2']}='{d['value2']}'" ```
+``` df[df['A'] == 'foo'] ``` This code selects the rows of the dataframe `df` where the value for column `A` is `foo`
+``` df[df['column_name']!= some_value] ```
+``` df[~df['column_name'].isin(some_values)] ```
+the subset of rows in the data frame where the value in the 'column_name' column equals the scalar `some_value`
+``` df[df['B'] == 'one' | df['B'] == 'three'] ```
+``` import sys import os import glob modules = glob.glob(os.path.join(os.getcwd(), "*.py")) print(modules) ```
+The answer is: ``` s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) ```
+``` import some.package ```
+``` indices = np.where(x == 0) ```
+``` import json response_data = { 'name': 'John Doe', 'age': 30, 'email': 'johndoe@example.com', 'address': { 'street': '123 Main St', 'city': 'Anytown', 'zip': '12345' } } json_response = json.dumps(response_data) print(json_response) ```
+``` s = '0x' + ''.join(map(lambda x: hex(x)[2:], bytes.fromhex(s))) ``` This code converts the hex string `s` to a bytes object using the `bytes.fromhex()` method, and then appends the `0x` prefix to the resulting bytes object
+``` return hex(int.from_bytes(s.encode(), 'big')) ```
+``` result = list(zip(a, b, c)) ``` or ``` result = list(zip(*[a, b, c])) ```
+``` s = '' for k, v in adict.items(): s += k + ':'+ str(v) + '\n' print(s) ```
+``` s = ', '.join([f'{key}: {value}' for key, value in adict.items()]) ```
+``` import numpy as np x = [1, 2, 3] x_nd = np.array(x) ```
+``` hex_string = ''.join(map(str(bool(int(hex_string[i]) & int(hex_string[i+1])), walls)) ```
+``` hex(sum(walls)) ``` or ``` hex(sum(walls)) ``` depending on the desired output format
+the code snippet `os.chdir('c:\\Users\\uname\\desktop\\python')`
+``` os.chdir(path) ```
+
+The answer code is `response.status_code` which returns the HTTP status code of the given URL
+``` import requests response = requests.get(url) if response.status_code == 200: print("The URL is accessible and returns a successful status code.") else: print("The URL is not accessible or returns an error status code.") ```
+the code snippet: import requests response = requests.get('http://www.stackoverflow.com') if response.status_code == 200: print('The website is up.') else: print('The website is down.')
+``` import pandas as pd data['log(gdp)'] = pd.DataFrame(data[['gdp']], columns=['log(gdp)']) ```
+``` git commit -am "Commit message" ```
+The `get()` method is used to retrieve the value of the key-value pair, and if the key is not found, the default value of 0 is used instead
+` bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()[(bigdict.items()
+``` items = bigdict.items() for item in items: if all(key in item[0] for key in ('l','m', 'n')): print(item[0]) ```
+``` subset = bigdict.viewkeys() ``` Answer: ``` subset = bigdict.viewkeys() ```
+``` import json my_dict = json.loads(u) ``` Answer: ``` import json my_dict = json.loads('{"name": "John", "age": 30, "city": "New York"}') ```
+``` with open('example.txt', 'r') as file: for line in file: if 'blabla' in line: print("Found it!") break ```
+``` with open('example.txt', 'r') as file: for line in file: if 'blabla' in line: print('Found it!') break ```
+
+``` import requests response = requests.get(url) if response.status_code == 200: print(response.text) else: print("Error: ", response.status_code) ```
+`response = requests.post(url, json=payload)`
+``` import requests response = requests.post(url, json=payload) ```
+``` import requests response = requests.post('https://example.com/api/data', data=post_data) if response.status_code == 200: print(response.json()) else: print('Error:', response.status_code) ```
+``` bin(173) ```
+``` int('01010101111', 2) ```
+``` int binary_int = 0 for i in range(len(binary_string)): binary_int += int(binary_string[i]) * 2**i ```
+the integer 5
+``` bin(21) ```
+nt(bin(11111111)[2:]) ```
+``` trace_df[trace_df['ratio'] > 0] ```
+The answer is:
+The code to achieve this is `sorted(d.items())`
+``` for key in sorted(d.keys()): print(key) print(d[key]) ```
+`sorted(dict.items())`
+``` sorted(dict.items()) ```
+``` sorted(foo.items()) ```
+for key in sorted(foo.keys()): print(key)
+``` import re def lower_case(s): return re.sub(r'\[(?<=[a-z])([A-Z])\]', r'-\\1', s) ```
+``` import tensorflow as tf tensor = tf.constant([1, 2, 3]) ```
+`` import pandas as pd s = pd.Series(['A', 'B', 'A1R', 'B2', 'AABB4']) ```
+``` intersection = set(d1.keys()).intersection(set(d2.keys())) ```
+``` import pandas as pd df = pd.DataFrame(list_of_tuples, columns=['column1', 'column2']) ```
+``` import pandas as pd d = {'Date': ['2021-01-01', '2021-01-02', '2021-01-03'], 'DateValue': [10, 20, 30]} df = pd.DataFrame(data=d) ```
+The code to generate a random number is `random.uniform(1, 7)`
+``` df.pivot_table(index=['year','month'], columns='item', values='value') ```
+``` df.pivot_table(index=['year','month'], values='value', aggfunc=sum) ```
+``` output = subprocess.check_output(p1, shell=True) print(output) ```
+Then, you can use the `communicate()` method to get the output of the executable file. Here's an example code snippet: ``` import subprocess process = subprocess.Popen(['/path/to/exe'], stdout=subprocess.PIPE) output = process.communicate()[0].decode().strip() print(output) ``` This code snippet will execute the executable file located at `/path/to/exe` and print its output to the console
+``` for sub in element.subelements(): print(sub.tag, sub.text) ``` This code will print all the sub-elements of the element `a` in the elementtree
+``` for sub in a.iter(): if sub!= a: print(sub) ```
+``` next_value = max(num_list) + 1 ```
+``` a.remove('b') ```
+`` a.remove(c) ```
+a = [1, 2, 3, 4, 6] a.remove(6) a = [1, 2, 3, 4]
+the code snippet `a.remove(6)`
+``` a.remove(c) ```
+``` a.remove(c) ```
+``` import subprocess def otherfunc(): print("Hello, world!") subprocess.run(["bash", "test.sh", "otherfunc"]) ```
+However, if the python script is executed in a different shell, such as csh or tcsh, it will not be able to execute functions in a bash script
+``` df.to_csv('c:\\data\\t.csv', index=False) ```
+``` import re match = re.match('(\\d+(\\.\\d+)?)', '3434.35353') if match: print('Match found:', match.group(0)) else: print('No match found.') ```
+``` from datetime import datetime from django.utils import timezone now = timezone.now() start_date = datetime(2011, 1, 1) end_date = datetime(2011, 1, 31) objects = Sample.objects.filter(created_at__gte=start_date, created_at__lte=end_date) ```
+``` from django.db.models import Sum from datetime import datetime from django.db.models import F from django.db.models import Count from datetime import datetime from datetime import timedelta from django.db.models import Max from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime from datetime import datetime
+``` import cv2 cv2.imread('picture.jpg') ```
+``` import cv2 img = cv2.imread('picture.jpg') ```
+``` with open('xxx.mp4', 'wb') as f: f.write(content) ```
+``` sorted_df = df.iloc[np.argsort(df['column1'])].sort_index(axis=1) ```
+``` df1 = df1.drop_duplicates() freq = df1.groupby('column_name').size().reset_index(name='count') ```
+``` df['avg'] = df.iloc[:, :-1].mean() ``` This code creates a new column `avg` in the dataframe `df` that calculates the average of every three columns in the dataframe
+``` from django.shortcuts import redirect return redirect('Home.views.index') ```
+``` sorted_keys = sorted(things.keys(), key=lambda x: things[x]['weight']) ```
+``` import os import sys path = os.path.abspath(os.path.join(os.path.dirname(sys.executable), 'a_module')) ```
+``` import os import sys path = os.path.abspath(os.path.join(os.path.dirname(sys.executable), '..')) ```
+``` import os path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'amodule')) ```
+this code snippet
+``` import time print(time.strftime("%H:%M:%S")) ```
+`utf-8`
+`ps -ef | grep something | wc -l`
+``` intersection_data = list(set(s1) & set(s2)) ```
+``` import datetime date_only = datetime.datetime.strptime(when, '%Y-%m-%d').date() print(date_only) ```
+``` entry = Entry.objects.first() ```
+`` import warnings warnings.filterwarnings('action', 'always') ```
+``` import requests response = requests.get("http://www.example.com/songs/mp3.mp3") with open("mp3.mp3", "wb") as f: f.write(response.content) ```
+``` import requests response = requests.get(url) with open(file_name, 'wb') as f: f.write(response.content) ```
+the code snippet:
+``` import requests response = requests.get(url) with open('file.txt', 'wb') as f: f.write(response.content) ```
+``` import requests response = requests.get(url) if response.status_code == 200: with open("10MB", "wb") as f: f.write(response.content) ``` This code uses the `requests` library to download the file from the specified URL and save it to a file named "10MB" with write permission
+The `dot()` function is used to perform the dot product, and the result is stored in the variable `result`
+``` hex_string = '470FC614' float_number = float(hex_string, 16) ```
+``` def reverse_list(lst): return lst[::-1] lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] print(reverse_list(lst)) ```
+``` from datetime import datetime today = datetime.now() days_ago = today - datetime.timedelta(days=7) print(days_ago.strftime("%Y-%m-%d")) ```
+``` import base64 encoded_string = base64.b64encode(your_string.encode()).decode() ```
+``` unique_values = list(set(mylist)) ```
+``` df.to_csv('np.txt', index=False) ```
+``` df.to_csv('c:\\data\\pandas.txt', index=False) ```
+``` x = 'hello-world' result = x.split('-') print(result) ``` Output: `['hello', 'world']`
+``` s.rstrip('-').split('-')[-1] ```
+`[random.randint(1, 100) for i in range(10)]`
+The answer is:
+``` print("{:<10}{:<10}{:<10}".format("Name", "Age", "Gender")) print("-"*20) for row in tab: print("{:<10}{:<10}{:<10}".format(row[0], row[1], row[2])) ```
+``` df[df.apply(lambda x: x.sum() > 0, axis=1)] ```
+``` text = text.lower() text = ''.join(c for c in text if c.isalnum()) ```
+the new string `text`
+``` name = soup.find('tag', attrs={'name': 'name'}).text ```
+the code block `open(filepath, 'r').read().count('\n')`
+``` len(set(l)) - len(l) ``` This counts the number of unique elements in the list `l`, and subtracts the length of the list from that count to get the number of occurrences of the item "a"
+``` count = sum(1 for item in l if item in set(l)) ```
+``` count = 0 for item in l: if item in l: count += 1 print(count) ```
+``` count = 0 for item in l: count += l.count(item) ```
+``` count = l.count("b") ```
+``` import os srcfile = "srcfile" dstdir = "dstdir" os.system(f"cp {srcfile} {dstdir}") ```
+``` df['c'] = df['a'] + df['b'] ```
+`('apple', 'banana', 'cherry')`
+``` level1 = (1, 2, 3) level1_list = list(level1) ```
+``` with open(logFile, 'w') as f: pprint(dataobject, stream=f) ```
+The resulting index is then cast to an integer type using `astype()`
+the code to create a list containing the indexes of rows where the value of column 'BoolCol' in dataframe `df` are equal to True
+``` indexes = [i for i, row in enumerate(df) if row['BoolCol'] == True] ```
+`` df['BoolCol'].isin([True]).astype(int) ```
+``` import os os.chdir('owd') ```
+`` from bs4 import BeautifulSoup soup = BeautifulSoup(html_content, 'html.parser') for div in soup.find_all('div', {'id':'main-content'}): div.decompose() ```
+``` result = [] for i in range(len(a)): result.append((a[i], b[i])) ```
+`` a = [[1, 2], [3, 4]] b = [[5, 6], [7, 8]] c = list(zip(a[0], a[1])) + list(zip(b[0], b[1])) print(c) ```
+In this case, we want to find the last occurrence of the substring `}` in the string, so we can use the `find()` function with the `-1` argument to return the index of the last occurrence
+``` import numpy as np r = np.array([[1, 2], [3, 4], [5, 6]]) r = np.random.shuffle(r) ```
+``` import os count = len(os.listdir('/path/to/drive')) print(count) ```
+`result = cursor.fetchone()`
+``` with open('infile', 'r') as f: lines = f.readlines() lines.insert(0, '#test firstline\n') with open('outfile', 'w') as f: f.write('\n'.join(lines)) ```
+``` import re if re.search(r'ba[rzd]', 'foobarrrr'): print('True') else: print('False') ```
+``` t = [1, 2, 2, 3, 4, 4, 5, 5, 5] t = list(set(t)) ```
+``` result_list = list(set(source_list)) ```
+The answer code would be `abracadabra = list(set(abracadabra))`
+``` a_list = list(a) ```
+`` row = list(a[0]) ``` Answer: `row = list(a[0])`
+the code to extract the content of the sibling of the `td` tag with text content `Address:` using the BeautifulSoup library
+``` import base64 encoded_data = base64.b64encode(data_to_be_encoded.encode()).decode() ```
+``` data_to_be_encoded = "Hello, world!" encoded_data = data_to_be_encoded.encode("ascii") print(encoded_data) ```
+``` my_object.my_str ```
+the code snippet `A[A.index(x) if x in [1, 3, 4] else 0 for x in A]`
+The answer code is `a.mean(axis=1)`
+``` import csv with open('data.csv', 'a') as file: writer = csv.writer(file) writer.writerow(['Header']) ```
+``` a[a[:,0] == 0 & a[:,1] == 1] ```
+``` import pandas as pd df = pd.DataFrame({'email': sf['email'], 'list': sf['list']}) ```
+``` from PIL import Image image = Image.open('image.jpg') image = image.resize((x, y), Image.ANTIALIAS) image.save('resized_image.jpg') ``` This code will open the image, resize it to the desired width and height, and save it as a new image file
+``` l1 = [1, 2, 3, 4, 5] l2 = [2, 4, 6, 8, 10] differences = [] for i in range(len(l1)): diff = abs(l1[i] - l2[i]) if diff not in differences: differences.append(diff) if len(differences) == 10: break print(differences) ```
+`` soup.find_all('span', class_='starGryB sp') ```
+``` list5.sort(key=lambda x: x['degrees']) ```
+There are several ways to perform secondary sorting in Python, including using the `sorted()` function with a key argument, using the `sorted()` function with a lambda function, or using the `key` parameter of the `sorted()` function
+``` obj.attr ```
+``` import json json_string = json.dumps({'value': '3.9'}) print(json_string) ```
+``` df[df['A'].str.contains('^'.join(df['A'].value_counts().index))] ```
+ax = plt.colorbar(mappable) ``` Answer: ``` plt.imshow(mappable, cmap='jet') plt.colorbar(cax=plt.colorbar()) ```
+``` df['text'].value_counts().head(100).index ```
+``` import datetime now = datetime.datetime.utcnow() print(now.strftime("%Y-%m-%d %H:%M:%S")) ```
+``` import json from django.http import JsonResponse def my_view(request): data = {'name': 'John Doe', 'age': 30} response = JsonResponse(data) return response ```
+`subprocess.run(['python', 'background-process.py', 'arguments'])`
+``` i = myList.index('how') j = myList.index('what') if i!= -1 and j!= -1: print(i, j) ```
+``` df = pd.DataFrame(tuples, columns=['out-1', 'out-2']) ```
+``` import matplotlib.pyplot as plt import numpy as np import matplotlib.dates as mdates import matplotlib.ticker as mticker ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d")) ax.xaxis.set_major_locator(mticker.MaxNLocator(6)) ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d")) ```
+``` yourdict.keys().__len__() ```
+The length of this list will be the count of keys in the dictionary
+``` df[['first_column']].explode().reset_index(drop=True) ```
+`subprocess.run(['c:\\Program Files\\VMware\\VMware Server\\vmware-cmd.bat'], shell=True)`
+``` q.reverse() ```
+``` import numpy as np result = np.concatenate((a, b), axis=0) ```
+import numpy as np result = np.concatenate(axis=1, parents=['a', 'b']) ``` This code will concatenate the arrays `a` and `b` along the second axis, resulting in a new array with shape `(2, 3)`
+``` a = np.array([1, 2, 3]) b = np.array([4, 5, 6]) c = np.concatenate((a, b)) ```
+``` import numpy as np result = np.concatenate(a, b, axis=0) ``` This code uses the `numpy` library to concatenate the two arrays along the first axis
+``` from django.http import HttpResponseForbidden response = HttpResponseForbidden() response['Content-Type'] = 'text/plain' response.write('Unauthorized') ```
+``` df['name'].str.contains('bob').astype(int) ``` This will return the integer location of the key `bob` in the `name` column of the data frame
+``` def matrix_creation(list1, list2): matrix = [] for i in range(len(list1)): row = [] for j in range(len(list2)): row.append(list1[i] * list2[j]) matrix.append(row) return matrix ```
+``` string = 'it is icy' string = string.replace('i', '') print(string) ```
+``` string = 'it is icy' string = string.replace('i', '') print(string) ```
+``` string = "it is icy" string = string.replace("i", "") print(string) ``` Output: "it is icy"
+`string = string.replace("character", "")`
+``` nums = [int(x) for x in intstringlist] ```
+``` list_of_integers = [int(s) for s in list_of_strings] ```
+`os.listdir('/mydir')`
+``` import os files = os.listdir('/mydir') for file in files: if file.endswith('.txt'): print(file) ```
+``` import os files = os.listdir("/mydir") for file in files: if file.endswith(".txt"): print(file) ```
+``` import json data = json.loads(request.body) ```
+``` df.groupby('column_name').size().reset_index(name='count') ```
+``` import requests response = requests.get('url') json_data = response.json() ``` This code imports the `requests` library, sends a GET request to the specified URL, and then uses the `json()` method to convert the response to a JSON object
+``` from datetime import datetime from django.utils import timezone now = timezone.now() now_hour = now.hour ``` This code creates a datetime object from the current time in the user's timezone, extracts the hour component, and assigns it to a variable `now_hour`
+``` sorted(list, key=lambda x: (x['points'], x['time'])) ```
+`` unassigned_int = number ```
+``` df.to_csv('output.csv', index=False) ```
+``` import json unescaped = "key1=value1&key2=value2" json_data = json.loads(unescaped.replace('=', '=')) print(json_data) ```
+``` with open(newFile, 'wb') as f: f.write(newFileBytes) ```
+`` last_key = dict.keys()[-1] ```
+``` from django.db.models import Max max_value = AuthorizedEmail.objects.values_list('added', flat=True).max() ```
+``` import datetime now = datetime.datetime.now() print(now) ```
+``` x = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) highest_element = np.abs(x).max() ```

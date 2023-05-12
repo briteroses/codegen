@@ -1,0 +1,540 @@
+``` d1 / d2 ```
+the code block that implements this rationale: `d1.items() & d2.items()`
+import urllib.request url = 'http://randomsite.com/file.gz' filename = 'file.gz' urllib.request.urlretrieve(url, filename) ```
+`urllib.request.urlretrieve("http://randomsite.com/file.gz", "file.gz")`
+The answer is:
+``` a = [1, 0, 1] b = [0, 1, 0] c = a ^ b print(c) ``` Output: `[1, 1, 0]`
+``` import datetime today = datetime.date.today() one_month_from_today = datetime.date.fromordinal(today.toordinal() + datetime.timedelta(days=30).days) print(one_month_from_today) ```
+``` from datetime import datetime today = datetime.date.today() two_months_from_today = today + datetime.timedelta(days=30*30) ```
+``` subprocess.call(['python', 'test1.py']) ```
+``` def has_attr(obj, name): try: getattr(obj, name) return True except AttributeError: return False ```
+``` itertools.zip_longest([1, 2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7]) ```
+``` myList = [1, 2, 3, 4, 5] sublists = [myList[i:i+2] for i in range(0, len(myList), 2)] ```
+`re.findall(pattern, string)`
+df[df.groupby('User')['X'].sum() == 0]
+``` df[df['X'] == 0] ```
+``` import webbrowser webbrowser.open_new('http://example.com') ```
+``` import os print(os.environ['HOME']) ```
+``` import os print(os.environ['HOME']) ```
+``` import os print(os.environ) ```
+he code snippet to achieve this is `os.environ`
+``` import os import contextvars os.environ.get('KEY_THAT_MIGHT_EXIST', default_value) ```
+``` sorted(dictionary.items()) ```
+`` for key, value in sorted(my_dict.items(), key=operator.itemgetter(1)): print(key, value) ```
+['stats_split'] = df['stats'].str.split(',', expand=True) ```
+he code to do this is:
+the string "hello world123"
+``` line = "This is a line with some special characters!" new_line = line.replace("!@#$", "") print(new_line) ```
+The answer is:
+the result of the re.sub function with the pattern "!@#$" and the replacement "".' # Print the answers print(query1, relevant_doc1, answer1) print(query2, relevant_doc2, answer2) print(query3, relevant_doc3, answer3) ``` Output: ```
+The answer code is `t = time.time() - 3600 - 10 * 60`, which subtracts 1 hour and 10 minutes from the current time (in seconds since the epoch) and assigns the result to the variable `t`
+``` import datetime dt = datetime.datetime.now() dt_new = datetime.datetime.time.replace(dt, hours=-5) print(dt_new) ```
+`import random; print(random.randint(0, 999999))`
+mport random random_number = random.randint(10000000, 99999999) print(random_number) ```
+``` import requests from bs4 import BeautifulSoup url = 'http://www.google.com/' response = requests.get(url) soup = BeautifulSoup(response.content, 'html.parser') print(soup.title.string) print(soup.meta['description'].string) print(soup.meta['keywords'].string) ```
+``` root.setscrreg(0, 0, root.getmaxyx()[0], root.getmaxyx()[1]) root.scroll() ```
+``` print("{:,}".format(value)) ```
+``` ax.set_xticklabels([ax.get_xticks()[0]] + ax.get_xticks()[1:]) ```
+``` ax.set_ylim(top=0) ```
+nswer is:
+the code snippet `list(map(lambda x: bin(x)[2:], [8]))`
+the code snippet:
+``` import datetime print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")) ```
+``` L = [1, 2, 3, 4, 5] L.reverse() print(L) ``` Output: `[5, 4, 3, 2, 1]`
+the resulting set, which is the exclusive or of the given lists
+``` import subprocess output = subprocess.check_output("ls -l", shell=True) print(output) ```
+`subprocess.check_call('some_command', args)`
+``` subprocess.check_call(['some_command', 'input_file', '|', 'another_command', '>', 'output_file']) ```
+``` subprocess.check_call(['/usr/bin/env','some_command', 'arg1', 'arg2']) ```
+``` import subprocess result = subprocess.run(["echo", "Hello World"], stdout=subprocess.PIPE) print(result.stdout.decode()) ```
+``` import subprocess output = subprocess.check_output("ls -l", shell=True) print(output) ```
+``` import os print(os.getcwd()) ```
+import os import os.path path = '/path/to/directory' # get the directory name of path dir_name = os.path.dirname(path) print(dir_name) ```
+``` import pandas as pd import subprocess import os import pathlib #
+``` import os current_dir = os.getcwd() print(os.listdir(current_dir)) print(os.path.basename(current_dir)) print(os.path.dirname(current_dir)) ```
+`` import os current_dir = os.getcwd() print(os.path.abspath(current_dir)) ```
+swer is `list(struct.unpack('I', s[::2])) + list(struct.unpack('I', s[1::2]))`
+``` df['DateStr'] = df['DateObj'].dt.strftime('%Y-%m-%d') ```
+``` import itertools perms = itertools.permutations([1, 2, 3], 3) for perm in perms: print(perm) product = itertools.product([1, 2, 3], repeat=3) for perm in product: print(perm) ```
+The code to achieve this is:
+``` df.to_csv(filename, index=False) ```
+``` root.destroy() ```
+``` import os import os.path for file in os.scandir('.'): if os.path.splitext(file.name)[0] == '0' and os.path.splitext(file.name)[1] == '.jpg': files.append(file) ```
+``` df.pivot_table(index='order', columns='sample', values='value', aggfunc='sum') ``` This will create a pivot table from the dataframe using the specified index and columns
+``` import pickle with open('afile', 'wb') as f: pickle.dump([1, 2, 3], f) with open('afile', 'rb') as f: loaded_list = pickle.load(f) print(loaded_list) ```
+``` phrase.split('.', 1).pop(0).split('?', 1).pop(0).split('!', 1).pop(0) ```
+nswer is `'utf-8'`
+he code snippet to achieve this is:
+``` for i in range(len(A)): if A[i] in B: return i ```
+``` from django.db.models import Sum from django.ref.models import Sum from pandas.reference.api import pandas from numpy.reference.generated import numpy ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(numpy.array([1, 2, 3, 4, 5])).astype(int) * 3600)) ``` ``` query = pandas.query("Task", "time_spent > %s" % (numpy.sum(n
+``` import datetime current_time = datetime.datetime.now() current_time_str = current_time.strftime("%Y-%m-%d %H:%M:%S") print(current_time_str) ```
+`datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')`
+``` import time now = time.time() pretty_time = time.strftime('%Y-%m-%d %H:%M:%S %Z', time.gmtime(now)) print(pretty_time) ```
+``` import time now = time.time() fmt = "%s" print(fmt + " " + time.strftime(fmt, time.localtime(now))) ```
+``` import datetime now = datetime.datetime.now() print(now) ```
+``` import numpy as np result = np.column_stack((np.zeros((6, 9, 20)), np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]))) ```
+``` result = np.insert(np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]), 0, np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]])) ```
+``` df.head() ```
+the code snippet:
+``` df.groupby(df.nonzero().index).mean() ```
+``` import numpy as np a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) b = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]]) print(np.argwhere(a == b)) ``` Output: `(array([0, 1]), array([0, 1]))`
+nput_tuple = input("Enter a tuple: ") print("Enter an integer tuple from user:", input_tuple) ```
+`` import platform os_version = platform.system() +'' + platform.release() print(os_version) ```
+x.set_xticklabels(ax.get_xticklabels(), rotation=45) ```
+``` df.groupby(['STNAME', 'COUNTY_POP']).agg([('STNAME', 'count'), ('COUNTY_POP','sum'), ('COUNTY_POP','max')]) ```
+``` df.pivot_table(index=df.index.date, columns=df.index.time, values='Close') ```
+``` import array a = array.array('i', [int(x) for x in input().split()]) ```
+``` yourdata.reverse() ```
+` sorted(yourdata, key=operator.itemgetter('subkey')) ```
+``` sorted(yourdata, key=operator.itemgetter('key','subkey')) ```
+``` import networkx as nx import matplotlib.pyplot as plt pos = nx.spring_layout(G) nx.draw_networkx_nodes(G, pos, node_color='r', node_size=500) nx.draw_networkx_edges(G, pos, edge_color='b', edge_width=0.5) plt.show() ```
+The code to achieve this is `os.path.commonpath('/usr/var', '/usr/var2/log')`
+``` import os path = '/usr/var' start = '/usr/var/log/' rel_path = os.path.relpath(path, start) print(rel_path) ``` Output: `/usr/var/log/`
+``` if'myobject' in mydict: myobject = mydict['myobject'] number = getattr(myobject, 'id.number') print(number) else: print('myobject not found') ```
+``` import numpy as np X = np.array([[1, 2], [3, 4]]) X_outer = np.einsum('ij,ij->i', X) ``` This code defines a 2d array `X` with shape `(2,2)` and uses the `np.einsum` function to perform the outer product of each column of `X` to form a 3d array `X_outer` with shape `(2,2,2)`
+``` import itertools result = list(itertools.permutations([0, 1], 4)) ```
+answer is `re.findall('\\$[0-9]+[^\\$]*$', '$1 off delicious $5 ham.')`
+``` import random random_numbers = random.sample(range(1, 51), 6) print(random_numbers) ```
+``` import random import string import uuid import hashlib import hmac import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64 import binascii import hashlib import struct import time import datetime import hashlib import base64
+``` import datetime now = datetime.datetime.now() print(now) ```
+``` os.chdir(os.path.join(os.getcwd(), "..")) ```
+``` k.set_text('Hello World!', fontdict={'family': 'Purisa','size': 12}) ```
+``` import pandas as pd my_list = [ {'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 30}, {'name': 'Charlie', 'age': 35} ] df = pd.DataFrame.from_dict(my_list) print(df) ```
+``` if 'one' in any(d.values()): print('one exists in d') else: print('one does not exist in d') ```
+`` if 'one' in d: print('one is in d') else: print('one is not in d') ```
+``` ax.legend(loc='upper left', title='Legend', prop={'size': 'x-small'}) ```
+``` plt.legend(loc='upper left', fontsize=6) ```
+``` sentence = "This is a sentence with some extra whitespace." new_sentence = sentence.strip().replace(" ", "") print(new_sentence) ```
+he answer is sentence.strip()
+code to do this is:
+``` def remove_whitespaces(sentence): return sentence.strip() ```
+``` sentence = "This is a test string with spaces." new_sentence = sentence.strip().replace(" ", "") print(new_sentence) ```
+``` import pandas as pd df = pd.read_hdf('/home/.../data.h5', key='firstSet') ```
+``` with open('very_Important.txt', 'r') as f: str = f.read() ```
+import urllib.request try: response = urllib.request.urlopen(url) except urllib.error.HTTPError as error: print("HTTP Error:", error.code) except urllib.error.URLError as error: print("URL Error:", error.reason) except urllib.error.Timeout as error: print("Timeout Error:", error.reason) except urllib.error.BadStatusLine as error: print("Bad Status Line Error:", error.reason) except urllib.error.UserError as error: print("User Error:", error.reason) except Exception as error: print("Unknown Error:", error) ``` Answer: The answer code is `urllib.request.urlopen(url)`
+swer is `url = urllib.parse.urlparse(url)` and `url_parts = urllib.parse.urlencode(url_params)` and `url = urllib.parse.urlunparse(url_parts)`
+``` sorted(mydict.items(), key=operator.itemgetter(1)) ```
+`` return flask.request.headers.getlist('firstname') ```
+``` headers = request.headers firstname = headers.get('firstname') ```
+``` with open('file.txt', 'r') as f: txt = f.read() ```
+``` import datetime utc_11 = datetime.datetime.utcnow() + datetime.timedelta(hours=-11) year = utc_11.year print(year) ```
+`` from myapp.models import Entry my_queryset = Entry.objects.filter(id__ne=3) ```
+For example:
+``` import struct rgbstr = 'rgb123' rgb_bytes = bytearray.fromhex(rgbstr) rgb = struct.unpack('I', rgb_bytes)[0] print(rgb) ```
+``` def reverse_string_by_two_chars(s): return reversed(s)[:2] ```
+``` import subprocess subprocess.Popen(['kill', '$$'], creationflags=subprocess.CREATE_NEW_CONSOLE).terminate() ```
+``` import subprocess subprocess.Popen.terminate() ```
+The answer is:
+``` import sqlite3 conn = sqlite3.connect('mydb.db') c = conn.cursor() c.execute('COMMIT') conn.commit() ```
+``` subprocess.Popen(['espeak', text], stdout=subprocess.PIPE).communicate() ```
+= '12' i = int(s) print(i) ```
+``` import decimal string_number = '123.45' decimal_number = decimal.Decimal(string_number) print(decimal_number) ```
+Therefore, the answer is `np.einsum('ij,jk->ij', A, B)` or `np.prod(A, axis=1)` if `A` has shape `(m, n)` and `B` has shape `(n, p)`
+``` import subprocess subprocess.check_call(['rm', '-r','some.file'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) ```
+df['Alabama_exp'] = df['Alabama_exp'].round(2) df['Credit_exp'] = df['Credit_exp'].round(3) ```
+The answer is:
+``` import datetime datestr = '2021-01-01' date_obj = datetime.datetime.strptime(datestr, '%Y-%m-%d') print(date_obj) ```
+``` import base64 with open('pdf_reference.pdf', 'rb') as f: encoded_data = base64.b64encode(f.read()) encoded_pdf = encoded_data.decode() ```
+`` os.chdir('chapter3') ```
+`os.chdir('new_directory_path')`
+``` import os os.chdir('/path/to/new/directory') ```
+The answer is:
+``` import re match = re.search(r'[a-zA-Z][\\w-]*\\Z', 'A\n') if match: print(match.group()) else: print("No match found.") ```
+``` import re string = '!A_B' pattern = '[a-zA-Z][\\w-]*$' match = re.search(pattern, string) if match: print(match.group()) else: print('No match found') ```
+``` soup.find_all('div', class_='comment-') ```
+``` plt.gca().clear() ```
+open('sample.json', 'r', encoding='utf-8-sig') as f: data = f.read() print(data) ```
+`` import json with open('sample.json', 'rb') as f: data = json.load(f, encoding='utf-8') print(data) ```
+The code to achieve this is:
+`s2_bin = bin(int.from_bytes(bin_str, 'big'))[2:]`
+The answer is:
+The answer is: `float(bin(b8)[2:])`
+he answer is `from django.contrib.auth.models import AbstractUser, BaseUserManager; class CustomUserManager(BaseUserManager): manager = CustomUserManager(); class CustomUser(AbstractUser): manager = manager; def __str__(self): return self.username; `
+a code snippet that checks if a user is in a group, such as `user.groups.all().count() > 0`
+``` import numpy as np vals = np.array([[0,1,2], [3,4,5], [6,7,8]]) idx = np.argwhere(vals == [0,1]) print(idx) ``` Output: `(array([0]), array([0]))`
+``` import os os.chdir(os.path.dirname(os.path.abspath(__file__))) ```
+`` df.write.format("csv").save("mycsv.csv") ```
+The answer is:
+`` import operator from itertools import zip_longest tuples = [(1, 4), (2, 5), (3, 6)] zipped = list(zip_longest(*tuples)) print(zipped) ``` Output: `[(1, 4), (2, 5), (3, 6)]`
+``` import itertools data = [(1, 2), (3, 4), (5, 6)] sub_lists = list(itertools.chain.from_iterable(data)) print(sub_lists) ``` This will output: `[([1, 2], [3, 4]), ([1, 2], [5, 6])]`
+``` df['a'].tolist() ```
+``` df['a'].isin(df['a'].values) ```
+answer is:
+``` a[a!=(3,)] ```
+``` import subprocess output = subprocess.check_output(['echo', 'foo']) print(output) ```
+``` df['Date'].unique() ```
+mport os import os.path import pathlib filename = '/path/to/filename' dirname = os.path.dirname(filename) is_descendant = os.path.normpath(os.path.join(dirname, filename)) == '/path/to/filename' if is_descendant: print('The file is a descendant of the directory.') else: print('The file is not a descendant of the directory.') ```
+Dict = dict(zip(myListOfTuples[0], myListOfTuples[1])) ```
+sorted_d = sorted(d.values(), key=operator.itemgetter('date'))
+``` df.to_csv('mydf.tsv', index=True) ```
+The answer is:
+``` import difflib difflib.Differ().compare(file1, file2) ```
+The `itemgetter` function is not relevant to this task
+The answer is:
+st = [ [1.0, 2.0], [3.0, 4.0] ] str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = list(map(lambda x: map(lambda y: str(int(y*10**8)), x), lst)) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**8)), x), lst) str_list = map(lambda x: map(lambda y: str(int(y*10**
+the above code block
+``` a[0, 0] a[0, 1] a[1, 0] a[1, 1] ```
+soup.find_all(id='my_div', attrs={'class':'my_class'}) or soup.find_all(attrs={'class':'my_class'}) depending on whether the tag has an id attribute or not
+he answer is the code snippet:
+The `python.library.operator#operator.itemgetter` function is used to return a callable object that fetches item from its operand using the operand’s `__getitem__()` method
+``` def reverse_string(s): return s[::-1] ```
+``` string = 'hello world' reversed_string = string[::-1] print(reversed_string) ```
+``` def reverse_string(s): return s[::-1] ```
+``` a_string = 'hello' a_string = a_string[::-1] ```
+``` a_string = "hello" a_string_reversed = a_string[::-1] print(a_string_reversed) ```
+`` s = 'hello' s = s[::-1] print(s) ```
+``` import subprocess process = subprocess.Popen(['grep', 'f'], stdin=subprocess.PIPE, stdout=subprocess.PIPE) process.stdin.write(b'one\ntwo\nthree\nfour\nfive\nsix\n') output = process.stdout.readlines() print(output) ```
+``` import subprocess subprocess.check_call(['grep', 'f', '-', 'one\ntwo\nthree\nfour\nfive\nsix\n']) ```
+nswer is:
+``` i = 5 s = str(i) print(s) ```
+to use the `str()` function to convert the integer `1` to a string, such as `'1'`
+``` a = [1, 2, 3] print(repr(a)) ``` Output: `<list '[1, 2, 3]'>`
+``` import os import io import urllib.request url = input("Enter a URL: ") response = urllib.request.urlopen(url) result = io.read(response) print("Result:", result) ```
+If it is, it is removed from array `A`
+``` df.drop(df[df.index < start_remove].index | df.index > end_remove].index, inplace=True) ```
+``` df.drop(df.index[df.index.get_loc(start_remove)], df.index[df.index.get_loc(end_remove)-1], axis=0) ```
+rray([[0, 1], [1, 0]]) ```
+`` import pandas as pd df = pd.read_csv('Result.csv', sep=' ') ```
+``` import pandas as pd df = pd.DataFrame.from_dict(d) print(df) ```
+``` with open('file.gz', 'rb') as f: for chunk in f: print(chunk) ```
+``` from selenium import webdriver url = 'http://www.python.org' driver = webdriver.Chrome() driver.get(url) ``` This code snippet navigates to the webpage given by the URL `http://www.python.org` using the Chrome browser and returns a list of all files in the directory that do not contain the text 'hello' in their names
+The answer code is:
+answer is the code block that implements this rationale
+the code snippet `re.search(r'is', s).group(0)` which will return the string 'is' if it is present in the string `s`, and `None` otherwise
+The answer is:
+``` a = np.array([[1, 2], [3, 4]]) print(a.shape) ``` Output: `(2, 2)`
+``` import numpy as np a = np.array([1, 2, 3]) print(len(a)) ```
+``` a = np.array([[1, 2], [3, 4]]) print(a.shape) ``` Output: `(2, 2)`
+``` a = np.array([[1, 2], [3, 4]]) print(a.shape) ``` Output: `(2, 2)`
+``` import numpy as np import decimal def convert_to_float(x): return decimal.Decimal(x).float() ```
+The code to uniqify a list of dict in python is `list(set([dict1, dict2,...]))`
+``` with open('myfile', 'r') as f: words = f.readlines() print(words) ```
+``` import numpy as np a = [1, 2, 3] np_array = np.array(a) ```
+``` from django.db.models import QuerySet values = [1, 4, 7] qs = QuerySet(values) ```
+`string1.lower() == string2.lower()`
+``` if string1.lower() == string2.lower(): print("Strings are equal") else: print("Strings are not equal") ```
+if string1.lower() == string2.lower(): print("String1 and String2 are case-insensitive equal.") else: print("String1 and String2 are not case-insensitive equal.") ```
+The answer code would be `import string; s1 = 'apple'; s2 = 'banana'; if s1.lower() == s2.lower(): print('strings are equal') else: print('strings are not equal')`
+The answer code is `first.lower() == second.lower()`
+The answer is:
+``` df.groupby(['col5', 'col2']).agg({'col3': 'count'}).reset_index() ```
+The answer code is `your_obj.x`
+``` import datetime date_object = datetime.datetime.strptime('2021-08-31', '%Y-%m-%d').date() print(date_object) ```
+The `date()` method is then called on the `datetime` object to extract the date portion of the datetime object
+``` A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3, 4], [5, 6]]) A = numpy.array([[1, 2], [3,
+The answer code is `s = s.lower()`
+The `print()` function is then used to output the resulting string
+rom sqlalchemy import Column, Integer, String from sqlalchemy.ext.declarative import declarative_base from sqlalchemy.orm import sessionmaker Base = declarative_base() class User(Base): __tablename__ = 'users' id = Column(Integer, primary_key=True) name = Column(String) def update_name(self, name): session = sessionmaker(bind=self.engine)() session.query(User).filter_by(id=123).update({User.name: name}) ```
+``` import ctypes ctypes.windll.user32.SetWindowLong(0, 0x004c, 0x101) ```
+import numpy as np a = np.array([[1, 2], [3, 4]]) if np.any(a == np.array([1, 2])): print("The array contains the row [1, 2].") else: print("The array does not contain the row [1, 2].") ```
+``` import numpy as np data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) result = np.reshape(data, (3, 3)) print(result) ``` Output: `[[1 2 3] [4 5 6] [7 8 9]]`
+``` import numpy as np result = {'a': 1, 'b': 2, 'c': 3} arr = np.array(result) ```
+``` import os os.system("quit") ```
+``` mylist = [3, 1, 4, 1, 5, 9, 2, 6] sorted_list = sorted(mylist) print(sorted_list) ``` Output: `[1, 1, 2, 3, 4, 5, 6, 9]`
+The answer is: sorted(mylist, key=operator.itemgetter('name'))
+The answer code is `sorted_list = sorted('mylist')` which will result in a sorted list of strings
+``` sorted(list) ```
+to use the `exec()` function to execute the contents of the file as a Python script, such as by writing `exec(open('file.py').read())`
+``` if 'test.mp3' in (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b', 'c', 'd']), (''.join(['a', 'b',
+``` pS = b'\x01\x02' first_byte = int.from_bytes(pS[:1], byteorder='little') second_byte = int.from_bytes(pS[1:], byteorder='little') ```
+``` if all(word.isupper() for word in words): print("All words are uppercase.") else: print("At least one word is not uppercase.") ```
+``` df.astype('int') ```
+``` variable = [] ```
+``` a = numpy.array(['i']) ```
+`hasattr(object, 'property') or isinstance(object, type) or inspect.ismemberdescriptor(object)`
+``` if hasattr(a, 'property'): print('a has property') else: print('a does not have property') ```
+If not, the answer code is `'default value'`
+``` import hashlib import string def unique_chars(s): return set(s) # return set(s.lower()) # return set(s.upper()) # return set(s.replace(string.punctuation, "")) # return set(s.replace(string.whitespace, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, "")) # return set(s.replace(string.ascii_uppercase, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, "")) # return set(s.replace(string.ascii_uppercase, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, "")) # return set(s.replace(string.ascii_uppercase, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, "")) # return set(s.replace(string.ascii_uppercase, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, "")) # return set(s.replace(string.ascii_uppercase, "")) # return set(s.replace(string.digits, "")) # return set(s.replace(string.ascii_letters, "")) # return set(s.replace(string.ascii_lowercase, ""))
+`` df.groupby('id') ```
+`set(string)` or `frozenset(string)` if the string is a set of sets
+``` import re def find_substring(str, start=16, end=None): if end is None: end = len(str) match = re.search(r's', str, start) if match: return match.end else: return -1 ```
+``` import re x = "Aloha World" match = re.search("Aloha", x) if match: print("Index:", match.start()) else: print("Substring not found.") ```
+``` s ='sdfasdf' i = s.rfind('cc') print(i) ```
+the index of the sub string 'df' in string'sdfasdf', which is `sdfasdf.rfind('df') + 1`
+The answer is: str.rfind('a')
+``` m = re.search('g', str) if m: print(m.start()) else: print("Substring 'g' not found in string.") ```
+``` import re str = "hello world" start = 11 end = 14 index = re.search(r'world', str[start:end]).start() print(index) ```
+``` str.rfind(sub, start=15) ```
+str.rfind(s, 11, 14)
+``` sorted(items, key=operator.itemgetter(2)) ```
+``` sorted(u.items(), key=operator.itemgetter(1)) ```
+The answer is:
+``` sorted(d.items()) ```
+`os.kill(os.getpid(), signal.SIGTERM)`
+``` import os os.abort() ```
+`os.abort()` or `raise SystemExit()` or `sys.exit(1)`
+`datetime.date.today().toordinal() - 1`
+df = pd.DataFrame.from_dict(nvalues, orient='index') ```
+``` import urllib.parse url = 'https://www.example.com/follow?page=2' parsed_url = urllib.parse.urlparse(url) href = parsed_url.path.split('/')[-1] print(href) ```
+``` import numpy as np old_set = np.array([1, 2, 3, 4, 5]) new_set = np.array([6, 7, 8, 9, 10]) avg_old_set = np.average(old_set) avg_new_set = np.mean(new_set) ```
+``` bin(ord('P')) ```
+The code snippet is `set(LoD.keys())` and the answer is this code snippet
+``` set(LoD) ```
+``` keys = list(LoD.keys()) ```
+= [bin(i)[2:].zfill(8) for i in range(1, 16)] print(l) ```
+df.groupby(['Month', 'Fruit']).size().reset_index(name='count') ```
+import requests import json import base64 import hashlib import hmac import os import tempfile import urllib.parse import hashlib import base64 import json import ossaudiodev #
+It then checks each folder name to see if it ends with '/', and prints the folder name if it does
+``` import json json_string = '{"a": 1, "b": "as df"}' json_dict = json.loads(json_string) clean_string =''.join([str(key) for key in json_dict.items()]) ```
+``` { 'name': 'John Doe', 'age': 30, 'address': { 'city': 'New York', 'state': 'NY', 'zip': '10001' } } ```
+` import json json_data = json.load(open('data.json')) ```
+the code snippet `shutil.copyfile('src', 'dst')`, which copies the file from `src` to `dst`
+``` pygame.ref.display.gl_set_attribute(pygame.OPENGL, pygame.GL_COLOR_BUFFER_BIT) ```
+``` import urllib.parse import contextvars context = urllib.parse.parse_qs(request.url.query) var_name = context['var_name'][0] ```
+``` thedict = {'abc': 'def', 'AbC': 'DeF', 'ab': 'ef'} thedict = {key.lower(): value for key, value in thedict.items()} print(thedict) ```
+``` df1 = pd.DataFrame({'date': ['2021-01-01', '2021-01-02', '2021-01-03'],'revenue': [100, 200, 300]}) df2 = pd.DataFrame({'date': ['2021-01-01', '2021-01-02', '2021-01-03'],'revenue': [200, 300, 400]}) merged_df = pd.merge(df1, df2, on='date', suffixes=('_1', '_2')) print(merged_df) ```
+``` os.chdir('C:/Users/Name/Desktop') os.mkdir('new_directory') os.getcwd() ```
+he answer is the code block: `request.GET.get('a')`
+`os.path.getsize('C:\\Python27\\Lib\\genericpath.py')`
+``` import urllib.parse querystring ='string_of_characters_like_these:$#@=?%^Q^$' querystring_encoded = urllib.parse.urlencode({'querystring': querystring}) print(querystring_encoded) ``` Output: `'string_of_characters_like_these:$#@=?%^Q^$'`
+``` import random random_decimal = random.randint(0, 1) print(random_decimal) ```
+The final answer is the last part of the path
+``` x = {'a': 1, 'b': 2, 'c': 3} index = next(enumerate(x))[1] print(index) ```
+The answer code would be `[program for program in programs if program.lower() == 'new york']`
+nswer is the value of the `s.encode('utf-8').decode('utf-8', errors='ignore')` expression
+`urllib.parse.quote('Hello, world!', safe='/')`, which returns the string `"Hello%2C%20world%21"`
+``` df.groupby(['Country', 'Item_code']).sum() ```
+sum(j[i>5] for i in range(len(j))) ```
+j.count(lambda x: x > 5)
+``` len(j) - sum(1 for x in j if x > i) ```
+``` import numpy as np a1 = np.array([1, 2, 3, 4, 5]) a2 = np.array([1, 2, 3, 4, 5]) if np.any(a1 == a2): print("a1 contains any element of a2") else: print("a1 does not contain any element of a2") ```
+``` my_value = torch.tensor([1.5]) min_value = torch.tensor([0]) max_value = torch.tensor([2]) my_value = torch.clamp(my_value, min_value, max_value) ```
+``` from itertools import product res = list(product([0,1], repeat=n)) ``` where `n` is the number of binary values desired
+``` itertools.product([0, 1], repeat=n) ```
+The answer is:
+``` itertools.product([0, 1, 0], [0, 1, 1], [0, 1]) ```
+import datetime query = "add one day and three hours to the present time from datetime.now()" relevant_code_documentation = "python.library.datetime#datetime.datetime.now\npython datetime datetime now: Return the current local date and time." answer = "The answer is: " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " (added one day and three hours)" ```
+`struct.unpack_from(struct.Struct('>f', bytearray.fromhex('4081637ef7d0424a')), 0, 1)`
+``` cbar = plt.colorbar(im, ax=ax) ```
+``` s = 'This is a test string.' s = s.rstrip('st') print(s) ```
+``` data.loc[data['one'].isin(['one1', 'one2']), ['a', 'c']] ```
+``` df.loc[:, ['a', 'c']] ```
+`` from django.contrib.auth.models import CustomUser from django.db.models import Q users = Users.objects.filter(Q(userprofile__level__gte=0) | Q(is_active=True)) ```
+`[g for g in test if g == 'key']`
+`df.groupby('column_name').size().reset_index(name='count')`
+Therefore, the answer is `request.POST.get('key', '')`
+The answer code would be `itertools.repeat(x, times)`
+``` import json if'mydata' in request.params: mydata = json.loads(request.params['mydata']) else: mydata = {} ```
+`str.rfind('([{', 'test_string')`
+`re.finditer('foobar', 'foobar')`
+`mystring.rsplit('&')[1:]`
+mport re def cut_string(s, delimiter): return re.findall(r'\b' + delimiter + r'\b', s) ```
+``` df.index.unique() ```
+`np.array([list_of_lists])`
+``` t = tuple(s[0] for s in s) ```
+``` soup = BeautifulSoup(html_string, 'html.parser') city_value = soup.meta.get('content') ```
+``` df = df.pivot_table(index='saleid', columns='upc', values='value') ```
+``` import os path = '/path/to/file' os.chmod(path, stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH) ```
+mport pandas as pd import csv import datetime # create a dataframe df = pd.DataFrame({'name': ['Alice', 'Bob', 'Charlie'], 'age': [25, 30, 35]}) # write dataframe to csv file df.to_csv('people.csv', index=False, date_format='%Y%m%d') ``` This code will write the dataframe `df` to a file named `people.csv` with dates formatted as yearmonthday `%Y%m%d`
+``` a[numpy.isnan(a)] = 0 ```
+``` import numpy as np a = np.array([[1, 2], [3, 4]]) b = np.array([[5, 6], [7, 8]]) c = np.array([[9, 10], [11, 12]]) min_arr = np.minimum(a, b, c) ```
+nswer is `datetime.strptime('%A', datetime.now().strftime('%Y-%m-%d'))`
+``` d = {'a': 1, 'b': 2, 'c': 3} s = ','.join([str(k) + '=' + str(v) for k, v in d.items()]) print(s) ```
+``` df[df['A'] == 'foo'] ```
+``` df[df['column_name']!= some_value] ```
+``` df[~df['column_name'].isin(some_values)] ```
+``` df[df['column_name'] == some_value] ```
+``` df[df['B'] == 'one' | df['B'] == 'three'] ```
+`import os; os.listdir('site-packages')`
+Therefore, the answer is `s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)`
+``` import some.package ```
+``` import numpy as np x = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]]) indices = np.argwhere(x == 0) print(indices) ``` Output: `[0 1]`
+``` import json response_data = json.dumps({'a': 1, 'b': 2, 'c': 3}) ```
+``` s = '48656c6c6f2c20776f726c6421' hex_string = binascii.hexlify(s).decode() print(hex_string) ```
+``` import binascii hex_string = '0123456789abcdef' hex_bytes = binascii.unhexlify(hex_string) hex_string = binascii.hexlify(hex_bytes) print(hex_string) ``` Output: `0123456789abcdef`
+``` [(1, 2, 3), (4, 5, 6), (7, 8, 9)] ```
+``` adict = {'a': 1, 'b': 2, 'c': 3} s = ','.join([str(k) + '=' + str(v) for k, v in adict.items()]) print(s) ``` Output: `a=1,b=2,c=3`
+``` adict = {'apple': 1, 'banana': 2, 'cherry': 3} s = ','.join(str(k) + '=' + str(v) for k, v in adict.items()) print(s) ``` Output: `apple=1,banana=2,cherry=3`
+``` x = numpy.array(engine_array) ```
+``` walls = [True, False, True] hex_string = binascii.hexlify(bytes(walls)).decode() print(hex_string) ``` Output: `0b100001 0b010000 0b100001`
+The answer code is `sum([int(hexlify(binascii.hexlify(i)), 16) for i in walls])`
+``` import os os.chdir('c:\\Users\\uname\\desktop\\python') ```
+.chdir(path) ```
+``` import urllib.parse url = "http://www.stackoverflow.com" parsed_url = urllib.parse.urlparse(url) query = parsed_url.query if parsed_url.scheme == "http": status_code = parsed_url.status else: status_code = 0 print("Status code:", status_code) print("
+`` import urllib.parse url = "www.python.org" parsed_url = urllib.parse.urlparse(url) query = parsed_url.query if query: parsed_query = urllib.parse.parse_qsl(query) print("
+``` import urllib.parse import urllib.request url = 'https://www.example.com' path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/path'}) path = urllib.parse.urlencode({'path': '/
+The final code snippet is `import requests` and the answer is this code snippet
+``` data.rename(columns={'gdp': 'log(gdp)'}).astype('float64') ```
+answer is `conn.execute('commit;')` or `conn.execute('commit;')` depending on the specific implementation
+With this method, you can extract only the key-value pairs where the key matches 'l','m', or 'n', like this: `sorted(my_dict.items(), key=operator.itemgetter(['l','m', 'n']))`
+``` bigdict.items() ```
+If it is, it prints the value associated with that key
+list(bigdict.items())[0:3] ```
+``` import json u = '{"name": "John", "age": 30}' d = json.loads(u) print(d) ```
+``` with open('example.txt', 'r') as f: for line in f: if line.find('blabla')!= -1: print('blabla found') break ```
+`open('example.txt', 'r').read().find('blabla')`
+The answer code is `import re with open('example.txt', 'r') as f: txt = f.read() result = re.findall(r'blabla', txt) print(result)`
+answer is `urllib.request.urlopen(url)`
+``` import urllib.parse import urllib.request url = 'https://example.com/api/data' payload = {'param1': 'value1', 'param2': 'value2'} encoded_payload = urllib.parse.urlencode(payload) response = urllib.request.Request(url, data=encoded_payload) response.get_method() ```
+The answer code is `requests.post(url, data=payload)` to post request url `url` with parameters `payload`
+``` import requests import json url = 'https://api.example.com/data' headers = {'Content-Type': 'application/json'} data = { 'key1': 'value1', 'key2': 'value2', 'key3': [ 'value3', 'value4', ] } response = requests.post(url, headers=headers, data=json.dumps(data)) if response.status_code == 200: print(response.json()) else: print('Error:', response.status_code) ```
+``` import binascii binary_string = binascii.hexlify(bytes([173])) print(binary_string) ```
+`int('01010101111', 2)`
+`int.from_bytes(bytes('010101'), 'big')`
+swer is the integer obtained by using this code snippet
+``` import binascii binary_string = binascii.hexlify(bytes([21])) print(binary_string) ``` Output: `0b10101010`
+``` int('11111111', 2) ```
+``` trace_df[trace_df['ratio'] > 0].shape[0] / trace_df.shape[0] ```
+``` from itertools import combinations for i in range(len(a)): for j in range(len(a[i])): print(combinations(a, 2)) ```
+`sorted(d.items())`
+the code snippet `sorted(d.items())`
+``` for key, value in sorted(dict.items()): # do something with key and value ```
+``` for key, value in sorted(dict.items()): # do something with key and value ```
+``` for k, v in sorted(foo.items()): # do something with k and v ```
+``` for key in sorted(foo.items()): print(key) ```
+`re.sub(r'(?<=[a-z])([A-Z])', r'-\\1', s)`
+``` import tensorflow as tf my_list = [1, 2, 3] my_tensor = tf.constant(my_list) print(my_tensor) ```
+``` s = pd.Series(['A', 'B', 'A1R', 'B2', 'AABB4'], index=['A', 'B', 'A1R', 'B2', 'AABB4']) ```
+``` from collections import defaultdict from typing import Dict d1 = {'apple': 1, 'banana': 2, 'orange': 3} d2 = {'banana': 2, 'apple': 1, 'orange': 3} intersection = defaultdict(int) for k, v in d1.items(): intersection[k] += v for k, v in d2.items(): intersection[k] -= v print(intersection) ```
+answer is:
+``` import pandas as pd d = {'Date': ['2021-01-01', '2021-01-02', '2021-01-03'], 'DateValue': [10, 20, 30]} pd = pd.DataFrame(data=d) pd.set_index('Date', inplace=True) pd.apply(lambda x: x.str.split('-').str[0], axis=1, result_type='expand') ```
+The answer is:
+``` df_pivot = df.pivot_table(index=['year','month'], columns=['item'], values='sales') print(df_pivot) ```
+df.pivot_table(index=['year','month'], values='value', aggfunc='sum') ```
+``` [process output] ```
+the output of the exe in the python script
+``` import xml.etree.ElementTree as ET root = ET.fromstring('<root><a><b/><c/><d/></a></root>') for sub in root.findall('a'): for sub_sub in sub.iterfind('b'): print(sub_sub.text) ```
+he answer is:
+the code snippet:
+``` a.remove("b") ```
+``` a.remove(c) ```
+``` a.remove(6) ```
+wer code is `a.pop(6)`
+``` a.remove(c) ``` will remove the element `c` from list `a`
+``` a.remove(c) ```
+`` import subprocess result = subprocess.check_output('bash test.sh', shell=True) print(result) ```
+nswer is yes, a python script can execute a function inside a bash script
+``` with open('c:\\data\\t.csv', 'w', newline='') as file: writer = csv.writer(file) writer.writerow([column[0] for column in df.columns]) writer.writerows(df.to_dict('rows')) ```
+``` import re query ='match regex pattern "(\\d+(\\.\\d+)?)" with string "3434.35353"' match = re.findall(r'[0-9]+(\.[0-9]+)?', query) print(match) ``` Output: `[('3434', '35353')]`
+``` from datetime import datetime from django.db.models import Q from myapp.models import Sample now = datetime.now() date_range = (now - timedelta(days=30), now) objects = Sample.objects.filter(Q(date_field__range=date_range)) ```
+``` from django.db.models import Sum from django.db.models import F from django.db.models import Max from django.db.models import Min from django.db.models import Avg from django.db.models import Count from django.db.models import Func from django.db.models import Subquery from django.db.models import Case from django.db.models import When from django.db.models import ArrayField from django.db.models import ManyToManyField from django.db.models import OneToManyField from django.db.models import ManyToOneField from django.db.models import OneToOneField from django.db.models import BooleanField from django.db.models import DecimalField from django.db.models import IntegerField from django.db.models import FloatField from django.db.models import TextField from django.db.models import DateField from django.db.models import TimeField from django.db.models import DateTimeField from django.db.models import UUIDField from django.db.models import BinaryField from django.db.models import FileField from django.db.models import ImageField from django.db.models import JSONField from django.db.models import UUIDField from django.db.models import EmailField from django.db.models import URLField from django.db.models import PhoneNumberField from django.db.models import IPAddressField from django.db.models import UUIDField from django.db.models import DecimalField from django.db.models import Func from django.db.models import Subquery from django.db.models import Case from django.db.models import When from django.db.models import ArrayField from django.db.models import ManyToManyField from django.db.models import OneToManyField from django.db.models import ManyToOneField from django.db.models import OneToOneField from django.db.models import BooleanField from django.db.models import DecimalField from django.db.models import IntegerField from django.db.models import FloatField from django
+``` import open open('picture.jpg', 'rb').read() ```
+``` import open open('picture.jpg') ``` This code opens the file 'picture.jpg' and returns the file object
+``` import os with open('xxx.mp4', 'rb') as f: os.write(f, f.read()) ```
+``` df = pd.DataFrame({'a': [1, 2, 3, 4, 5], 'b': [5, 4, 3, 2, 1]}) sorted_df = df.sort_values(by=['a', 'b']) print(sorted_df) ``` Output: ``` a b 0 1 5 1 2 4 2 3 3 3 4 2 4 5 1 ```
+``` df1.drop_duplicates(inplace=True) df1.groupby('column_name').size().reset_index(name='count') ```
+``` df.mean(axis=0) ```
+``` from django.http import HttpResponseRedirect url = '/accounts/login/' response = HttpResponseRedirect(url) ```
+``` sorted(things['weight'].items(), key=operator.itemgetter(things['weight'])) ```
+It is included here for completeness and to provide context for the answer
+importlib.resources.path('.').absolute()
+``` import os import inspect path = os.path.abspath(inspect.getmodulename('amodule')) print(path) ```
+``` df.sum(axis=1) ```
+``` import time print(time.strftime('%H:%M:%S', time.localtime())) ```
+import codecs hex_string = '4a4b4c' utf_8_string = codecs.decode(hex_string, 'utf-8') print(utf_8_string) ``` Output: b'Hello, world!'
+the final output of the chain of system commands `ps -ef | grep something | wc -l`
+`` s1 = [1, 2, 3] s2 = [2, 4, 6] intersection = set(s1).intersection(s2) print(intersection) ``` Output: `[2]`
+The answer is:
+from django.shortcuts import render from django.http import HttpResponse from django.urls import reverse from django.contrib.admin.views.decorators.list import object_list from django.contrib.admin.models import Entry def get_queryset(request): queryset = Entry.objects.all() return queryset.filter(owner=request.user) ```
+``` import pandas as pd import warnings # create a dataframe df = pd.DataFrame({'dates': ['2021-01-01', '2021-02-01', '2021-03-01'], 'values': [10, 20, 30]}) # get date from dataframe 'dates' column to column 'just_date' df['just_date'] = df['dates'].apply(lambda x: pd.to_datetime(x).date()) # enable warnings with warnings.catch_warnings(action='always'): warnings.filterwarnings('ignore') # do something that might generate a warning # print the resulting dictionary print(df) ```
+import urllib.request urllib.request.urlretrieve("http://www.example.com/songs/mp3.mp3", "mp3.mp3") ```
+nswer is `urllib.request.urlretrieve(url, file_name)`
+``` import urllib.request import urllib.robotparser url = 'http://www.example.com/' response = urllib.request.urlretrieve(url, 'output.txt') print('Downloaded file from', url, 'to', response[0]) ```
+answer is the code snippet `urllib.request.urlretrieve(url, filename)`
+The answer is:
+``` import numpy as np P = np.array([[1, 2], [3, 4]]) T = np.array([[5, 6], [7, 8]]) result = np.matmul(P, T) ```
+nswer is `float(hexstring.decode('hex'))`
+``` myList = list(range(1, 11)) myList.reverse() print(myList) ```
+``` import datetime date_now = datetime.date.today() date_7_days_ago = date_now - datetime.timedelta(days=7) print(date_7_days_ago) ```
+``` import base64 encoded_string = base64.b64encode(your_string.encode()) ```
+`collections.Counter(mylist).elements()`
+``` import pandas as pd with open('np.txt', 'w') as f: pd.read_csv('data.csv').to_csv(f) ```
+``` import pandas as pd df.to_csv('c:\\data\\pandas.txt', index=False) ```
+`x.rsplit('-', 1)` or `x.rsplit('-', 1, maxsplit=1)`
+``` df.drop('column_name', axis=1) ```
+``` import random my_list = [random.randint(0, 9) for i in range(5)] print(my_list) ```
+"time.strptime('%f','seconds')" if the desired format is "seconds", and "time.strptime('%f','seconds')" if the desired format is "seconds"
+``` tab = [['a', 'b', 'c'], ['d', 'e', 'f']] print('+---+---+---+') for row in tab: print('|' + '|'.join(str(x) for x in row) + '|') ``` This will print a table with the delimiter '-' between rows and the delimiter '|' between cells
+``` import pandas as pd df = pd.DataFrame({'A': [1, 2, 3, 4, 5], 'B': [6, 7, 8, 9, 10]}) counts = df.apply(lambda x: len(list(filter(lambda y: y!= 0, x)))) print(counts) ```
+``` text = 'hello world' text = text.lower() text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'[^\w\s]', '', text) text = re.sub(r'
+`text.translate(str.maketrans('', '', string.punctuation)).lower()`
+`` soup.find('tag', {'name': 'value'}) ``` This will return a list of all tags in the soup with the name attribute set to 'value'
+``` python.library.io#io.IOBase.readlines('filepath').count ```
+``` l = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'] count = sum(1 for _ in l if l.count('a') > 0) print(count) ```
+``` l = ['apple', 'banana', 'apple', 'banana', 'cherry', 'banana'] count = collections.Counter(l) print(count) ``` Output: `Counter({'apple': 2, 'banana': 2, 'cherry': 1})`
+nswer is the code snippet `c = collections.Counter(l)` and the final answer is the resulting `Counter` object
+``` l = ['apple', 'banana', 'cherry', 'date', 'elderberry'] count = sum(1 for item in l if item in ['apple', 'banana']) print(count) ```
+answer is:
+``` shutil.copyfile(srcfile, dstdir) ```
+The answer is:
+``` t = [1, 2, 3, 4, 5] t = tuple(t) ```
+``` def convert_to_list(level1): return list(zip(*level1)) ```
+``` import logging logFile = open('logFile.txt', 'w') logging.info(dataobject) logFile.write(logging.logrecord_to_string(logging.getLogger().log)) logFile.close() ``` This code snippet sends the output of the `dataobject` to the file `logFile.txt` using the `logging.info()` method, and then writes the log record to the file using the `logging.logrecord_to_string()` method
+The answer is:
+`` df[df['BoolCol'] == True].index ```
+``` df[df['BoolCol'].isin([True])] ```
+``` df.index.isin([True]).values ```
+``` os.chdir('owd') ```
+soup.find('div', {'id':'main-content'})
+``` a = [1, 2, 3] b = [4, 5, 6] c = list(zip(a, b)) print(c) ``` Output: `[('1', '4'), ('2', '5'), ('3', '6')]`
+``` a = [1, 2, 3] b = ['a', 'b', 'c'] c = list(zip(a, b)) print(c) ``` Output: `[('1', 'a'), ('2', 'b'), ('3', 'c')]`
+the above code block
+``` import numpy as np r = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) np.random.shuffle(r) ```
+``` import os files = os.listdir('/path/to/drive') num_files = len(files) print(num_files) ```
+`cursor.fetchone()`, which returns a single row of the query result set as a sequence
+``` with open('infile', 'r') as f: with open('outfile', 'w') as g: g.write('#test firstline\n') ```
+`re.search(r'ba[rzd]', 'foobarrrr').group()`
+This removes duplicates from the original list `t`
+``` source_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] unique_list = list(set(source_list)) print(unique_list) ```
+`set(abracadabra)`
+``` a = [1, 2, 3] result = list(itertools.chain.from_iterable([a])) print(result) ```
+``` a[0] ```
+`tree.findtext('td:contains(Address:)/following-sibling::td')`
+import codecs encoded_string = codecs.encode('data to be encoded', 'utf-8') ```
+inal code snippet is `data.encode('ascii')` and the answer is this code snippet
+``` import my_module my_object = my_module.MyClass() my_str = getattr(my_object,'my_str') print(my_str) ```
+The answer is:
+``` import numpy as np a = np.array([[1, 2], [3, 4]]) mean_a = np.mean(a, axis=0) print(mean_a) ``` Output: `2.5`
+herefore, the answer is `csv.DictWriter(csv.writer(out), fieldnames=['header1', 'header2']).writeheader(dict(header1='value1', header2='value2'))`
+``` a[a[:,0]==0&a[:,1]==1] ```
+``` df = pd.DataFrame(sf.apply(lambda x: (x, x.get('list', []))), columns=['email', 'list']) ```
+``` from PIL import Image from matplotlib.image import imread # Load image from file image = Image.open('image.jpg') # Resize image to desired dimensions image = image.resize((x, y)) # Apply filter image = skimage.filters.ANTIALIAS(image) ```
+``` l1 = [1, 2, 3, 4, 5] l2 = [2, 3, 4, 5, 6] differences = [] for i in range(len(l1)): differences.append(abs(l1[i] - l2[i])) print(differences) ```
+soup.find_all('span', class_='starGryB sp') ```
+``` sorted(list5, key=operator.itemgetter('degrees')) ``` This will return a new sorted list based on the degrees value of its elements
+`sorted(nested_list, key=lambda x: (-x[2], x[1]))`
+``` getattr(obj, 'attr') ```
+``` import json json_string = json.dumps(Decimal('3.9'), indent = 4) print(json_string) ```
+``` df[df['A'].isin(df['A'].value_counts().index)] ```
+``` plt.colorbar(mappable=mappable, cmap=cmap) plt.savefig('colorbar.png') ```
+The resulting count table is then truncated to the first 100 words using the `head()` method
+``` import datetime print(datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S %Z")) ``` This code snippet returns the current UTC time as a string in the format `YYYY-MM-DD HH:MM:SS Z`, where `Z` stands for the UTC time zone
+``` import json from django.http import JsonResponse def my_view(request): data = {'name': 'John Doe', 'age': 30} response = JsonResponse(data) return response ```
+nswer is:
+` def find_index(myList): for i, s in enumerate(myList): if 'how' in s and 'what' in s: return i return -1 ```
+= pd.DataFrame(tuples, columns=['out-1', 'out-2']) df.columns = ['out-1', 'out-2'] Answer: df.apply(lambda x: x[0], axis=1)
+``` ax.set_xticklabels(ax.get_xticklabels(), rotation=45) ```
+``` yourdict.items() ```
+`collections.Counter(yourdictfile.keys())`
+``` df.iloc[:, 0] ```
+The answer code is `subprocess.check_call(['c:\\Program Files\\VMware\\VMware Server\\vmware-cmd.bat'])`
+``` q.heappush(q, item) ```
+``` import numpy as np result = np.concatenate([a, b], axis=0) ```
+``` import numpy as np a = np.array([[1, 2], [3, 4]]) b = np.array([[5, 6], [7, 8]]) c = np.concatenate((a, b), axis=1) ```
+``` import numpy as np a = np.array([1, 2, 3]) b = np.array([4, 5, 6]) c = np.concatenate((a, b), axis=0) ```
+``` import numpy as np a = np.array([[1, 2], [3, 4]]) b = np.array([[5, 6], [7, 8]]) c = np.concatenate((a, b), axis=0) ```
+``` from django.http import HttpResponse from django.shortcuts import redirect response = HttpResponse(status=401) response['WWW-Authenticate'] = 'Django-Auth' return redirect('/login/') ```
+``` df.index.get_loc(df['bob']) ```
+``` import numpy as np matrix = np.array([list(zip(range(3), range(3)))]) ```
+= 'it is icy' t = str.maketrans('', '', string.ascii_lowercase) s = s.translate(t) s = s.replace('i', 'i') s = s.replace('I', 'I') s = s.replace('i', 'i') s = s.replace('I', 'I') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i', 'i') s = s.replace('i
+``` import pandas as pd import re import string my_string = "it is icy" df = pd.DataFrame({'group': ['A', 'B', 'A', 'B', 'A'], 'value': ['1', '2', '3', '4', '5']}) df['rank'] = df.groupby('group')['value'].rank() df['rank_group'] = df.groupby('group')['value'].rank() df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group')['value'].rank(ascending=False) df['rank_group_value'] = df.groupby('group
+``` matrix = [[0 for j in range(2)] for i in range(3)] ```
+``` import re string = 'hello world' pattern = r'l' match = re.search(pattern, string) if match: start = match.start() end = match.end() print(f'start: {start}, end: {end}') else: print('No match found') ```
+The final code snippet is `list(map(int, intstringlist))` and the answer is this code snippet
+``` def convert_list_of_string_numbers_into_list_of_integers(lst): return [int(x) for x in lst if str.isdigit(x)] ```
+``` import os for root, dirs, files in os.walk('/mydir'): for file in files: if file.endswith('.txt'): print(os.path.join(root, file)) ```
+nswer is the list of files in the directory "/mydir" with extension ".txt"
+the code snippet:
+``` import json def decode_json(s): return json.loads(s) ```
+``` df.sort_values(by='column_name', ascending=False, key=lambda x: df['column_name'].value_counts().index) ```
+e answer is: headers = {'Cookie': 'cookiename=cookie value'}
+``` from datetime import datetime from django.utils import timezone from django.db.models import Sum from django.db.models import Avg from django.db.models import Max from django.db.models import Min from django.db.models import F from django.db.models import Count from django.db.models import StdDev from django.db.models import Variance from django.db.models import StandardDeviation from django.db.models import Median from django.db.models import StdDevPopulation from django.db.models import StdDevSample from django.db.models import VariancePopulation from django.db.models import VarianceSample from django.db.models import CsvEncoder from django.db.models import JSONEncoder from django.db.models import DecimalField from django.db.models import CharField from django.db.models import TextField from django.db.models import BooleanField from django.db.models import DateField from django.db.models import TimeField from django.db.models import DateTimeField from django.db.models import UUIDField from django.db.models import OneToOneField from django.db.models import ManyToOneField from django.db.models import ManyToManyField from django.db.models import OneToManyField from django.db.models import ManyToManyField from django.db.models import ForeignKey from django.db.models import UniqueConstraint from django.db.models import CheckConstraint from django.db.models import AutoField from django.db.models import BooleanField from django.db.models import DecimalField from django.db.models import CharField from django.db.models import TextField from django.db.models import IntegerField from django.db.models import SmallIntegerField from django.db.models import BigIntegerField from django.db.models import SmallDecimalField from django.db.models import DecimalField from django.db.models import PositiveIntegerField from django.db.models import NegativeIntegerField from django.db.models import PositiveSmallIntegerField from django.db.models import PositiveBigInteger
+``` sorted(list, key=operator.itemgetter('points'), reverse=True) ```
+``` number = 5 unassigned_int = bin(number)[2:].zfill(32) ```
+`` df.to_csv(index=False) ```
+``` json_data = json.loads(unescaped.encode('utf-8').decode('utf-8')) ```
+Therefore, the answer is `with open('newFile', 'wb') as newFile: newFile.write(newFileBytes)`
+``` dict.keys() ```
+e answer is the following code block:
+``` import datetime now = datetime.datetime.now() print(now) ```
+``` x = numpy.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) answer = numpy.amax(numpy.abs(x)) ```

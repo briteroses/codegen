@@ -8,6 +8,5 @@ data/*
 
 llama/models/
 llama/logs
-llama/stash
 synthesize/synth.sbatch
 synthesize/logs
