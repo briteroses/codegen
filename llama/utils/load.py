@@ -16,8 +16,8 @@ USE_DEVICE = torch.device("cuda:0") if torch.cuda.is_available() else torch.devi
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 
-LLAMA_AT = str(ROOT_DIR / "llama/llama_hf_7b")
-ALPACA_7B_AT = str(ROOT_DIR / "llama/alpaca")
+LLAMA_AT = str(ROOT_DIR / "llama/models/llama_hf_7b")
+ALPACA_7B_AT = str(ROOT_DIR / "llama/models/alpaca")
 MOSAIC_INSTRUCT_AT = 'mosaicml/mpt-7b-instruct'
 MOSAIC_CHAT_AT = 'mosaicml/mpt-7b-chat'
 ALPACA_13B_AT = None

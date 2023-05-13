@@ -21,7 +21,7 @@ HUMAN_RATIONALES = str(ROOT_DIR / "synthesize/data/seed-datasets/rationale_exemp
 GPT3_RATIONALES = str(ROOT_DIR / "synthesize/data/synthetic-datasets/gpt3_rationale_exemplars.jsonl")
 STAR_RATIONALES = str(ROOT_DIR / "synthesize/data/synthetic-datasets/star_rationale_exemplars.jsonl")
 
-FOR_FINETUNING_AT = str(ROOT_DIR / "synthesize/data/for_finetuning.jsonl")
+FOR_FINETUNING_AT = str(ROOT_DIR / "synthesize/data/for_finetuning.json")
 
 def prepare_for_finetuning():
     assistant = "You are an expert language model in code generation. "
@@ -41,27 +41,19 @@ def prepare_for_finetuning():
             exemplar = json.loads(line)
             train_rationales[exemplar["question_id"]] = (exemplar["query"], exemplar["retrieval"], exemplar["rationale"])
     
-    for_finetuning = ""
+    for_finetuning = []
     for icl_id, (icl_query, icl_retrieval, icl_rationale) in train_rationales.items():
         prompt = assistant
         prompt += f"Query: {icl_query}\n"
         prompt += f"Relevant code documentation: {icl_retrieval}\n"
-        prompt += f"Rationale: "
-        response = icl_rationale
-        for_finetuning += json.dumps({
-            'prompt': prompt,
-            'response': response
-        }) + "\n"
-        pprint({
-            'prompt': prompt,
-            'response': response
-        })
-        return
+        prompt += f"Rationale: {icl_rationale}"
+        for_finetuning.append(prompt)
     
     with open(FOR_FINETUNING_AT, "w") as fout:
-        fout.write(for_finetuning)
+        fout.write(json.dumps({'train': for_finetuning}))
 
     return
 
 if __name__ == "__main__":
-    prepare_for_finetuning()
+    # prepare_for_finetuning()
+    pass

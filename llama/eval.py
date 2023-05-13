@@ -8,6 +8,8 @@ import numpy as np
 from pathlib import Path
 from pprint import pprint
 
+from sacrebleu.metrics import BLEU
+
 """
 one eval pipeline for bleu-4, recall, recall_unseen.
 input: json file with one dictionary
@@ -121,7 +123,7 @@ def tokenize_for_bleu_eval(code):
 '''
 based on docprompting conala BLEU-4, but text files are switched out for lists
 '''
-def _bleu(references, predictions, max_order=4):
+def bleu_4(references, predictions, max_order=4):
     # compute_bleu expects references a list of lists
     # and also for all strings to be tokenized
     references_for_bleu = [[tokenize_for_bleu_eval(refer)] for refer in references]
@@ -135,6 +137,32 @@ def exact_match(references, predictions):
     return round(100 * em, 2)
 
 
+def token_prf(tok_gold, tok_pred, match_blank=False):
+    if match_blank and len(tok_gold) == 0: # do not generate anything
+        if len(tok_pred) == 0:
+            m = {'r': 1, 'p': 1, 'f1': 1}
+        else:
+            m = {'r': 0, 'p': 0, 'f1': 0}
+    else:
+        tok_gold_dict = Counter(tok_gold)
+        tok_pred_dict = Counter(tok_pred)
+        tokens = set([*tok_gold_dict] + [*tok_pred_dict])
+        hit = 0
+        for token in tokens:
+            hit += min(tok_gold_dict.get(token, 0), tok_pred_dict.get(token, 0))
+        p = hit / (sum(tok_pred_dict.values()) + 1e-10)
+        r = hit / (sum(tok_gold_dict.values()) + 1e-10)
+        f1 = 2 * p * r / (p + r + 1e-10)
+        m = {'r': r, 'p': p, 'f1': f1}
+    return m
+
+
+def char_bleu(references, predictions):
+    bleu = BLEU(tokenize='char')
+    bleu_score = bleu.corpus_score(predictions, [references]).score
+    return round(bleu_score, 2)
+
+
 def get_metrics(results_file):
 
     with open(results_file, 'r') as fin:
@@ -146,15 +174,16 @@ def get_metrics(results_file):
         predictions = [sample[1] for sample in results]
         references = [sample[2] for sample in results]
 
-        bleu_4 = _bleu(references, predictions)
+        bleu_4_res = bleu_4(references, predictions)
+        char_blue_res = char_bleu(references, predictions)
         em = exact_match(references, predictions)
 
-        results_dict[experiment] = (bleu_4, em)
+        results_dict[experiment] = (bleu_4_res, char_blue_res, em)
     
     return results_dict
 
 
 if __name__ == "__main__":
-    json_location = str(ROOT_DIR / f'llama/completions/mosaic-chat')
+    json_location = str(ROOT_DIR / f'llama/completions/alpaca')
     all_ablations = json_location + "/res.json"
     pprint(get_metrics(all_ablations))

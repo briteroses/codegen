@@ -282,7 +282,7 @@ def star_for_code():
 
         to_be_rationalized = []
         for query_id, query, retrieval, rationale in gpt3_rationales:
-            rationale = re.sub(r"\s+", " ", rationale).strip().rstrip('.').rstrip(':')
+            rationale = re.sub(r"\s+", " ", rationale).strip().rstrip('.').rstrip(':').rstrip("`")
             needs_rationalization = not rationale.endswith(answer_key[query_id])
             if needs_rationalization:
                 to_be_rationalized.append((query_id, query, retrieval))
@@ -304,6 +304,9 @@ def star_for_code():
             fout.write(star_rationales)
             return
 
+        print(f"{len(to_be_rationalized)} incorrect rationales to be rationalized...")
+        print(f"{len(to_be_rationalized)} incorrect rationales to be rationalized...", file=sys.stderr)
+
         for query_id, query, retrieval in to_be_rationalized:
             print(f"Rationalizing query {query_id}...")
             print(f"Rationalizing query {query_id}...", file=sys.stderr)
@@ -316,7 +319,7 @@ def star_for_code():
             random.shuffle(rationale_exemplars)
             prompt = encode_rationales(rationale_exemplars, plus_hint, retrieval)
 
-            allowed_tries = 3
+            allowed_tries = 1
             for this_attempt in range(allowed_tries):
                 result = make_gpt3_requests(
                     engine=args.engine,
@@ -332,7 +335,7 @@ def star_for_code():
                 )
 
                 rationalization = post_process_gpt3_response(result["response"])
-                rationalization = re.sub(r"\s+", " ", rationalization).strip().rstrip('.').rstrip(':')
+                rationalization = re.sub(r"\s+", " ", rationalization).strip().rstrip('.').rstrip(':').rstrip("`")
                 # this implements exact match as the correctness metric for rationalization metric
                 # in future iteration, we could implement a softer metric?
                 maybe_correct = rationalization.endswith(answer_key[query_id])
@@ -349,8 +352,14 @@ def star_for_code():
                     break
                 else:
                     if this_attempt == allowed_tries - 1:
-                        print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...")
-                        print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...", file=sys.stderr)
+                        star_rationales += json.dumps({
+                            "question_id": query_id,
+                            "query": query,
+                            "retrieval": retrieval,
+                            "rationale": rationalization,
+                        }) + "\n"
+                        print(f"Rationale from query {query_id} still wrong after rationalization; moving on to the next one...")
+                        print(f"Rationale from query {query_id} still wrong after rationalization; moving on to the next one...", file=sys.stderr)
                     else:
                         print(f"Rationale from query {query_id} still wrong after rationalization; retrying...")
                         print(f"Rationale from query {query_id} still wrong after rationalization; retrying...", file=sys.stderr)

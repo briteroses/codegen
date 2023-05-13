@@ -22,8 +22,8 @@ USE_DEVICE = torch.device("cuda:0") if torch.cuda.is_available() else torch.devi
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 
-LLAMA_AT = str(ROOT_DIR / "llama/llama_hf_7b")
-ALPACA_7B_AT = str(ROOT_DIR / "llama/alpaca")
+LLAMA_AT = str(ROOT_DIR / "llama/models/llama_hf_7b")
+ALPACA_7B_AT = str(ROOT_DIR / "llama/models/alpaca")
 MOSAIC_INSTRUCT_AT = 'mosaicml/mpt-7b-instruct'
 MOSAIC_CHAT_AT = 'mosaicml/mpt-7b-chat'
 ALPACA_13B_AT = None
@@ -115,7 +115,7 @@ def retrieve_for_query(query_ids, truncate=False):
     return {q_id: retrieve for q_id, retrieve in zip(query_ids, retrievals)}
 
 
-def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query_enhancement=True, with_retrieval=True, with_rationale=True, save_as="mosaic-chat"):
+def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query_enhancement=True, with_retrieval=True, with_rationale=True, save_as=None):
     '''
     icl_exemplars: number of example (query, answer)'s to include before the test query
     with_query_enhancement: include the enhancement to the query in the test query and all icl exemplars?
@@ -171,9 +171,6 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
             else:
                 prompt += f"Answer: {icl_rationale.split('. ')[-1]}\n\n"
             
-            print(prompt)
-            return
-        return
         test_query, oracle_answer = query_id_to_oracle[query_id]
         test_retrieval = query_id_to_retrieval[query_id]
         # NO TEST QUERY ENHANCEMENT YET!!
@@ -197,26 +194,27 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
 
 
 def ablation_array():
-    model, tokenizer = load_model(MOSAIC_CHAT_AT)
+    model, tokenizer = load_model(MOSAIC_INSTRUCT_AT)
+    save_as = "mosaic-instruct"
 
     opt = parse_opt()
     job_array = opt.exparray
 
-    if job_array == 1:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_retrieval=False, with_rationale=False)
-    if job_array == 2:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_rationale=False)
-    if job_array == 3:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, with_rationale=False)
-    if job_array == 4:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_rationale=False)
-    if job_array == 5:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False)
-    if job_array == 6:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2)
+    if job_array == 7:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_retrieval=False, with_rationale=False, save_as=save_as)
+    if job_array == 8:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_rationale=False, save_as=save_as)
+    if job_array == 9:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, with_rationale=False, save_as=save_as)
+    if job_array == 10:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_rationale=False, save_as=save_as)
+    if job_array == 11:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, save_as=save_as)
+    if job_array == 12:
+        code_generation_inference_task(model, tokenizer, icl_exemplars=2, save_as=save_as)
 
 
-def quick_merge(saved_as="mosaic-chat"):
+def quick_merge(saved_as="alpaca"):
     json_location = str(ROOT_DIR / f'llama/completions/{saved_as}')
     all_ablations = json_location + "/res.json"
     if Path(all_ablations).is_file():
@@ -242,15 +240,7 @@ def parse_opt(known=False):
 
 
 if __name__ == "__main__":
-    # ablation_array()
-    assistant = "You are an expert language model in code generation. "
-    assistant += f"Come up with a rationale for a code generation problem under the following specification. "
-    assistant += "Given a query for a coding task and a list of code documentation, "
-    assistant += "please reason through the provided documentation to arrive at the answer code and "
-    assistant += "print the answer at the end of the output. "
-    assistant += "The final sentence in your response should state \"The answer is \" followed by the correct code snippet.\n\n"
-
-    print(assistant)
+    quick_merge()
 
     # with open(str(ROOT_DIR / "llama/rationale_icl_example.txt"), 'r') as fin:
     #     prompt = fin.read()
