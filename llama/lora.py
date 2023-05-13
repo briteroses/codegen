@@ -42,3 +42,5 @@ def lora(model_name):
         task_type="CAUSAL_LM",
     )
     model = get_peft_model(model, config)
+    # TODO unfinished
+    return model

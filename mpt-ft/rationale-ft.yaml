@@ -28,7 +28,7 @@ train_loader:
     hf_name: my-local-dataset
     hf_kwargs:
       data_files:
-        train: /synthesize/data/synthetic-datasets/gpt3_rationale_exemplars.jsonl
+        train: ./synthesize/data/for_finetuning.jsonl
     preprocessing_fn: processing:preprocess_rationale_ft
     split: train
     tokenizer_name: ${tokenizer_name}

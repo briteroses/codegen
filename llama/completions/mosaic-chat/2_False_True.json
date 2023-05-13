@@ -1,1 +1,2704 @@
-{"(2, False, True)": [["11840111-96", "len(dict.fromkeys(list(d1.keys() & d2.keys()), {})) / 2", "{k: (float(d2[k]) / d1[k]) for k in d2}"], ["11840111-75", "the list of results", "dict((k, float(d2[k]) / d1[k]) for k in d2)"], ["19602931-64", "the downloaded file as a string", "testfile = urllib.request.URLopener()\ntestfile.retrieve('http://randomsite.com/file.gz', 'file.gz')"], ["19602931-43", "requests.get(url).content", "urllib.request.urlretrieve('http://randomsite.com/file.gz', 'file.gz')"], ["23351183-26", "MyModel.objects.filter(char_length_max=255)", "MyModel.objects.extra(where=['CHAR_LENGTH(text) > 254'])"], ["432842-3", ":", "((a and (not b)) or ((not a) and b))"], ["546321-12", "datetime.date.today() - datetime.timedelta.months(1)", "(date(2010, 12, 31) + relativedelta(months=(+ 1)))"], ["546321-62", "datetime.date.today() - datetime.timedelta(days=2*30)", "(date(2010, 12, 31) + relativedelta(months=(+ 2)))"], ["1186789-34", "The answer code is simply the command python test1.py, which runs the Python script \"test1.py\"", "subprocess.call('test1.py', shell=True)"], ["843277-70", "The answer code is hasattr(obj, 'attr_name')", "hasattr(obj, 'attr_name')"], ["2231663-53", "lst_of_2", "list(grouper(2, [1, 2, 3, 4, 5, 6, 7]))"], ["2231663-54", "the code snippet sub_lists = [L[i:i+len(L[0])] for i in range(0, len(L), len(L[0]))]", "[input[i:i + n] for i in range(0, len(input), n)]"], ["14571103-73", "Therefore, the answer is re.findall(pattern, s)", "re.findall('(?::|;|=)(?:-)?(?:\\\\)|\\\\(|D|P)', s)"], ["27868020-14", "df[df['X'].sum() == 0 & df['User'] == 'Group A']", "df.loc[df.groupby('User')['X'].transform(sum) == 0]"], ["27868020-52", "the resulting dataframe", "df.groupby('User')['X'].transform(sum) == 0"], ["4302027-39", "webbrowser.open_new(url)", "webbrowser.open('http://example.com')"], ["4906977-61", "the code snippet:", "os.environ['HOME']"], ["4906977-33", "the value of the HOME environment variable", "os.environ['HOME']"], ["4906977-98", ":", "print(os.environ)"], ["4906977-9", "for i in os.environ: print(i, os.environ[i])", "os.environ"], ["4906977-77", "the code block that implements this rationale", "print(os.getenv('KEY_THAT_MIGHT_EXIST', default_value))"], ["674509-17", "sorted(dictionary.items())", "sorted(list(dictionary.items()), key=operator.itemgetter(1))"], ["674509-45", "sorted(dic.items(), key=lambda x: x[1], reverse=True)", "sorted(list(dictionary.items()), key=lambda x: x[1])"], ["29370211-80", ":\n\n\nimport pandas as pd\ndf = pd.DataFrame({'stats': ['apple,banana,orange', 'banana,grape,apple', 'orange,banana,grape']})\ndf['split'] = df['stats'].str.split(',')\ndf = pd.get_dummies(df, columns=['split'])\nprint(df)\n\n\nOutput:\n\n  split_apple  split_banana  split_orange\n0        1          0          0\n1        1          0          0\n2        0          1          1", "df['stats'].str[1:-1].str.split(',', expand=True).astype(float)"], ["29370211-55", "the use of str.split() with the sep parameter set to the comma separator", "df['stats'].str[1:-1].str.split(',').apply(pd.Series).astype(float)"], ["3939361-35", "line = line.replace(\"!@#$\", \"\")", "line.translate(None, '!@#$')"], ["3939361-33", "The answer code is line.replace(\"!@#$\", \"\")", "line = re.sub('[!@#$]', '', line)"], ["3939361-18", "string.replace(\"1\", \"\")", "string.replace('1', '')"], ["3939361-89", "the code snippet:", "line = line.translate(string.maketrans('', ''), '!@#$')"], ["14043934-80", "The answer code is elapsed_time", "(t - datetime.timedelta(hours=1, minutes=10))"], ["14043934-42", "The answer code snippet is:\n\nnew_dt = datetime.datetime.now() - datetime.timedelta(hours=5)\n\nThis will subtract 5 hours from the current time and create a new datetime.datetime() object with the modified time", "dt -= datetime.timedelta(hours=5)"], ["13496087-84", "random.randint(1, 100000000)", "random.randint(100000000000, 999999999999)"], ["13496087-95", ":", "'%0.12d' % random.randint(0, 999999999999)"], ["11709079-81", "soup.find('input', {'name': 'q'}).get('value')", "page = urllib.request.urlopen('http://www.google.com/')\nsoup = BeautifulSoup(page)"], ["1892339-46", "root.move_to(0, 0)", "root.lift()"], ["1823058-26", "print(\"{:,}\".format(value))", "'{:,}'.format(value)"], ["14406214-5", "ax.set_xlabel('Label')", "ax.xaxis.set_label_position('top')"], ["14406214-43", "This will swap the y-axis and x-axis of the plot, effectively moving the x-axis to the top of the plot", "ax.xaxis.tick_top()"], ["10565598-66", "the code snippet np.all(b in a)", "numpy.in1d(b, a).all()"], ["13557937-8", "For example:", "list('{0:0b}'.format(8))"], ["13557937-9", "The code to achieve this is", "[int(x) for x in list('{0:0b}'.format(8))]"], ["311627-76", "datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")", "time.strftime('%Y-%m-%d %H:%M')"], ["3940128-52", "L.reverse()", "L[::(-1)]"], ["3940128-21", "L.reverse()", "L.reverse()"], ["89228-90", "subprocess.run(['ls', '-l'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)", "from subprocess import call"], ["89228-91", "the output of the command", "os.system('some_command with args')"], ["89228-25", "The answer code is printed at the end of the output", "os.system('some_command < input_file | another_command > output_file')"], ["89228-76", "the output of the command", "stream = os.popen('some_command with args')"], ["89228-97", "This can be achieved using the following code: process = subprocess.Popen(['echo', 'Hello World'], stdout=subprocess.PIPE)", "return_code = subprocess.call('echo Hello World', shell=True)"], ["89228-44", "The code to achieve this is:", "call(['ls', '-l'])"], ["5137497-23", "This function returns the current working directory of the system", "os.path.realpath(__file__)"], ["5137497-33", "the use of os.path.dirname() with the path argument", "os.path.dirname(path)"], ["5137497-66", "os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'path'))", "os.path.realpath(path)"], ["5137497-91", ":", "dir_path = os.path.dirname(os.path.realpath(__file__))"], ["5137497-76", "The answer code is os.getcwd()", "full_path = os.path.realpath(__file__)"], ["14961562-66", "The answer code is return [int(digit, 16) for digit in s]", "struct.unpack('11B', s)"], ["19738169-65", "the new column of strings df['DateStr'] in the pandas dataframe", "df['DateStr'] = df['DateObj'].dt.strftime('%d%m%Y')"], ["104420-82", "For example, list(itertools.permutations([1, 2, 3], [4, 5, 6]))", "print(list(itertools.product([1, 2, 3], [4, 5, 6])))"], ["104420-100", "a list of all possible permutations of the elements in the list [1, 2, 3]", "itertools.permutations([1, 2, 3])"], ["19781609-19", "df.set_index('').to_csv(filename='filename.csv')", "df.to_csv('filename.csv', header=False)"], ["1406145-57", "root.destroy()", "root.destroy()"], ["2225564-15", "Return the files list", "files = [f for f in os.listdir('.') if re.match('[0-9]+.*\\\\.jpg', f)]"], ["30406725-90", "the code block: pivot_table(df, values='sample', index='order')", "df.pivot(index='order', columns='sample')"], ["18229082-25", "with open('afile', 'wb') as f: pickle.dump(my_list, f) and with open('afile', 'rb') as f: my_list = pickle.load(f)", "pickle.load(open('afile', 'rb'))"], ["3329386-17", "The final output is the concatenation of the first two substrings that end in ., ? or ! from each of the three splits", "re.match('(.*?[.?!](?:\\\\s+.*?[.?!]){0,1})', phrase).group(1)"], ["22733642-1", "The answer code is csv.writer(open('filename.csv', 'w', encoding='utf-8'), delimiter=',').writerows([list_of_rows])", "self.writer.writerow([str(s).encode('utf-8') for s in row])"], ["13114512-57", "The final code snippet is df['diff'] = df.shift(-1).fillna(0) - df", "data.set_index('Date').diff()"], ["28901311-21", "the code snippet B.index(A)", "np.where(np.in1d(A, B))[0]"], ["18102109-63", "cursor.fetchone()", "session.query(Task).filter(Task.time_spent > timedelta(hours=3)).all()"], ["415511-22", "now = datetime.datetime.now()", "datetime.datetime.now()"], ["415511-29", "the current date and time as a datetime object", "datetime.datetime.now().time()"], ["415511-26", "2021-08-20 15:36:12", "strftime('%Y-%m-%d %H:%M:%S', gmtime())"], ["415511-14", "The answer code is:", "str(datetime.now())"], ["415511-33", "The answer code is datetime.now()", "datetime.datetime.time(datetime.datetime.now())"], ["32283692-10", "the resulting 3-d array", "np.zeros((6, 9, 20)) + np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])[(None), :, (None)]"], ["32283692-46", "np.concatenate([1, 2, 3, 4, 5, 6, 7, 8, 9], axis=2)", "np.zeros((6, 9, 20)) + np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]).reshape((1, 9, 1))"], ["36542169-84", "The answer code would be df.head(), df.tail()", "pd.concat([df.head(1), df.tail(1)])"], ["2803852-74", "datetime.datetime.strptime('24052010', '%d%m%Y').date()", "datetime.datetime.strptime('24052010', '%d%m%Y').date()"], ["39719140-55", "the mean value of the indices of the filtered dataframe", "np.flatnonzero(x).mean()"], ["5508352-50", "this code snippet", "a[tuple(b)]"], ["2233917-10", "More information or context is needed to arrive at a solution", "tuple(map(int, input().split(',')))"], ["2233917-8", "user_input = input(\"Enter a tuple of integers: \") and tuple_input = tuple(map(int, user_input.split()))", "tuple(int(x.strip()) for x in input().split(','))"], ["10998621-33", "ax.set_xticks(np.linspace(0, 1, 10), rotation=45)", "ax.set_xticklabels(ax.xaxis.get_majorticklabels(), rotation=45)"], ["40517350-9", "sum(max(group) for group in groupby(data, lambda x: (x['STNAME'], x['COUNTY_POP'])))", "df.groupby('STNAME')['COUNTY_POP'].agg(lambda x: x.nlargest(3).sum())"], ["28664103-14", "pd.pivot_table(df, values='Close', index='df.index.date', columns='df.index.time', aggfunc=np.mean(), fill_value=None, dropna=True, margins=True, orient='columns', copy=True, reset_index=True)", "pd.pivot_table(df, index=df.index.date, columns=df.index.time, values='Close')"], ["8192379-98", "a = list(map(int, input().split()))", "a.fromlist([int(val) for val in stdin.read().split()])"], ["13237941-54", "yourdata[::-1]", "sorted(yourdata, reverse=True)"], ["13237941-56", "[dct for dct in sorted(yourdata, key=operator.itemgetter('subkey'))]", "sorted(yourdata, key=lambda d: d.get('key', {}).get('subkey'), reverse=True)"], ["13237941-14", "sorted(yourdata, key=lambda x: str(x['key']) + ':' + str(x['subkey']))", "yourdata.sort(key=lambda e: e['key']['subkey'], reverse=True)"], ["15548506-61", "the code snippet:\n\n\nimport networkx as nx\nimport matplotlib.pyplot as plt\npos = nx.spring_layout(G)\nnx.draw_networkx_nodes(G, pos)", "networkx.draw_networkx_labels(G, pos, labels)"], ["7287996-89", "os.path.commonprefix('/usr/var', '/usr/var2/log')", "os.path.commonprefix(['/usr/var', '/usr/var2/log'])"], ["7287996-17", "the string '/usr/var/log/'", "print(os.path.relpath('/usr/var/log/', '/usr/var'))"], ["14925239-71", "The final value of number is printed at the end of the output", "getattr(getattr(myobject, 'id', None), 'number', None)"], ["41469647-32", "the code block above", "np.einsum('ij,kj->jik', X, X)"], ["32292554-35", "list(itertools.combinations([0, 1, 0, 1], 4))", "itertools.product(list(range(2)), repeat=4)"], ["3166619-87", "re.search('\\\\$[0-9]+[^\\\\$]*$', '$1 off delicious $5 ham.').group(0)", "re.match('\\\\$[0-9]+[^\\\\$]*$', '$1 off delicious $5 ham.')"], ["13628725-82", "the code block that implements this rationale", "random.sample(range(1, 50), 6)"], ["13628725-59", "a list of six random integers between 1 and 49", "random.sample(range(1, 50), 6)"], ["15940280-74", "For example,", "datetime.utcnow()"], ["12280143-55", "the result of calling os.chdir('..')", "os.chdir('..')"], ["15457504-91", "the result of setting the font of the text item k to 'Purisa' of size 12 using the tk.font.Font() function", "canvas.create_text(x, y, font=('Purisa', 12), text=k)"], ["41946927-22", "the resulting pandas data frame", "pd.concat([pd.DataFrame(l) for l in my_list], axis=1).T"], ["8214932-71", "'one' in d.values()", "'one' in list(d.values())"], ["8214932-94", "True if 'one' is among the values of d, and False otherwise", "'one' in iter(d.values())"], ["7125009-76", "The final code to achieve this is plt.legend(loc='upper left', handletext_format='x-small')", "pyplot.legend(loc=2, fontsize='x-small')"], ["7125009-57", "pyplot.legend(fontsize=6)", "plot.legend(loc=2, prop={'size': 6})"], ["8270092-77", "The answer code is sentence.replace(r'\\s+', '')", "sentence.replace(' ', '')"], ["8270092-68", "sentence.replace(' ', '')", "pattern = re.compile('\\\\s+')\nsentence = re.sub(pattern, '', sentence)"], ["8270092-97", "sentence.replace('\\n', '').replace('\\r', '').replace(' ', '')", "sentence.strip()"], ["8270092-87", "sentence.replace(' ', '')", "sentence = re.sub('\\\\s+', '', sentence, flags=re.UNICODE)"], ["8270092-31", "The answer code is sentence.replace(\" \", \"\")", "sentence = ''.join(sentence.split())"], ["14591855-94", "pandas.read_hdf('/home/.../data.h5', key='firstSet')", "df1 = pd.read_hdf('/home/.../data.h5', 'firstSet')"], ["8369219-15", "the string variable str", "str = open('very_Important.txt', 'r').read()"], ["19445682-35", ":", "urlfetch.fetch(url, deadline=10 * 60)"], ["6250046-45", "the code block above", "urlparse.urldefrag('http://www.address.com/something#something')"], ["9849192-97", "The code to achieve this is sorted(mydict.items(), key=lambda x: x[1], reverse=True)", "sorted(iter(mydict.items()), key=itemgetter(1), reverse=True)"], ["13279399-43", "request.args.get('firstname')", "first_name = request.args.get('firstname')"], ["13279399-5", "request.form['firstname']", "first_name = request.form.get('firstname')"], ["3278850-59", "with open('file.txt', 'r') as f: txt = f.read()", "txt = open('file.txt').read()"], ["14043080-28", "the year that UTC-11 is currently in", "(datetime.datetime.utcnow() - datetime.timedelta(hours=11)).year"], ["687295-63", "entries = Entry.objects.filter({'id': 3}).first()", "Entry.objects.filter(~Q(id=3))"], ["19011613-15", "the list of div elements found by the find() method", "soup.find_all('div', class_='crBlock ')"], ["4296249-87", ":\n\n\nimport struct\nrgb = struct.pack('BBB', int(rgbstr[0], 16), int(rgbstr[1], 16), int(rgbstr[2], 16))", "struct.unpack('BBB', rgbstr.decode('hex'))"], ["5864271-27", "a[::-2]", "\"\"\"\"\"\".join(reversed([a[i:i + 2] for i in range(0, len(a), 2)]))"], ["73663-61", "The program is already terminated", "sys.exit()"], ["73663-36", "simply exit()", "quit()"], ["73663-66", "the code snippet sys.exit('some error message')", "sys.exit('some error message')"], ["21974169-23", "COMMIT", "con.commit()"], ["11269575-66", "the subprocess with the standard output redirected to a file", "subprocess.check_output(['espeak', text], stderr=subprocess.STDOUT)"], ["1094717-63", "The answer code is int(s)", "int(Decimal(s))"], ["1094717-69", "int(float('3.14'))", "int(s.split('.')[0])"], ["31957364-53", "the latter code snippet", "np.einsum('ijk,ikl->ijl', A, B)"], ["1196074-89", "subprocess.run(['rm', '-r','some.file', '&'])", "subprocess.Popen(['rm', '-r', 'some.file'])"], ["19100540-33", "df['Credit_exp'] = df['Credit_exp'].round(3)", "df.round({'Alabama_exp': 2, 'Credit_exp': 3})"], ["59825-84", "the next element in the set s", "e = next(iter(s))"], ["5868374-42", "The answer code is:", "dateobj = datetime.datetime.strptime(datestr, '%Y-%m-%d').date()"], ["208894-61", "the base64 encoded string", "a = open('pdf_reference.pdf', 'rb').read().encode('base64')"], ["20796355-35", "the code snippet os.chdir('chapter3')", "os.chdir('chapter3')"], ["20796355-88", "os.chdir('/path/to/new/directory')", "os.chdir('C:\\\\Users\\\\username\\\\Desktop\\\\headfirstpython\\\\chapter3')"], ["20796355-81", "os.chdir('new_directory_path')", "os.chdir('.\\\\chapter3')"], ["1299855-22", "mech.submit(_input, 'form_data')", "br.form.add_file(open(filename), 'text/plain', filename)"], ["2317134-81", "This pattern matches the string 'A\\n' because 'A' is a letter and '\\n' is a word character", "re.match('[a-zA-Z][\\\\w-]*\\\\Z', 'A\\n')"], ["2317134-43", "match('!A_B', '[a-zA-Z][\\\\w-]*$').group()", "re.match('[a-zA-Z][\\\\w-]*$', '!A_B')"], ["13794532-6", ":\n\nfor div in soup.find_all('div'):\n    if div.string.startswith('comment'):\n        print(div)", "soup.find_all('div', class_=re.compile('comment-'))"], ["741877-37", "plt.cla()", "plt.cla()"], ["13156395-50", "with open('sample.json', 'r', encoding='utf-8-sig') as f:", "json.load(codecs.open('sample.json', 'r', 'utf-8-sig'))"], ["13156395-75", ":", "json.loads(open('sample.json').read().decode('utf-8-sig'))"], ["13022385-76", "os.exit(0)", "sys.exit(0)"], ["8751653-82", "Specifically, we can call float(int(s2))", "struct.unpack('d', struct.pack('Q', int(s2, 0)))[0]"], ["8751653-25", "float('-0b1110') which is 0.5", "float(int('-0b1110', 0))"], ["8751653-54", "For example, float(bin(b8)) will return a float number equivalent to the binary value of b8", "struct.unpack('d', b8)[0]"], ["4789021-9", "the code block that implements this rationale", "return user.groups.filter(name='Member').exists()"], ["4789021-88", "if user.group in ['group1', 'group2']:", "return user.groups.filter(name__in=['group1', 'group2']).exists()"], ["25823608-56", "The answer code is vals.isin((0,1))", "np.where((vals == (0, 1)).all(axis=1))"], ["509742-28", "os.path.dirname(os.path.abspath(__file__))", "os.chdir(os.path.dirname(__file__))"], ["31385363-83", "The relevant PySpark documentation provides an example of how to do this: df.collect().to_csv('mycsv.csv')", "df.toPandas().to_csv('mycsv.csv')"], ["31385363-50", "df.to_csv('mycsv.csv', index=False)", "df.write.csv('mycsv.csv')"], ["8092877-26", "The answer code is list(itertools.chain((1, 4), (2, 5), (3, 6))).zip(s)", "zip(*[(1, 4), (2, 5), (3, 6)])"], ["8092877-98", "result", "[list(group) for key, group in itertools.groupby(data, operator.itemgetter(1))]"], ["23748995-25", "The answer code is df['a'].values", "df['a'].values.tolist()"], ["23748995-42", "This returns a list of all the values in column a of the data frame df", "df['a'].tolist()"], ["20205455-79", "the BeautifulSoup object", "soup = BeautifulSoup(response.read().decode('utf-8'))"], ["7429118-70", "Both approaches will return a new numpy array with all the values from a except for the value at index 3", "a[np.arange(len(a)) != 3]"], ["8217613-41", "the provided code snippet", "subprocess.check_output('echo \"foo\"', shell=True)"], ["14673394-12", "the code snippet df['Date'].unique()", "df['Date'].map(lambda t: t.date()).unique()"], ["3328012-17", "We can use the os.path.join() function to join the directory path with the filename and check if the resulting path is a descendant of the directory '/the/dir/' using the os.path.dirname() function", "os.path.commonprefix(['/the/dir/', os.path.realpath(filename)]) == '/the/dir/'"], ["3457673-86", "The resulting dictionary is the answer code snippet", "dict(x[1:] for x in reversed(myListOfTuples))"], ["652291-62", "sorted(dictionaries, key=lambda x: x['date'], reverse=True)", "list.sort(key=lambda item: item['date'], reverse=True)"], ["11041411-88", "df.to_csv('mydf.tsv', index=True)", "df.to_csv('mydf.tsv', sep='\\t')"], ["33435418-32", "set([1, 2, 2, 3]) - set([1, 2])", "Counter([1, 2, 2, 2, 3]) - Counter([1, 2])"], ["977491-44", "the code snippet difflib.get_close_matches(file1.read(), file2.read())", "difflib.SequenceMatcher(None, file1.read(), file2.read())"], ["15148684-45", "min(list, key=lambda x: (x[0], x[1]))", "min(list, key=lambda x: float('inf') if math.isnan(x[1]) else x[1])"], ["16127862-90", "the code snippet", "str_list = [tuple('{0:.8e}'.format(flt) for flt in sublist) for sublist in lst]"], ["16127862-87", "To convert a list of sublists lst of floats to a list of sublists str_list of strings of integers in scientific notation with 8 decimal points, we can use a list comprehension to create a new list str_list that contains the same sublists as lst, but with each sublist converted to a string of integers in scientific notation with 8 decimal points", "str_list = [['{0:.8e}'.format(flt) for flt in sublist] for sublist in lst]"], ["2111163-71", "A[0][1]", "A[[0, 1], [0, 1]]"], ["2111163-33", "The code to achieve this is a[:, 0] + a[:, 1] + a[:, 2] + a[:, 0]", "a[np.arange(3), (0, 1, 0)]"], ["24748445-94", "soup.find_all('a', attrs={\"class\": \"button\"}) + soup.find_all('div', attrs={\"class\": \"container\"})", "soup.find_all(['a', 'div'])"], ["931092-70", "reverse(string)", "'hello world'[::(-1)]"], ["931092-64", "The answer code will depend on the specific list and programming language being used", "s[::(-1)]"], ["931092-5", "a code snippet that reverses a Unicode string, such as:", "''.join(reversed('foo'))"], ["931092-74", "string[::-1] which reverses the string string by slicing it with a negative step", "''.join(reversed(string))"], ["931092-65", "This will return the reversed string \"oof\"", "'foo'[::(-1)]"], ["931092-99", "a_string.reverse()", "a_string[::(-1)]"], ["931092-20", "a", "def reversed_string(a_string):\n    return a_string[::(-1)]"], ["931092-77", "reversed(s).join()", "''.join(reversed(s))"], ["163542-7", "subprocess.Popen(['grep', 'f', b'one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n'], stdin=subprocess.PIPE)", "p = Popen(['grep', 'f'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)\ngrep_stdout = p.communicate(input='one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n')[0]"], ["163542-94", "os.dup2(0, 0) and open(0, 'r')", "p = subprocess.Popen(['grep', 'f'], stdout=subprocess.PIPE, stdin=subprocess.PIPE)\np.stdin.write('one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n')\np.communicate()[0]\np.stdin.close()"], ["18594469-11", "df.normalize()", "df.div(df.sum(axis=1), axis=0)"], ["961632-89", "str(i)", "str(i)"], ["961632-44", "str(a)", "a.__str__()"], ["961632-33", "The final answer is str(a)", "str(a)"], ["27318022-32", "The code to achieve this is:", "result = sys.stdin.read()"], ["40055835-26", "set(A) - set(B)", "A[np.all(np.any(A - B[:, (None)], axis=2), axis=0)]"], ["41513324-64", ":\n\n\ndf.drop(df.index[df.index < start_remove].union(df.index > end_remove), axis=0)", "df.query('index < @start_remove or index > @end_remove')"], ["41513324-67", "df.drop(start_remove, end_remove)", "df.loc[(df.index < start_remove) | (df.index > end_remove)]"], ["8218032-86", "np.where(mask)[0]", "numpy.where(mask)"], ["32533944-71", "The answer code would be import pandas as pd; df = pd.read_csv('Result.csv', sep=' ')", "df.to_csv('Result.csv', index=False, sep=' ')"], ["20638006-85", "The pandas.concat() function can be used to concatenate multiple data frames along a common column", "pd.DataFrame(d)"], ["1883604-86", "gzip.GzipFile('file.gz', 'r')", "gzip.open('file.gz', 'rt', encoding='utf-8')"], ["29983106-25", "driver.get('http://www.python.org')", "driver.get('http://www.google.com.br')"], ["3437059-20", "The answer code is if \"blah\" in somestring: print(\"blah is in somestring\")", "if ('blah' not in somestring):\n    pass"], ["3437059-17", "\"substring\" in string", "string.find('substring')"], ["3437059-83", "For example, s.find(\"is\")!= -1 will return True if the string s contains the substring \"is\", and False otherwise", "if (s.find('is') == (-1)):\n    print(\"No 'is' here!\")\nelse:\n    print(\"Found 'is' in the string.\")"], ["3061-93", "mymodule.myfunction()", "globals()['myfunction']()"], ["3061761-63", "The final code snippet is a.shape and the answer is this code snippet", "a.shape"], ["3061761-55", "(3, 3)", "N.shape(a)"], ["3061761-89", "a tuple containing the dimensions of the array a", "N.shape(a)"], ["3061761-31", "a.shape", "a.shape"], ["13291539-54", "The code to achieve this is float(0.00582811585976)", "struct.unpack('f', struct.pack('f', 0.00582811585976))"], ["6280978-9", "The answer code is set(list(dict.items()))", "[dict(y) for y in set(tuple(x.items()) for x in d)]"], ["7745260-45", "Therefore, the answer code is with open('myfile') as f: words = f.read().split()", "words = open('myfile').read().split()"], ["7717380-65", "the code block above", "a = np.array(a)"], ["9304908-37", "models.CharField.objects.filter(value__in=[1, 4, 7])", "Blog.objects.filter(pk__in=[1, 4, 7])"], ["319426-66", "string1.lower() == string2.lower()", "if (string1.lower() == string2.lower()):\n    print('The strings are the same (case insensitive)')\nelse:\n    print('The strings are not the same (case insensitive)')"], ["319426-3", "string1.casefold() == string2.casefold()", "if (string1.lower() == string2.lower()):\n    pass"], ["319426-84", "The answer code is string1.lower() == string2.lower()", "(string1.lower() == string2.lower())"], ["319426-70", "the result of the comparison", "(first.lower() == second.lower())"], ["319426-18", "str.casefold(first) == str.casefold(second)", "(first.upper() == second.upper())"], ["15455388-38", "Return df.\nThe final answer is df", "pd.concat(map(pd.DataFrame, iter(d.values())), keys=list(d.keys())).stack().unstack(0)"], ["17679089-100", "a new dataframe group_counts with two columns: 'col5' and 'col2', and a column 'count' with the count of rows in each group", "df.groupby(['col5', 'col2']).size().groupby(level=1).max()"], ["9396706-78", "the value of the x variable", "getattr(your_obj, x)"], ["3743222-35", "date_obj", "datetime.datetime.now().date()"], ["3743222-73", "datetime.date(datetime_object), where datetime_object is the datetime object to convert", "datetime.datetime.now().date()"], ["12496531-86", "The answer code is A = np.sort(A, axis=0), which sorts the elements of A along the first column (axis=0)", "A = np.array(sorted(A, key=tuple))"], ["6797984-32", "\"hello world\"", "s.lower()"], ["6797984-49", "The encode and decode methods are not relevant to this task", "s.decode('utf-8').lower()"], ["2631935-11", "the code above", "session.query(User).filter_by(id=123).update({'name': 'Bob Marley'})"], ["13627865-82", ":", "globals()['something'] = 'bob'"], ["14766194-35", "Row found", "any(np.equal(a, [1, 2]).all(1))"], ["18200052-13", "the resulting array", "np.zeros((3, 3)).ravel()"], ["15579649-73", "arr", "numpy.array([(key, val) for key, val in result.items()], dtype)"], ["2823472-99", "The answer code is sys.exit() which will immediately terminate the program", "sys.exit(0)"], ["36139-44", "The answer code is sorted(mylist)", "mylist.sort(key=lambda x: x.lower())"], ["36139-62", "sorted(mylist)", "mylist.sort(key=str.lower)"], ["36139-23", "sorted(mylist)", "mylist.sort()"], ["36139-32", "the provided code snippet", "list.sort()"], ["5280178-72", "the code block that implements this rationale", "exec(compile(open('file.py').read(), 'file.py', 'exec'))"], ["18351951-41", "if test.mp3.endswith(('.mp3', '.avi')):", "\"\"\"test.mp3\"\"\".endswith(('.mp3', '.avi'))"], ["826284-77", "pS[0] = unpack('I', pS[0:2])[0] and pS[1] = unpack('I', pS[1:3])[0]", "struct.unpack('h', pS[0:2])"], ["3668964-35", "True if all elements in list words are uppercase, and False otherwise", "print(all(word[0].isupper() for word in words))"], ["41154648-81", "df.to_sparse()", "df.to_sparse(0)"], ["1514553-90", "variable = []", "variable = []"], ["1514553-71", "arr = array('i')", "intarray = array('i')"], ["610883-92", "The answer code is:", "if hasattr(a, 'property'):\n    pass"], ["610883-9", "the code block above", "if hasattr(a, 'property'):\n    pass"], ["610883-68", ":", "getattr(a, 'property', 'default value')"], ["13902805-83", "list(set(string.ascii_lowercase + string.digits + string.punctuation))", "\"\"\"\"\"\".join(list(OrderedDict.fromkeys('aaabcabccd').keys()))"], ["13902805-92", "The answer code is list(set('aaabcabccd'))", "list(set('aaabcabccd'))"], ["13902805-87", ":", "\"\"\"\"\"\".join(set('aaabcabccd'))"], ["674764-8", "str.find('s', 16)", "str.find('s', 16)"], ["674764-33", ":", "x.find('Aloha')"], ["674764-19", ": s.find('cc')", "'sdfasdf'.index('cc')"], ["674764-45", "The answer code is print(s.find('df')), which returns the index of the sub string 'df' in the string'sdfasdf'", "'sdfasdf'.index('df')"], ["674764-64", "The resulting index is returned as the answer", "str.find('a')"], ["674764-91", "The final answer is str.find('g')", "str.find('g')"], ["674764-3", "str.find(s, 11)", "str.find('s', 11)"], ["674764-47", "str.find('s', 15)", "str.find('s', 15)"], ["674764-5", "index = str.find('s', 11, 14)", "str.find('s', 11, 14)"], ["10194713-64", "sorted(cityPopulation.items(), key=lambda x: x[1][2])", "sorted(iter(cityPopulation.items()), key=lambda k_v: k_v[1][2], reverse=True)"], ["10194713-38", "sorted(u.items(), key=lambda x: x[1])", "sorted(list(u.items()), key=lambda v: v[1])"], ["10194713-1", "the code snippet sorted_keys = sorted(list(d.keys()))sorted_keys.reverse()", "sorted(list(d.items()), key=lambda k_v: k_v[1], reverse=True)"], ["10194713-5", "sorted_d = sorted(d.items(), key=lambda x: x[1])", "sorted(list(d.items()), key=lambda k_v: k_v[1])"], ["179369-97", "the code block above", "sys.exit(0)"], ["179369-62", "the custom exception raised with the message 'aa! errors!'", "sys.exit('aa! errors!')"], ["179369-47", "the exit code 1, which indicates an error condition", "sys.exit()"], ["19779790-35", "datetime.now() - timedelta(days=1)", "datetime.datetime.now() - datetime.timedelta(days=1)"], ["37934969-37", "df = pd.DataFrame(nvalues)", "df = pd.DataFrame.from_dict({k: v for k, v in list(nvalues.items()) if k != 'y3'})"], ["11066874-58", "a code snippet using regular expressions", "print(soup.find('a', href=re.compile('.*follow\\\\?page.*')))"], ["18461623-27", "the mean of the values in old_set and new_set", "np.mean(np.array([old_set, new_set]), axis=0)"], ["4523551-62", "the code block bin(ord('P'))", "bin(ord('P'))"], ["11399384-83", "The code to do this is set(LoD.keys())", "{k for d in LoD for k in list(d.keys())}"], ["11399384-59", "the set of key names obtained by using this code snippet", "set([i for s in [list(d.keys()) for d in LoD] for i in s])"], ["11399384-52", "a list of all keys in LoD", "[i for s in [list(d.keys()) for d in LoD] for i in s]"], ["13081090-42", "list(bin(int('0b' + x, 2)))", "[int(d) for d in str(bin(x))[2:]]"], ["42012589-82", "df.groupby(['Month', 'Fruit'])", "df.groupby(['Month', 'Fruit']).sum().unstack(level=0)"], ["3355822-45", "the response object of the GET request", "requests.get('https://www.mysite.com/', auth=('username', 'pwd'))"], ["6510477-50", "zipfile.ZipFile('file').namelist()", "[x for x in file.namelist() if x.endswith('/')]"], ["39268928-38", "result = str(dict_to_str(dict_))", "str({'a': 1, 'b': 'as df'}).replace(': ', ':').replace(', ', ',')"], ["39268928-72", "keyN=valueN\"", "'{' + ','.join('{0!r}:{1!r}'.format(*x) for x in list(dct.items())) + '}'"], ["23970693-72", "For example, json_data = json.loads(json_string)", "json_data = json.loads(json_string)"], ["2759067-52", "the os.rename() function call", "os.rename(src, dst)"], ["16389188-53", "pygobject.center_window(window)", "window.set_position(Gtk.WindowPosition.CENTER)"], ["1391026-74", "The code to achieve this is:", "self.request.get('var_name')"], ["3296499-25", "dict(map(lambda x: x.lower(), thedict.keys()))", "theset = set(k.lower() for k in thedict)"], ["41463763-99", "df1", "df2['revenue'] = df2.CET.map(df1.set_index('date')['revenue'])"], ["30405804-73", "Therefore, the answer code is os.environ['PWD'] = 'C:/Users/Name/Desktop'", "os.chdir('C:/Users/Name/Desktop')"], ["9647586-2", "request.get('a')", "{{request.args.get('a')}}"], ["6591931-80", "the size of the file in bytes", "os.stat('C:\\\\Python27\\\\Lib\\\\genericpath.py').st_size"], ["5607551-13", "urllib.parse.urlencode({'string_of_characters_like_these': '$#@=?%^Q^$'})", "urllib.parse.quote_plus('string_of_characters_like_these:$#@=?%^Q^$')"], ["439115-86", "For example, the following code generates a random Decimal value between 1 and 10:\n\nimport random\nrandom_decimal = random.uniform(1, 10)\n\nThis code uses the random.uniform() function to generate a random decimal value between 1 and 10", "decimal.Decimal(random.randrange(10000)) / 100"], ["3925096-46", "os.path.split('/path/to/file')[1]", "os.path.basename(os.path.normpath('/folderA/folderB/folderC/folderD/'))"], ["14538885-47", "i = x.keys().index('c')", "list(x.keys()).index('c')"], ["10484261-51", "list(programs.keys()).lower().contains('new york')", "[value for key, value in list(programs.items()) if 'new york' in key.lower()]"], ["8905864-66", "the modified string with all special characters replaced", "urllib.parse.quote(s.encode('utf-8'))"], ["8905864-78", "the URL-encoded string \"Hello%2C%20world%21\"", "urllib.parse.quote_plus('a b')"], ["32751229-20", "the appropriate code to calculate the sum of values of columns 'Y1961', 'Y1962', 'Y1963' after group by on columns \"Country\" and \"Item_code\" in dataframe df", "df.groupby(['Country', 'Item_Code'])[['Y1961', 'Y1962', 'Y1963']].sum()"], ["10543303-64", "The answer code is len([x for x in j if x > 5])", "sum(((i > 5) for i in j))"], ["10543303-81", "For example, list(filter(lambda x: x > 5, j)) will return a new list with only the values in j that are greater than 5", "len([1 for i in j if (i > 5)])"], ["10543303-37", "the code snippet len(j[j > i])", "j = np.array(j)\nsum((j > i))"], ["36190533-1", ":", "np.any(np.in1d(a1, a2))"], ["9775731-24", "Otherwise, we return my_value", "max(min(my_value, max_value), min_value)"], ["14931769-56", "a list of lists, where each sublist represents a combination of n binary values", "lst = list(itertools.product([0, 1], repeat=n))"], ["14931769-64", "list(itertools.combinations(range(2), n))", "lst = map(list, itertools.product([0, 1], repeat=n))"], ["14931769-0", "The code to achieve this is list(itertools.combinations('01', 3))", "bin = [0, 1]\n[(x, y, z) for x in bin for y in bin for z in bin]"], ["14931769-1", ":", "lst = list(itertools.product([0, 1], repeat=3))"], ["6310475-49", "The code snippet to achieve this is:\n\ndriver.get(url)\ntime.sleep(5)\ndriver.find_element_by_xpath('//input[@name=\"q\"]').send_keys('selenium')\ndriver.find_element_by_xpath('//input[@type=\"submit\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]')", "datetime.datetime.now() + datetime.timedelta(days=1, hours=3)"], ["38831808-53", "the code snippet float_value = struct.unpack('<f', bytes.fromhex('4081637ef7d0424a'))[0]", "struct.unpack('d', binascii.unhexlify('4081637ef7d0424a'))"], ["42387471-14", "cbar = plt.colorbar(im, ax)", "plt.colorbar(im, ax=ax)"], ["28134319-7", "s = s[1:-1]", "s[s.find('\\n') + 1:s.rfind('\\n')]"], ["18470323-13", "data.loc[data['one'] == 'x', 'a': 'c']", "data.loc[:, (list(itertools.product(['one', 'two'], ['a', 'c'])))]"], ["18470323-91", "data.loc[:, ['a', 'c']]", "data.loc[:, ([('one', 'a'), ('one', 'c'), ('two', 'a'), ('two', 'c')])]"], ["10040143-71", "Users.filter(userprofile__gte=0)", "User.objects.filter(userprofile__level__gte=0)"], ["27659153-69", "[x for x in test if x.startswith('_')]", "[list(g) for _, g in itertools.groupby(test, lambda x: x.split('_')[0])]"], ["27659153-76", ":\n\nitems = ['apple', 'banana', 'apple', 'orange', 'banana', 'orange', 'banana']\ngroups = {}\nfor i in range(len(items)):\n    if items[i] not in groups:\n        groups[items[i]] = []\n    groups[items[i]].append(items[i])\nfor group, items in groups.items():\n    print(group)", "[list(g) for _, g in itertools.groupby(test, lambda x: x.partition('_')[0])]"], ["11336548-53", "this code", "request.POST.get('title', '')"], ["20222485-17", "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", "list(accumulate(list(range(10))))"], ["16436133-47", "the code snippet mydata = {} if mydata is None else json.loads(mydata)", "json.loads(request.POST.get('mydata', '{}'))"], ["31950612-15", "find(lambda x: x == '([{')[-1]", "max(test_string.rfind(i) for i in '([{')"], ["8247792-19", "For example, s.substring(0, 4, None) will return a new string with the same characters", "\"\"\"foobar\"\"\"[:4]"], ["8247792-29", "substrings = list(string.split(string, '&'))", "s.rfind('&')"], ["8247792-90", "The answer code is n = len(re.findall('&', s)) - 1", "s[:s.rfind('&')]"], ["35178812-30", "df['A'].value_counts(normalize=True).size()", "ex.groupby(level='A').agg(lambda x: x.index.get_level_values(1).nunique())"], ["10346336-28", "The code snippet is:\n\narr = np.array([list1, list2, list3])\n\nThis creates a numpy array arr from the lists list1, list2, and list3", "numpy.array([[1, 2], [3, 4]])"], ["2054416-71", "t = [x[0] for x in s]", "t = tuple(x[0] for x in s)"], ["11205386-94", "the code snippet tag = soup.find('meta')[0].get('content') and tag = soup.find('meta', {'name': 'City'})[0].get('name')", "soup.find('meta', {'name': 'City'})['content']"], ["39353758-58", "df.pivot_table(index='saleid', values='upc', aggfunc=np.mean)", "df.pivot_table(index='saleid', columns='upc', aggfunc='size', fill_value=0)"], ["16249440-75", ":", "os.chmod(path, stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)"], ["13999850-72", "For example:", "df.to_csv(filename, date_format='%Y%m%d')"], ["1800187-72", "the code block that implements this rationale: a.fill(0)", "b = np.where(np.isnan(a), 0, a)"], ["39277638-98", "The answer code is the np.minimum() function applied to the three arrays", "np.array([np.arange(3), np.arange(2, -1, -1), np.ones((3,))]).min(axis=0)"], ["15509617-37", "the formatted string", "datetime.datetime.now().strftime('%a')"], ["8519599-86", "s = '{}: {}'.format(d['name'], d['age']) and print(s)", "\"\"\"<br/>\"\"\".join([('%s:: %s' % (key, value)) for key, value in list(d.items())])"], ["17071871-46", "This selects all rows of the dataframe where the value in column A is equal to foo", "print(df.loc[df['A'] == 'foo'])"], ["17071871-76", ":\n\nimport pandas as pd\ndf = pd.read_csv('filename.csv')\nresult = df.loc[df['column_name']!= some_value]", "df.loc[df['column_name'] != some_value]"], ["17071871-51", "df[df['column_name'] not in some_values]", "df.loc[~df['column_name'].isin(some_values)]"], ["17071871-83", ":\n\ndf[df['column_name'] == some_value]", "df.loc[df['column_name'] == some_value]"], ["17071871-79", "df[df['B'] == 'one' | df['B'] == 'three']", "print(df.loc[df['B'].isin(['one', 'three'])])"], ["739993-25", "The answer code is:\n\n\nimport os\nimport re\nimport glob\n\npython_path = os.environ.get('PYTHONPATH', os.environ.get('PATH', ''))\npython_path = python_path.split(':')\npython_path = [d for d in python_path if os.path.exists(os.path.join(d, '__init__.py'))]\n\nmodules = glob.glob(os.path.join(python_path[0], '*.py'))\n\nprint(modules)", "help('modules')"], ["12362542-44", "The 1 argument specifies that the option should be enabled", "s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)"], ["4116061-59", "The final code snippet is import some.package.* and the answer is this code snippet", "globals().update(importlib.import_module('some.package').__dict__)"], ["4588628-92", "The code snippet is np.where(x == 0) and the answer is this code snippet", "numpy.where((x == 0))[0]"], ["2428092-52", "Therefore, the answer is json.dumps({'key1': 'value1', 'key2': 'value2'})", "return HttpResponse(json.dumps(response_data), content_type='application/json')"], ["10824319-17", "import base64; s = base64.hexlify(bytes(s, 'hex'))", "s.decode('hex')"], ["10824319-49", "The answer code is base64.hexlify(s).decode()", "binascii.a2b_hex(s)"], ["12655007-87", "result", "[(x + tuple(y)) for x, y in zip(zip(a, b), c)]"], ["10472907-88", "json.dumps(adict)", "\"\"\"\"\"\".join('{}{}'.format(key, val) for key, val in sorted(adict.items()))"], ["10472907-5", "str(adict)", "\"\"\"\"\"\".join('{}{}'.format(key, val) for key, val in list(adict.items()))"], ["34155829-56", "np.array(x)", "np.array(x._data).reshape(x.size[::-1]).T"], ["17731822-88", "the code block that implements this rationale", "hex(int(''.join([str(int(b)) for b in walls]), 2))"], ["17731822-21", "hashlib.hexlify(str(sum(walls))).decode()", "hex(sum(b << i for i, b in enumerate(reversed(walls))))"], ["1810743-81", "os.chdir('c:\\\\Users\\\\uname\\\\desktop\\\\python')", "os.chdir('c:\\\\Users\\\\uname\\\\desktop\\\\python')"], ["1810743-84", "The code snippet to achieve this is:\n\nos.chdir(path)", "os.chdir(path)"], ["1949318-13", "the status code of the response", "urllib.request.urlopen('http://www.stackoverflow.com').getcode()"], ["1949318-62", "We can then use an if statement to check if the status code is 200 (OK), and take appropriate action if it is not", "conn = httplib.HTTPConnection('www.python.org')\nconn.request('HEAD', '/')\nr1 = conn.getresponse()\nprint(r1.status, r1.reason)"], ["1949318-89", "the code block that implements this rationale", "r = requests.head(url)\nreturn (r.status_code == 200)"], ["1949318-26", "the status code of the response", "print(urllib.request.urlopen('http://www.stackoverflow.com').getcode())"], ["19758364-39", "data.rename(columns={'gdp': 'log(gdp)'}).", "data.rename(columns={'gdp': 'log(gdp)'}, inplace=True)"], ["15271907-69", "git commit -am \"commit message\"", "dbb.commit()"], ["5352546-44", "the code snippet d = {'a': 1, 'b': 2, 'c': 3, 'l': 4,'m': 5, 'n': 6}\nsubset = [{k: v for k, v in d.items() if k in ['l','m', 'n']}].items()", "{k: bigdict[k] for k in list(bigdict.keys()) & {'l', 'm', 'n'}}"], ["5352546-80", "bigdict['l'] = 'value1'\nbigdict['m'] = 'value2'\nbigdict['n'] = 'value3'\nbigdict['p'] = 'value4'\nbigdict['q'] = 'value5'\nbigdict['r'] = 'value6'\nbigdict['s'] = 'value7'\nbigdict['t'] = 'value8'\nbigdict['u'] = 'value9'\nbigdict['v'] = 'value10'\nbigdict['w'] = 'value11'\nbigdict['x'] = 'value12'\nbigdict['y'] = 'value13'\nbigdict['z'] = 'value14'\nbigdict['l'] = 'value15'\nbigdict['m'] = 'value16'\nbigdict['n'] = 'value17'\nbigdict['p'] = 'value18'\nbigdict['q'] = 'value19'\nbigdict['r'] = 'value20'\nbigdict['s'] = 'value21'\nbigdict['t'] = 'value22'\nbigdict['u'] = 'value23'\nbigdict['v'] = 'value24'\nbigdict['w'] = 'value25'\nbigdict['x'] = 'value26'\nbigdict['y'] = 'value27'\nbigdict['z'] = 'value28'\nbigdict['l'] = 'value29'\nbigdict['m'] = 'value30'\nbigdict['n'] = 'value31'\nbigdict['p'] = 'value32'\nbigdict['q'] = 'value33'\nbigdict['r'] = 'value34'\nbigdict['s'] = 'value35'\nbigdict['t'] = 'value36'\nbigdict['u'] = 'value37'\nbigdict['v'] = 'value38'\nbigdict['w'] = 'value39'\nbigdict['x'] = 'value40'\nbigdict['y'] = 'value41'\nbigdict['z'] = 'value42'\nbigdict['l'] = 'value43'\nbigdict['m'] = 'value44'\nbigdict['n'] = 'value45'\nbigdict['p", "dict((k, bigdict[k]) for k in ('l', 'm', 'n'))"], ["5352546-22", "list(bigdict.items())[:3].filter(lambda x: x[0] in ('l','m', 'n'))", "{k: bigdict.get(k, None) for k in ('l', 'm', 'n')}"], ["5352546-75", "items = list(bigdict.items())[:3]", "{k: bigdict[k] for k in ('l', 'm', 'n')}"], ["2331943-5", "the code snippet", "json.load(u)"], ["4940032-13", "the output of the code", "if ('blabla' in open('example.txt').read()):\n    pass"], ["4940032-15", "example.txt.findall('blabla')", "f = open('example.txt')\ns = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)\nif (s.find('blabla') != (-1)):\n    pass"], ["4940032-22", "The answer code would be with open('example.txt', 'r') as f: txt = f.read() found = os.search(txt, 'blabla') if found!= -1: print(found)", "datafile = file('example.txt')\nfound = False\nfor line in datafile:\n    if (blabla in line):\n        return True\nreturn False"], ["4476373-46", "The answer code is the code block that implements this rationale", "r = requests.get(url)"], ["4476373-22", "requests.post(url, json=payload)", "r = requests.get(url, params=payload)"], ["4476373-71", "requests.post(url, data=payload).json()", "r = requests.post(url, data=payload)"], ["4476373-99", ":\n\n\nimport requests\nresponse = requests.post('https://example.com/api/data', data=post_data)", "post_response = requests.post(url='http://httpbin.org/post', json=post_data)"], ["1476-16", "the code block that implements this rationale", "bin(173)"], ["1476-88", "4094", "int('01010101111', 2)"], ["1476-71", "int(bin('010101')), which returns the integer value of the binary string", "int('010101', 2)"], ["1476-39", ":\n\nint('0b0010101010', 2)", "int('0b0010101010', 2)"], ["1476-6", "binary_string = bin(21)[2:]", "bin(21)"], ["1476-59", ":", "int('11111111', 2)"], ["41178532-76", "the result of the code block above", "(trace_df['ratio'] > 0).mean()"], ["8249836-41", "the code snippet list(itertools.product([1,2,3], repeat=3)), which returns a list of all possible combinations of 3 items from the list [1,2,3]", "list(itertools.product(*a))"], ["364519-94", ":", "it = iter(sorted(d.items()))"], ["364519-100", "The answer code is sorted(d.keys())", "for (key, value) in sorted(d.items()):\n    pass"], ["364519-2", "sorted(dict.keys())", "return sorted(dict.items())"], ["364519-33", "The code to achieve this is sorted(dict.items())", "return iter(sorted(dict.items()))"], ["364519-52", "The answer code is sorted(foo.keys())", "for (k, v) in sorted(foo.items()):\n    pass"], ["364519-98", "for key in sorted(foo.keys()): print(key)", "for k in sorted(foo.keys()):\n    pass"], ["39414085-16", "the code snippet s.replace('(?<=[a-z])([A-Z])', '-\\\\1')", "re.sub('(?<=[a-z])([A-Z])', '-\\\\1', s).lower()"], ["34097281-53", "import tensorflow as tf; tf_array = tf.constant([1, 2, 3])", "print(type(tf.Session().run(tf.constant([1, 2, 3]))))"], ["39816795-71", "pd.DataFrame({'A': ['A1', 'A2'], 'B': ['B1', 'B2'], 'A1R': ['A1R1', 'A1R2'], 'B2': ['B2', 'B2'], 'AABB4': ['AABB4', 'AABB4']})", "s = pd.Series(['A', 'B', 'A1R', 'B2', 'AABB4'])"], ["638360-2", "For example, if d1 = {'a': 1, 'b': 2, 'c': 3} and d2 = {'b': 2, 'c': 3, 'd': 4}, the resulting output will be {'a': 1, 'c': 3}", "dict((x, set(y) & set(d1.get(x, ()))) for x, y in d2.items())"], ["19961490-16", "The code would look something like this:\n\ndf = pd.DataFrame([('name', 'John'), ('age', 30)], columns=['name', 'age'])", "df = pandas.DataFrame(data, columns=['R_Number', 'C_Number', 'Avg', 'Std'])"], ["18837262-55", "df = pd.DataFrame({'Date': [k for k, v in d.items()], 'DateValue': [str(v) for v in d.values()]})", "pd.DataFrame(list(d.items()), columns=['Date', 'DateValue'])"], ["4265988-26", "x", "numpy.random.choice(numpy.arange(1, 7), p=[0.1, 0.05, 0.05, 0.2, 0.4, 0.2])"], ["35414625-11", "result = pd.pivot_table(df, values='value', index=['year','month', 'item'], columns=['category'])", "df.set_index(['year', 'month', 'item']).unstack(level=-1)"], ["35414625-17", "the code snippet df.pivot_table(index=['year','month'], values='value', aggfunc=sum)", "df.pivot_table(values='value', index=['year', 'month'], columns='item')"], ["748028-31", "If p1 is a variable name, you can use the print() function to output the value of the variable", "p1.communicate()[0]"], ["748028-100", "the code snippet:\n\n\nimport subprocess\nprocess = subprocess.Popen(['exe'], stdout=subprocess.PIPE)\noutput = process.communicate()[0].decode().strip()\nprint(output)", "output = subprocess.Popen(['mycmd', 'myarg'], stdout=PIPE).communicate()[0]"], ["10408927-95", "for sub in et.find(a): print(sub)", "[elem.tag for elem in a.iter()]"], ["10408927-56", "a.findall('.//*[not(self::root)]')", "[elem.tag for elem in a.iter() if elem is not a]"], ["29471884-33", "max(num_list[i:])", "min([x for x in num_list if x > 2])"], ["2793324-81", "a.remove(\"b\")", "a.remove('b')"], ["2793324-12", "a.remove(c)", "a.remove(c)"], ["2793324-93", "the deletion of the element 6 from the list a", "a.remove(6)"], ["2793324-3", "The answer code is a.remove(6)", "a.remove(6)"], ["2793324-97", "del a[i]", "if (c in a):\n    a.remove(c)"], ["2793324-5", "a.remove(c)", "try:\n    a.remove(c)\nexcept ValueError:\n    pass"], ["5826427-6", "the code block that implements this rationale", "subprocess.call('test.sh otherfunc')"], ["5826427-73", "subprocess.run([python_script, 'function_name', 'arg1', 'arg2'])", "subprocess.Popen(['bash', '-c', '. foo.sh; go'])"], ["30605909-89", "The final code snippet is df.to_csv('c:\\\\data\\\\t.csv', index=False) and the answer is the same as the query", "df.to_csv('c:\\\\data\\\\t.csv', index=False)"], ["9891814-38", "the code snippet match_obj = re.search(r'(\\\\d+(\\\\.\\\\d+)?)', string) and the final rationale is that we can use the re.search() method to match the regex pattern with the string and access the matched string using the group() method of the match object", "print(re.match('(\\\\d+(\\\\.\\\\d+)?)', '3434.35353').group(1))"], ["4668619-32", "Sample.objects.filter(date_field__range=(2011, 1, 1, 2011, 1, 31))", "Sample.objects.filter(date__range=['2011-01-01', '2011-01-31'])"], ["4668619-26", "a queryset of objects in the Sample model that were created in the year 2011", "Sample.objects.filter(date__year='2011', date__month='01')"], ["16387069-81", "os.startfile('picture.jpg')", "img = Image.open('picture.jpg')\nimg.show()"], ["16387069-86", "This will open the file \"picture.jpg\" in the default image viewer on the user's computer", "img = Image.open('picture.jpg')\nImg.show"], ["12426043-1", "The code to do this is:\n\nopen(f, 'w')\nwrite(f, open(xxx.mp4).read())", "f.write(open('xxx.mp4', 'rb').read())"], ["41572822-28", "df.T[np.argsort(df.values)]", "pd.DataFrame(df.columns[np.argsort(df.values)], df.index, np.unique(df.values))"], ["21558999-5", "For example, df1.drop_duplicates(subset=['column1', 'column2']).value_counts().reset_index(name='count')", "df1.groupby(['key', 'year']).size().reset_index()"], ["40963347-42", "a new dataframe with the average values for each group", "df.groupby(np.arange(len(df.columns)) // 3, axis=1).mean()"], ["7284952-22", "HttpResponseRedirect('/index/')", "redirect('Home.views.index')"], ["42352887-25", "the code snippet:\n\n\nkeys = sorted(things.keys(), key=lambda x: things['weight'][x])", "sorted(list(things.keys()), key=lambda x: things[x]['weight'], reverse=True)"], ["247770-78", "The answer code is __file__", "print(a_module.__file__)"], ["247770-2", "The answer code is print(__file__), which prints the path of the current python module", "print(os.getcwd())"], ["247770-13", "__file__", "path = os.path.abspath(amodule.__file__)"], ["40660956-52", "df.sum(axis=1).sum()", "df.groupby(np.arange(len(df.columns)) // 2 + 1, axis=1).sum().add_prefix('s')"], ["5110352-21", "datetime.datetime.now().strftime(\"%H:%M:%S\")", "now = datetime.datetime.now().strftime('%H:%M:%S')"], ["3283984-56", "The code to decode a hex string '4a4b4c' to UTF-8 is hex = '4a4b4c' followed by binary = hex2bin(hex) followed by octal = bin2oct(binary) followed by hex = oct2hex(octal)", "bytes.fromhex('4a4b4c').decode('utf-8')"], ["14971373-85", "This will execute the command ps -ef | grep something | wc -l and capture the output in the variable output", "subprocess.check_output('ps -ef | grep something | wc -l', shell=True)"], ["18079563-10", "the set intersection obtained by using this code snippet", "pd.Series(list(set(s1).intersection(set(s2))))"], ["26153795-98", "datetime.strptime('when', '%Y-%m-%d').date()", "then = datetime.datetime.strptime(when, '%Y-%m-%d').date()"], ["5123839-3", "entry = Entry.objects.all().first()", "Entry.objects.filter()[:1].get()"], ["29784889-2", "warnings.filterwarnings('always')", "warnings.simplefilter('always')"], ["22676-23", "requests.get(\"http://www.example.com/songs/mp3.mp3\")", "urllib.request.urlretrieve('http://www.example.com/songs/mp3.mp3', 'mp3.mp3')"], ["22676-91", "requests.get(url, stream=True).save(file_name)", "u = urllib.request.urlopen(url)\nf = open(file_name, 'wb')\nmeta = u.info()\nfile_size = int(meta.getheaders('Content-Length')[0])\nprint(('Downloading: %s Bytes: %s' % (file_name, file_size)))\nfile_size_dl = 0\nblock_sz = 8192\nwhile True:\n    buffer = u.read(block_sz)\n    if (not buffer):\n        break\n    file_size_dl += len(buffer)\n    f.write(buffer)\n    status = ('%10d  [%3.2f%%]' % (file_size_dl, ((file_size_dl * 100.0) / file_size)))\n    status = (status + (chr(8) * (len(status) + 1)))\n    print(status, end=' ')\nf.close()"], ["22676-14", "requests.get('http://www.example.com/').content", "response = urllib.request.urlopen('http://www.example.com/')\nhtml = response.read()"], ["22676-1", "response = requests.get(url)", "r = requests.get(url)"], ["22676-64", "The answer code is requests.get(url, stream=True) followed by open('file.txt', 'wb').write(requests.get(url, stream=True).content[:10*1024*1024])", "response = requests.get(url, stream=True)\nwith open('10MB', 'wb') as handle:\n    for data in tqdm(response.iter_content()):\n        handle.write(data)"], ["4490961-76", "np.dot(P, T.T)", "scipy.tensordot(P, T, axes=[1, 1]).swapaxes(0, 1)"], ["1592158-5", "float(hex2dec('470FC614'))", "struct.unpack('!f', '470FC614'.decode('hex'))[0]"], ["7286365-38", "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]", "list(reversed(list(range(10))))"], ["20573459-83", "date.today().replace(day=today.day - 7)", "(datetime.datetime.now() - datetime.timedelta(days=7)).date()"], ["23164058-67", "Therefore, the answer is base64.b64encode(bytes('your string', 'binary')).decode()", "base64.b64encode(bytes('your string', 'utf-8'))"], ["11236006-9", "ist.unique() returns a list of unique values in mylist.\nmylist.remove(mylist.unique()) removes all duplicate values in mylist", "[k for k, v in list(Counter(mylist).items()) if v > 1]"], ["31247198-48", "df.to_csv('np.txt', index=False).encode('utf-8').write().decode('utf-8')", "np.savetxt('c:\\\\data\\\\np.txt', df.values, fmt='%d')"], ["31247198-21", "df.to_csv('c:\\\\data\\\\pandas.txt', index=False).open('w')", "df.to_csv('c:\\\\data\\\\pandas.txt', header=None, index=None, sep=' ', mode='a')"], ["15851568-6", "x.split('-')[-1]", "print(x.rpartition('-')[0])"], ["15851568-9", "The answer code would be:", "print(x.rsplit('-', 1)[0])"], ["4172131-18", "[2, 4, 6, 8, 1]", "[int(1000 * random.random()) for i in range(10000)]"], ["6677332-3", "time.time() % f", "datetime.datetime.now().strftime('%H:%M:%S.%f')"], ["583557-14", "tabulate(tab, headers='keys', tablefmt='plain')", "print('\\n'.join('\\t'.join(str(col) for col in row) for row in tab))"], ["26053849-22", "df.sum().sum(axis=1).sum()", "df.astype(bool).sum(axis=1)"], ["30693804-5", "the code snippet text.lower().replace('[^[:alnum:][:space:]]', '')", "re.sub('[^\\\\sa-zA-Z0-9]', '', text).lower().strip()"], ["30693804-72", "text.replace('[^[:alnum:][:space:]]', '').lower()", "re.sub('(?!\\\\s)[\\\\W_]', '', text).lower().strip()"], ["14435268-66", "soup.get('name')", "print(soup.find('name').string)"], ["2011048-15", "char_count = len(open(filepath).read())", "os.stat(filepath).st_size"], ["2600191-99", "list(c.most_common())[0][0]", "l.count('a')"], ["2600191-23", "the use of len() and a loop to count the occurrences of items in the list", "Counter(l)"], ["2600191-53", "Therefore, the answer is len(set(l))", "[[x, l.count(x)] for x in set(l)]"], ["2600191-55", "the total number of occurrences of items in list l", "dict(((x, l.count(x)) for x in set(l)))"], ["2600191-98", "the count of occurrences of item \"b\" in the list", "l.count('b')"], ["12842997-15", ":\n\nos.system('copy \"%s\" \"%s\"' % (srcfile, dstdir))", "shutil.copy(srcfile, dstdir)"], ["38152389-84", "This will assign the sum of the values in column 'b' and column 'a' to the corresponding value in column 'c' for each row in df", "df['c'] = np.where(df['a'].isnull, df['b'], df['a'])"], ["16296643-89", "t.items() returns a list of tuples, where each tuple contains an element from the list t and its index.\nt.items() is then converted to a list of tuples, and the list is converted to a tuple", "tuple(l)"], ["16296643-20", "The answer code is list(level1)", "level1 = map(list, level1)"], ["3880399-74", "with open(logFile, 'w') as f: pprint(dataobject, stream=f)", "pprint.pprint(dataobject, logFile)"], ["21800169-34", "The answer code is:", "df.loc[df['BoolCol']]"], ["21800169-19", "a list containing the indexes of rows where the value of column 'BoolCol' in dataframe df are equal to True", "df.iloc[np.flatnonzero(df['BoolCol'])]"], ["21800169-92", ":", "df[df['BoolCol'] == True].index.tolist()"], ["21800169-41", "df.index[df['BoolCol'] == True]", "df[df['BoolCol']].index.tolist()"], ["299446-100", "os.chdir('owd')", "os.chdir(owd)"], ["32063985-36", "the code snippet doc.find('#main-content').remove()", "soup.find('div', id='main-content').decompose()"], ["17960441-40", "list(zip(a, b))", "np.array([zip(x, y) for x, y in zip(a, b)])"], ["17960441-39", "The code to zip two 2-d arrays a and b is zip(a, b)", "np.array(zip(a.ravel(), b.ravel()), dtype='i4,i4').reshape(a.shape)"], ["26443308-74", "string.find('}', -1)", "'abcd}def}'.rfind('}')"], ["20546419-7", "The answer code is numpy.random.shuffle(r)", "np.random.shuffle(np.transpose(r))"], ["574236-63", "num_files = len(os.listdir('/path/to/directory')) - len(os.listdir('/path/to/directory/.'))", "os.statvfs('/').f_files - os.statvfs('/').f_ffree"], ["7011291-98", "import sqlite3 conn = sqlite3.connect('database.db') cursor = conn.cursor() cursor.execute('SELECT * FROM table_name') result = cursor.fetchone() print(result)", "cursor.fetchone()[0]"], ["4454298-91", "the code snippet with open('infile', 'r') as f: outfile = f.write('#test firstline\\n')", "open('outfile', 'w').write('#test firstline\\n' + open('infile').read())"], ["9012008-0", "the code block that implements this rationale", "bool(re.search('ba[rzd]', 'foobarrrr'))"], ["7961363-85", "the code snippet s = list(set(t))", "list(set(t))"], ["7961363-86", "The answer code is target_list = list(set(source_list)), which converts the source_list to a set, removes duplicates, and converts the set back to a list", "list(set(source_list))"], ["7961363-7", "new_list", "list(OrderedDict.fromkeys('abracadabra'))"], ["5183533-81", "list(a)", "numpy.array(a).reshape(-1).tolist()"], ["5183533-11", "[x]", "numpy.array(a)[0].tolist()"], ["5999747-97", "the code snippet soup.find('td', text='Address:').siblings[0].text", "print(soup.find(text='Address:').findNext('td').contents[0])"], ["8908287-54", ":\n\nimport base64\nencoded_string = base64.encode('data to be encoded')", "encoded = base64.b64encode('data to be encoded')"], ["8908287-40", "The code to encode a string data to be encoded to ascii encoding is data.encode('ascii')", "encoded = 'data to be encoded'.encode('ascii')"], ["9035479-73", "my_str = getattr(my_object,'my_str')", "getattr(my_object, my_str)"], ["34945274-35", "A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nA[A!= [1, 3, 4]] = 0\nA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nThe answer code is A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", "np.where(np.in1d(A, [1, 3, 4]).reshape(A.shape), A, 0)"], ["15819980-52", "the mean across the first dimension of a", "np.mean(a, axis=1)"], ["15907200-35", "headers = ['header1', 'header2', 'header3'] and with open('output.csv', 'a') as file: file.write('\\t'.join(headers)), which creates a list of headers and uses the csv module to write it to a new line in the file", "writer.writeheader()"], ["23359886-48", "a[a[:,0] == 0 & a[:,1] == 1]", "a[np.where((a[:, (0)] == 0) * (a[:, (1)] == 1))]"], ["26097916-29", ":", "pd.DataFrame({'email': sf.index, 'list': sf.values})"], ["1405602-48", "image = ImageDraw.Draw.resize(image, (x, y), filter=ImageDraw.Draw.Resampling.LANCZOS)", "image = image.resize((x, y), Image.ANTIALIAS)"], ["9323159-38", "This gives us the 10 largest differences between the respective elements of l1 and l2", "heapq.nlargest(10, range(len(l1)), key=lambda i: abs(l1[i] - l2[i]))"], ["29877663-54", "the code block above", "soup.find_all('span', {'class': 'starGryB sp'})"], ["16193578-72", "sorted(list5, key=lambda x: x.degrees)", "sorted(list5, lambda x: (degree(x), x))"], ["16193578-58", "This will sort the list in descending order based on the square of each element", "sorted(list5, key=lambda vertex: (degree(vertex), vertex))"], ["7373219-3", "The answer code is obj.attr", "getattr(obj, 'attr')"], ["1960516-75", "json.dumps(Decimal('3.9'))", "json.dumps(Decimal('3.9'))"], ["29836836-87", "df[df['A'].groupby(df['A']).size() > 1]", "df.groupby('A').filter(lambda x: len(x) > 1)"], ["35420052-72", "plt.colorbar(mappable=<mappable>, cmap=<cmap>, cformat=<cformat>)", "plt.colorbar(mappable=mappable, cax=ax3)"], ["29903025-37", "The code snippet to accomplish this is:\n\n\ndf['text'].value_counts().sort_index(ascending=False).head(100)", "Counter(' '.join(df['text']).split()).most_common(100)"], ["4530069-65", "datetime.utcnow() to obtain the current date and time in UTC", "datetime.now(pytz.utc)"], ["9262278-9", "HttpResponse(status=200) and set_cookie(key='data', value=json.dumps(data))", "return HttpResponse(data, mimetype='application/json')"], ["3595685-42", "The final code snippet is subprocess.run(['background-process', 'arguments']) and the answer is this code snippet", "subprocess.Popen(['background-process', 'arguments'])"], ["30729735-74", "list(myList).find('how', 'what')", "[i for i, j in enumerate(myList) if 'how' in j.lower() or 'what' in j.lower()]"], ["22799300-26", "DataFrame", "pd.DataFrame(out.tolist(), columns=['out-1', 'out-2'], index=out.index)"], ["3464359-19", "ax.set_xticklabels(xticklabels, rotation=45)", "ax.set_xticklabels(labels, rotation=45)"], ["2212433-44", "Therefore, the answer code is len(yourdict.keys())", "len(list(yourdict.keys()))"], ["2212433-64", "len(yourdictfile.keys())", "len(set(open(yourdictfile).read().split()))"], ["40924332-83", "a pandas data frame with multiple columns for the first column", "pd.concat([df[0].apply(pd.Series), df[1]], axis=1)"], ["804995-74", "subprocess.run(['c:\\\\Program Files\\\\VMware\\\\VMware Server\\\\vmware-cmd.bat'], shell=True)", "subprocess.Popen(['c:\\\\Program Files\\\\VMware\\\\VMware Server\\\\vmware-cmd.bat'])"], ["26441253-42", "The answer code is heapq.heappush(q, x) for x in reversed(queue) and heapq.heappop(q) for each element in queue", "q.put((-n, n))"], ["21887754-31", "the use of concatenate() with the appropriate arguments", "print(concatenate((a, b), axis=0))"], ["21887754-88", "numpy.concatenate(a, b, axis=2)", "print(concatenate((a, b), axis=1))"], ["21887754-21", "a[:, np.newaxis] + b[:, np.newaxis]", "c = np.r_[(a[None, :], b[None, :])]"], ["21887754-64", "a = np.concatenate((a, b))", "np.array((a, b))"], ["4356842-88", "HttpResponse(\"Unauthorized\", status=401)", "return HttpResponse('Unauthorized', status=401)"], ["31793195-78", "the integer value of the \"location\" column for the row where \"name\" equals \"bob\"", "df.index.get_loc('bob')"], ["18730044-52", "The code to achieve this is numpy.array([list1, list2]).reshape(2, 2)", "np.column_stack(([1, 2, 3], [4, 5, 6]))"], ["22187233-98", "The answer code is print(new_string)", "\"\"\"\"\"\".join([char for char in 'it is icy' if char != 'i'])"], ["22187233-48", "the resulting string with all instances of the character 'i' replaced with an empty string", "re.sub('i', '', 'it is icy')"], ["22187233-75", "The answer code is print(\"it is icy\".replace(\"i\", \"\"))", "\"\"\"it is icy\"\"\".replace('i', '')"], ["22187233-63", "the code block: my_string.replace('character', '')", "\"\"\"\"\"\".join([char for char in 'it is icy' if char != 'i'])"], ["10351772-57", "The answer code is list(map(int, intstringlist))", "nums = [int(x) for x in intstringlist]"], ["10351772-10", "list(map(int, string_numbers))", "map(int, eval(input('Enter the unfriendly numbers: ')))"], ["3964681-43", ":\n\n\nimport os\nfiles = os.listdir(\"/mydir\")\ntxt_files = [f for f in files if f.endswith(\".txt\")]\nprint(txt_files)", "os.chdir('/mydir')\nfor file in glob.glob('*.txt'):\n    pass"], ["3964681-18", "The code would look something like this:\n\n\nimport os\nfiles = os.listdir(\"/mydir\")\ntxt_files = [f for f in files if f.endswith(\".txt\")]\nprint(txt_files)", "for file in os.listdir('/mydir'):\n    if file.endswith('.txt'):\n        pass"], ["3964681-62", "os.listdir('/mydir')[:-1].filter(lambda x: x.endswith('.txt')).tolist()", "for (root, dirs, files) in os.walk('/mydir'):\n    for file in files:\n        if file.endswith('.txt'):\n            pass"], ["18979111-77", "the use of json.loads() with the request.body string", "json.loads(request.body)"], ["36402748-46", "the code snippet sorted_df = df.sort_values(by='column_name', ascending=True)", "df.groupby('prots').sum().sort('scores', ascending=False)"], ["7750557-47", "The answer code is print(data)", "json.load(urllib.request.urlopen('url'))"], ["2984751-50", "The final code snippet is objects = MyModel.objects.filter(date_field.hour=hour) and the answer is this code snippet", "Entry.objects.filter(pub_date__contains='08:00')"], ["5944630-52", "sorted(list, key=lambda x: (x['points'], x['time']))", "list.sort(key=lambda item: (item['points'], item['time']))"], ["19546911-36", "int(str(number))", "struct.unpack('H', struct.pack('h', number))"], ["20107570-40", "the code snippet df.to_csv('output.csv')", "df.to_csv(filename, index=False)"], ["8740353-74", ":", "json_data = json.loads(unescaped)"], ["18367007-15", "with open(newFile, 'wb') as newFileBytes: newFileBytes.write(data)", "newFile.write(struct.pack('5B', *newFileBytes))"], ["16125229-76", "last_key", "list(dict.keys())[-1]"], ["10668585-75", "the code snippet:\n\n\nfrom django.db.models import Max\nfrom myapp.models import AuthorizedEmail\nmax_added = AuthorizedEmail.objects.values_list('added', flat=True).max()", "AuthorizedEmail.objects.filter(group=group).order_by('-added')[0]"], ["10607688-46", "datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")", "datetime.datetime.now()"], ["17794266-82", "np.amax(np.abs(x))", "max(x.min(), x.max(), key=abs)"]]}
+{
+    "(2, False, True)": [
+        [
+            "11840111-96",
+            "len(dict.fromkeys(list(d1.keys() & d2.keys()), {})) / 2",
+            "{k: (float(d2[k]) / d1[k]) for k in d2}"
+        ],
+        [
+            "11840111-75",
+            "the list of results",
+            "dict((k, float(d2[k]) / d1[k]) for k in d2)"
+        ],
+        [
+            "19602931-64",
+            "the downloaded file as a string",
+            "testfile = urllib.request.URLopener()\ntestfile.retrieve('http://randomsite.com/file.gz', 'file.gz')"
+        ],
+        [
+            "19602931-43",
+            "requests.get(url).content",
+            "urllib.request.urlretrieve('http://randomsite.com/file.gz', 'file.gz')"
+        ],
+        [
+            "23351183-26",
+            "MyModel.objects.filter(char_length_max=255)",
+            "MyModel.objects.extra(where=['CHAR_LENGTH(text) > 254'])"
+        ],
+        [
+            "432842-3",
+            ":",
+            "((a and (not b)) or ((not a) and b))"
+        ],
+        [
+            "546321-12",
+            "datetime.date.today() - datetime.timedelta.months(1)",
+            "(date(2010, 12, 31) + relativedelta(months=(+ 1)))"
+        ],
+        [
+            "546321-62",
+            "datetime.date.today() - datetime.timedelta(days=2*30)",
+            "(date(2010, 12, 31) + relativedelta(months=(+ 2)))"
+        ],
+        [
+            "1186789-34",
+            "The answer code is simply the command python test1.py, which runs the Python script \"test1.py\"",
+            "subprocess.call('test1.py', shell=True)"
+        ],
+        [
+            "843277-70",
+            "The answer code is hasattr(obj, 'attr_name')",
+            "hasattr(obj, 'attr_name')"
+        ],
+        [
+            "2231663-53",
+            "lst_of_2",
+            "list(grouper(2, [1, 2, 3, 4, 5, 6, 7]))"
+        ],
+        [
+            "2231663-54",
+            "the code snippet sub_lists = [L[i:i+len(L[0])] for i in range(0, len(L), len(L[0]))]",
+            "[input[i:i + n] for i in range(0, len(input), n)]"
+        ],
+        [
+            "14571103-73",
+            "Therefore, the answer is re.findall(pattern, s)",
+            "re.findall('(?::|;|=)(?:-)?(?:\\\\)|\\\\(|D|P)', s)"
+        ],
+        [
+            "27868020-14",
+            "df[df['X'].sum() == 0 & df['User'] == 'Group A']",
+            "df.loc[df.groupby('User')['X'].transform(sum) == 0]"
+        ],
+        [
+            "27868020-52",
+            "the resulting dataframe",
+            "df.groupby('User')['X'].transform(sum) == 0"
+        ],
+        [
+            "4302027-39",
+            "webbrowser.open_new(url)",
+            "webbrowser.open('http://example.com')"
+        ],
+        [
+            "4906977-61",
+            "the code snippet:",
+            "os.environ['HOME']"
+        ],
+        [
+            "4906977-33",
+            "the value of the HOME environment variable",
+            "os.environ['HOME']"
+        ],
+        [
+            "4906977-98",
+            ":",
+            "print(os.environ)"
+        ],
+        [
+            "4906977-9",
+            "for i in os.environ: print(i, os.environ[i])",
+            "os.environ"
+        ],
+        [
+            "4906977-77",
+            "the code block that implements this rationale",
+            "print(os.getenv('KEY_THAT_MIGHT_EXIST', default_value))"
+        ],
+        [
+            "674509-17",
+            "sorted(dictionary.items())",
+            "sorted(list(dictionary.items()), key=operator.itemgetter(1))"
+        ],
+        [
+            "674509-45",
+            "sorted(dic.items(), key=lambda x: x[1], reverse=True)",
+            "sorted(list(dictionary.items()), key=lambda x: x[1])"
+        ],
+        [
+            "29370211-80",
+            ":\n\n\nimport pandas as pd\ndf = pd.DataFrame({'stats': ['apple,banana,orange', 'banana,grape,apple', 'orange,banana,grape']})\ndf['split'] = df['stats'].str.split(',')\ndf = pd.get_dummies(df, columns=['split'])\nprint(df)\n\n\nOutput:\n\n  split_apple  split_banana  split_orange\n0        1          0          0\n1        1          0          0\n2        0          1          1",
+            "df['stats'].str[1:-1].str.split(',', expand=True).astype(float)"
+        ],
+        [
+            "29370211-55",
+            "the use of str.split() with the sep parameter set to the comma separator",
+            "df['stats'].str[1:-1].str.split(',').apply(pd.Series).astype(float)"
+        ],
+        [
+            "3939361-35",
+            "line = line.replace(\"!@#$\", \"\")",
+            "line.translate(None, '!@#$')"
+        ],
+        [
+            "3939361-33",
+            "The answer code is line.replace(\"!@#$\", \"\")",
+            "line = re.sub('[!@#$]', '', line)"
+        ],
+        [
+            "3939361-18",
+            "string.replace(\"1\", \"\")",
+            "string.replace('1', '')"
+        ],
+        [
+            "3939361-89",
+            "the code snippet:",
+            "line = line.translate(string.maketrans('', ''), '!@#$')"
+        ],
+        [
+            "14043934-80",
+            "The answer code is elapsed_time",
+            "(t - datetime.timedelta(hours=1, minutes=10))"
+        ],
+        [
+            "14043934-42",
+            "The answer code snippet is:\n\nnew_dt = datetime.datetime.now() - datetime.timedelta(hours=5)\n\nThis will subtract 5 hours from the current time and create a new datetime.datetime() object with the modified time",
+            "dt -= datetime.timedelta(hours=5)"
+        ],
+        [
+            "13496087-84",
+            "random.randint(1, 100000000)",
+            "random.randint(100000000000, 999999999999)"
+        ],
+        [
+            "13496087-95",
+            ":",
+            "'%0.12d' % random.randint(0, 999999999999)"
+        ],
+        [
+            "11709079-81",
+            "soup.find('input', {'name': 'q'}).get('value')",
+            "page = urllib.request.urlopen('http://www.google.com/')\nsoup = BeautifulSoup(page)"
+        ],
+        [
+            "1892339-46",
+            "root.move_to(0, 0)",
+            "root.lift()"
+        ],
+        [
+            "1823058-26",
+            "print(\"{:,}\".format(value))",
+            "'{:,}'.format(value)"
+        ],
+        [
+            "14406214-5",
+            "ax.set_xlabel('Label')",
+            "ax.xaxis.set_label_position('top')"
+        ],
+        [
+            "14406214-43",
+            "This will swap the y-axis and x-axis of the plot, effectively moving the x-axis to the top of the plot",
+            "ax.xaxis.tick_top()"
+        ],
+        [
+            "10565598-66",
+            "the code snippet np.all(b in a)",
+            "numpy.in1d(b, a).all()"
+        ],
+        [
+            "13557937-8",
+            "For example:",
+            "list('{0:0b}'.format(8))"
+        ],
+        [
+            "13557937-9",
+            "The code to achieve this is",
+            "[int(x) for x in list('{0:0b}'.format(8))]"
+        ],
+        [
+            "311627-76",
+            "datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")",
+            "time.strftime('%Y-%m-%d %H:%M')"
+        ],
+        [
+            "3940128-52",
+            "L.reverse()",
+            "L[::(-1)]"
+        ],
+        [
+            "3940128-21",
+            "L.reverse()",
+            "L.reverse()"
+        ],
+        [
+            "89228-90",
+            "subprocess.run(['ls', '-l'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)",
+            "from subprocess import call"
+        ],
+        [
+            "89228-91",
+            "the output of the command",
+            "os.system('some_command with args')"
+        ],
+        [
+            "89228-25",
+            "The answer code is printed at the end of the output",
+            "os.system('some_command < input_file | another_command > output_file')"
+        ],
+        [
+            "89228-76",
+            "the output of the command",
+            "stream = os.popen('some_command with args')"
+        ],
+        [
+            "89228-97",
+            "This can be achieved using the following code: process = subprocess.Popen(['echo', 'Hello World'], stdout=subprocess.PIPE)",
+            "return_code = subprocess.call('echo Hello World', shell=True)"
+        ],
+        [
+            "89228-44",
+            "The code to achieve this is:",
+            "call(['ls', '-l'])"
+        ],
+        [
+            "5137497-23",
+            "This function returns the current working directory of the system",
+            "os.path.realpath(__file__)"
+        ],
+        [
+            "5137497-33",
+            "the use of os.path.dirname() with the path argument",
+            "os.path.dirname(path)"
+        ],
+        [
+            "5137497-66",
+            "os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'path'))",
+            "os.path.realpath(path)"
+        ],
+        [
+            "5137497-91",
+            ":",
+            "dir_path = os.path.dirname(os.path.realpath(__file__))"
+        ],
+        [
+            "5137497-76",
+            "The answer code is os.getcwd()",
+            "full_path = os.path.realpath(__file__)"
+        ],
+        [
+            "14961562-66",
+            "The answer code is return [int(digit, 16) for digit in s]",
+            "struct.unpack('11B', s)"
+        ],
+        [
+            "19738169-65",
+            "the new column of strings df['DateStr'] in the pandas dataframe",
+            "df['DateStr'] = df['DateObj'].dt.strftime('%d%m%Y')"
+        ],
+        [
+            "104420-82",
+            "For example, list(itertools.permutations([1, 2, 3], [4, 5, 6]))",
+            "print(list(itertools.product([1, 2, 3], [4, 5, 6])))"
+        ],
+        [
+            "104420-100",
+            "a list of all possible permutations of the elements in the list [1, 2, 3]",
+            "itertools.permutations([1, 2, 3])"
+        ],
+        [
+            "19781609-19",
+            "df.set_index('').to_csv(filename='filename.csv')",
+            "df.to_csv('filename.csv', header=False)"
+        ],
+        [
+            "1406145-57",
+            "root.destroy()",
+            "root.destroy()"
+        ],
+        [
+            "2225564-15",
+            "Return the files list",
+            "files = [f for f in os.listdir('.') if re.match('[0-9]+.*\\\\.jpg', f)]"
+        ],
+        [
+            "30406725-90",
+            "the code block: pivot_table(df, values='sample', index='order')",
+            "df.pivot(index='order', columns='sample')"
+        ],
+        [
+            "18229082-25",
+            "with open('afile', 'wb') as f: pickle.dump(my_list, f) and with open('afile', 'rb') as f: my_list = pickle.load(f)",
+            "pickle.load(open('afile', 'rb'))"
+        ],
+        [
+            "3329386-17",
+            "The final output is the concatenation of the first two substrings that end in ., ? or ! from each of the three splits",
+            "re.match('(.*?[.?!](?:\\\\s+.*?[.?!]){0,1})', phrase).group(1)"
+        ],
+        [
+            "22733642-1",
+            "The answer code is csv.writer(open('filename.csv', 'w', encoding='utf-8'), delimiter=',').writerows([list_of_rows])",
+            "self.writer.writerow([str(s).encode('utf-8') for s in row])"
+        ],
+        [
+            "13114512-57",
+            "The final code snippet is df['diff'] = df.shift(-1).fillna(0) - df",
+            "data.set_index('Date').diff()"
+        ],
+        [
+            "28901311-21",
+            "the code snippet B.index(A)",
+            "np.where(np.in1d(A, B))[0]"
+        ],
+        [
+            "18102109-63",
+            "cursor.fetchone()",
+            "session.query(Task).filter(Task.time_spent > timedelta(hours=3)).all()"
+        ],
+        [
+            "415511-22",
+            "now = datetime.datetime.now()",
+            "datetime.datetime.now()"
+        ],
+        [
+            "415511-29",
+            "the current date and time as a datetime object",
+            "datetime.datetime.now().time()"
+        ],
+        [
+            "415511-26",
+            "2021-08-20 15:36:12",
+            "strftime('%Y-%m-%d %H:%M:%S', gmtime())"
+        ],
+        [
+            "415511-14",
+            "The answer code is:",
+            "str(datetime.now())"
+        ],
+        [
+            "415511-33",
+            "The answer code is datetime.now()",
+            "datetime.datetime.time(datetime.datetime.now())"
+        ],
+        [
+            "32283692-10",
+            "the resulting 3-d array",
+            "np.zeros((6, 9, 20)) + np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])[(None), :, (None)]"
+        ],
+        [
+            "32283692-46",
+            "np.concatenate([1, 2, 3, 4, 5, 6, 7, 8, 9], axis=2)",
+            "np.zeros((6, 9, 20)) + np.array([1, 2, 3, 4, 5, 6, 7, 8, 9]).reshape((1, 9, 1))"
+        ],
+        [
+            "36542169-84",
+            "The answer code would be df.head(), df.tail()",
+            "pd.concat([df.head(1), df.tail(1)])"
+        ],
+        [
+            "2803852-74",
+            "datetime.datetime.strptime('24052010', '%d%m%Y').date()",
+            "datetime.datetime.strptime('24052010', '%d%m%Y').date()"
+        ],
+        [
+            "39719140-55",
+            "the mean value of the indices of the filtered dataframe",
+            "np.flatnonzero(x).mean()"
+        ],
+        [
+            "5508352-50",
+            "this code snippet",
+            "a[tuple(b)]"
+        ],
+        [
+            "2233917-10",
+            "More information or context is needed to arrive at a solution",
+            "tuple(map(int, input().split(',')))"
+        ],
+        [
+            "2233917-8",
+            "user_input = input(\"Enter a tuple of integers: \") and tuple_input = tuple(map(int, user_input.split()))",
+            "tuple(int(x.strip()) for x in input().split(','))"
+        ],
+        [
+            "10998621-33",
+            "ax.set_xticks(np.linspace(0, 1, 10), rotation=45)",
+            "ax.set_xticklabels(ax.xaxis.get_majorticklabels(), rotation=45)"
+        ],
+        [
+            "40517350-9",
+            "sum(max(group) for group in groupby(data, lambda x: (x['STNAME'], x['COUNTY_POP'])))",
+            "df.groupby('STNAME')['COUNTY_POP'].agg(lambda x: x.nlargest(3).sum())"
+        ],
+        [
+            "28664103-14",
+            "pd.pivot_table(df, values='Close', index='df.index.date', columns='df.index.time', aggfunc=np.mean(), fill_value=None, dropna=True, margins=True, orient='columns', copy=True, reset_index=True)",
+            "pd.pivot_table(df, index=df.index.date, columns=df.index.time, values='Close')"
+        ],
+        [
+            "8192379-98",
+            "a = list(map(int, input().split()))",
+            "a.fromlist([int(val) for val in stdin.read().split()])"
+        ],
+        [
+            "13237941-54",
+            "yourdata[::-1]",
+            "sorted(yourdata, reverse=True)"
+        ],
+        [
+            "13237941-56",
+            "[dct for dct in sorted(yourdata, key=operator.itemgetter('subkey'))]",
+            "sorted(yourdata, key=lambda d: d.get('key', {}).get('subkey'), reverse=True)"
+        ],
+        [
+            "13237941-14",
+            "sorted(yourdata, key=lambda x: str(x['key']) + ':' + str(x['subkey']))",
+            "yourdata.sort(key=lambda e: e['key']['subkey'], reverse=True)"
+        ],
+        [
+            "15548506-61",
+            "the code snippet:\n\n\nimport networkx as nx\nimport matplotlib.pyplot as plt\npos = nx.spring_layout(G)\nnx.draw_networkx_nodes(G, pos)",
+            "networkx.draw_networkx_labels(G, pos, labels)"
+        ],
+        [
+            "7287996-89",
+            "os.path.commonprefix('/usr/var', '/usr/var2/log')",
+            "os.path.commonprefix(['/usr/var', '/usr/var2/log'])"
+        ],
+        [
+            "7287996-17",
+            "the string '/usr/var/log/'",
+            "print(os.path.relpath('/usr/var/log/', '/usr/var'))"
+        ],
+        [
+            "14925239-71",
+            "The final value of number is printed at the end of the output",
+            "getattr(getattr(myobject, 'id', None), 'number', None)"
+        ],
+        [
+            "41469647-32",
+            "the code block above",
+            "np.einsum('ij,kj->jik', X, X)"
+        ],
+        [
+            "32292554-35",
+            "list(itertools.combinations([0, 1, 0, 1], 4))",
+            "itertools.product(list(range(2)), repeat=4)"
+        ],
+        [
+            "3166619-87",
+            "re.search('\\\\$[0-9]+[^\\\\$]*$', '$1 off delicious $5 ham.').group(0)",
+            "re.match('\\\\$[0-9]+[^\\\\$]*$', '$1 off delicious $5 ham.')"
+        ],
+        [
+            "13628725-82",
+            "the code block that implements this rationale",
+            "random.sample(range(1, 50), 6)"
+        ],
+        [
+            "13628725-59",
+            "a list of six random integers between 1 and 49",
+            "random.sample(range(1, 50), 6)"
+        ],
+        [
+            "15940280-74",
+            "For example,",
+            "datetime.utcnow()"
+        ],
+        [
+            "12280143-55",
+            "the result of calling os.chdir('..')",
+            "os.chdir('..')"
+        ],
+        [
+            "15457504-91",
+            "the result of setting the font of the text item k to 'Purisa' of size 12 using the tk.font.Font() function",
+            "canvas.create_text(x, y, font=('Purisa', 12), text=k)"
+        ],
+        [
+            "41946927-22",
+            "the resulting pandas data frame",
+            "pd.concat([pd.DataFrame(l) for l in my_list], axis=1).T"
+        ],
+        [
+            "8214932-71",
+            "'one' in d.values()",
+            "'one' in list(d.values())"
+        ],
+        [
+            "8214932-94",
+            "True if 'one' is among the values of d, and False otherwise",
+            "'one' in iter(d.values())"
+        ],
+        [
+            "7125009-76",
+            "The final code to achieve this is plt.legend(loc='upper left', handletext_format='x-small')",
+            "pyplot.legend(loc=2, fontsize='x-small')"
+        ],
+        [
+            "7125009-57",
+            "pyplot.legend(fontsize=6)",
+            "plot.legend(loc=2, prop={'size': 6})"
+        ],
+        [
+            "8270092-77",
+            "The answer code is sentence.replace(r'\\s+', '')",
+            "sentence.replace(' ', '')"
+        ],
+        [
+            "8270092-68",
+            "sentence.replace(' ', '')",
+            "pattern = re.compile('\\\\s+')\nsentence = re.sub(pattern, '', sentence)"
+        ],
+        [
+            "8270092-97",
+            "sentence.replace('\\n', '').replace('\\r', '').replace(' ', '')",
+            "sentence.strip()"
+        ],
+        [
+            "8270092-87",
+            "sentence.replace(' ', '')",
+            "sentence = re.sub('\\\\s+', '', sentence, flags=re.UNICODE)"
+        ],
+        [
+            "8270092-31",
+            "The answer code is sentence.replace(\" \", \"\")",
+            "sentence = ''.join(sentence.split())"
+        ],
+        [
+            "14591855-94",
+            "pandas.read_hdf('/home/.../data.h5', key='firstSet')",
+            "df1 = pd.read_hdf('/home/.../data.h5', 'firstSet')"
+        ],
+        [
+            "8369219-15",
+            "the string variable str",
+            "str = open('very_Important.txt', 'r').read()"
+        ],
+        [
+            "19445682-35",
+            ":",
+            "urlfetch.fetch(url, deadline=10 * 60)"
+        ],
+        [
+            "6250046-45",
+            "the code block above",
+            "urlparse.urldefrag('http://www.address.com/something#something')"
+        ],
+        [
+            "9849192-97",
+            "The code to achieve this is sorted(mydict.items(), key=lambda x: x[1], reverse=True)",
+            "sorted(iter(mydict.items()), key=itemgetter(1), reverse=True)"
+        ],
+        [
+            "13279399-43",
+            "request.args.get('firstname')",
+            "first_name = request.args.get('firstname')"
+        ],
+        [
+            "13279399-5",
+            "request.form['firstname']",
+            "first_name = request.form.get('firstname')"
+        ],
+        [
+            "3278850-59",
+            "with open('file.txt', 'r') as f: txt = f.read()",
+            "txt = open('file.txt').read()"
+        ],
+        [
+            "14043080-28",
+            "the year that UTC-11 is currently in",
+            "(datetime.datetime.utcnow() - datetime.timedelta(hours=11)).year"
+        ],
+        [
+            "687295-63",
+            "entries = Entry.objects.filter({'id': 3}).first()",
+            "Entry.objects.filter(~Q(id=3))"
+        ],
+        [
+            "19011613-15",
+            "the list of div elements found by the find() method",
+            "soup.find_all('div', class_='crBlock ')"
+        ],
+        [
+            "4296249-87",
+            ":\n\n\nimport struct\nrgb = struct.pack('BBB', int(rgbstr[0], 16), int(rgbstr[1], 16), int(rgbstr[2], 16))",
+            "struct.unpack('BBB', rgbstr.decode('hex'))"
+        ],
+        [
+            "5864271-27",
+            "a[::-2]",
+            "\"\"\"\"\"\".join(reversed([a[i:i + 2] for i in range(0, len(a), 2)]))"
+        ],
+        [
+            "73663-61",
+            "The program is already terminated",
+            "sys.exit()"
+        ],
+        [
+            "73663-36",
+            "simply exit()",
+            "quit()"
+        ],
+        [
+            "73663-66",
+            "the code snippet sys.exit('some error message')",
+            "sys.exit('some error message')"
+        ],
+        [
+            "21974169-23",
+            "COMMIT",
+            "con.commit()"
+        ],
+        [
+            "11269575-66",
+            "the subprocess with the standard output redirected to a file",
+            "subprocess.check_output(['espeak', text], stderr=subprocess.STDOUT)"
+        ],
+        [
+            "1094717-63",
+            "The answer code is int(s)",
+            "int(Decimal(s))"
+        ],
+        [
+            "1094717-69",
+            "int(float('3.14'))",
+            "int(s.split('.')[0])"
+        ],
+        [
+            "31957364-53",
+            "the latter code snippet",
+            "np.einsum('ijk,ikl->ijl', A, B)"
+        ],
+        [
+            "1196074-89",
+            "subprocess.run(['rm', '-r','some.file', '&'])",
+            "subprocess.Popen(['rm', '-r', 'some.file'])"
+        ],
+        [
+            "19100540-33",
+            "df['Credit_exp'] = df['Credit_exp'].round(3)",
+            "df.round({'Alabama_exp': 2, 'Credit_exp': 3})"
+        ],
+        [
+            "59825-84",
+            "the next element in the set s",
+            "e = next(iter(s))"
+        ],
+        [
+            "5868374-42",
+            "The answer code is:",
+            "dateobj = datetime.datetime.strptime(datestr, '%Y-%m-%d').date()"
+        ],
+        [
+            "208894-61",
+            "the base64 encoded string",
+            "a = open('pdf_reference.pdf', 'rb').read().encode('base64')"
+        ],
+        [
+            "20796355-35",
+            "the code snippet os.chdir('chapter3')",
+            "os.chdir('chapter3')"
+        ],
+        [
+            "20796355-88",
+            "os.chdir('/path/to/new/directory')",
+            "os.chdir('C:\\\\Users\\\\username\\\\Desktop\\\\headfirstpython\\\\chapter3')"
+        ],
+        [
+            "20796355-81",
+            "os.chdir('new_directory_path')",
+            "os.chdir('.\\\\chapter3')"
+        ],
+        [
+            "1299855-22",
+            "mech.submit(_input, 'form_data')",
+            "br.form.add_file(open(filename), 'text/plain', filename)"
+        ],
+        [
+            "2317134-81",
+            "This pattern matches the string 'A\\n' because 'A' is a letter and '\\n' is a word character",
+            "re.match('[a-zA-Z][\\\\w-]*\\\\Z', 'A\\n')"
+        ],
+        [
+            "2317134-43",
+            "match('!A_B', '[a-zA-Z][\\\\w-]*$').group()",
+            "re.match('[a-zA-Z][\\\\w-]*$', '!A_B')"
+        ],
+        [
+            "13794532-6",
+            ":\n\nfor div in soup.find_all('div'):\n    if div.string.startswith('comment'):\n        print(div)",
+            "soup.find_all('div', class_=re.compile('comment-'))"
+        ],
+        [
+            "741877-37",
+            "plt.cla()",
+            "plt.cla()"
+        ],
+        [
+            "13156395-50",
+            "with open('sample.json', 'r', encoding='utf-8-sig') as f:",
+            "json.load(codecs.open('sample.json', 'r', 'utf-8-sig'))"
+        ],
+        [
+            "13156395-75",
+            ":",
+            "json.loads(open('sample.json').read().decode('utf-8-sig'))"
+        ],
+        [
+            "13022385-76",
+            "os.exit(0)",
+            "sys.exit(0)"
+        ],
+        [
+            "8751653-82",
+            "Specifically, we can call float(int(s2))",
+            "struct.unpack('d', struct.pack('Q', int(s2, 0)))[0]"
+        ],
+        [
+            "8751653-25",
+            "float('-0b1110') which is 0.5",
+            "float(int('-0b1110', 0))"
+        ],
+        [
+            "8751653-54",
+            "For example, float(bin(b8)) will return a float number equivalent to the binary value of b8",
+            "struct.unpack('d', b8)[0]"
+        ],
+        [
+            "4789021-9",
+            "the code block that implements this rationale",
+            "return user.groups.filter(name='Member').exists()"
+        ],
+        [
+            "4789021-88",
+            "if user.group in ['group1', 'group2']:",
+            "return user.groups.filter(name__in=['group1', 'group2']).exists()"
+        ],
+        [
+            "25823608-56",
+            "The answer code is vals.isin((0,1))",
+            "np.where((vals == (0, 1)).all(axis=1))"
+        ],
+        [
+            "509742-28",
+            "os.path.dirname(os.path.abspath(__file__))",
+            "os.chdir(os.path.dirname(__file__))"
+        ],
+        [
+            "31385363-83",
+            "The relevant PySpark documentation provides an example of how to do this: df.collect().to_csv('mycsv.csv')",
+            "df.toPandas().to_csv('mycsv.csv')"
+        ],
+        [
+            "31385363-50",
+            "df.to_csv('mycsv.csv', index=False)",
+            "df.write.csv('mycsv.csv')"
+        ],
+        [
+            "8092877-26",
+            "The answer code is list(itertools.chain((1, 4), (2, 5), (3, 6))).zip(s)",
+            "zip(*[(1, 4), (2, 5), (3, 6)])"
+        ],
+        [
+            "8092877-98",
+            "result",
+            "[list(group) for key, group in itertools.groupby(data, operator.itemgetter(1))]"
+        ],
+        [
+            "23748995-25",
+            "The answer code is df['a'].values",
+            "df['a'].values.tolist()"
+        ],
+        [
+            "23748995-42",
+            "This returns a list of all the values in column a of the data frame df",
+            "df['a'].tolist()"
+        ],
+        [
+            "20205455-79",
+            "the BeautifulSoup object",
+            "soup = BeautifulSoup(response.read().decode('utf-8'))"
+        ],
+        [
+            "7429118-70",
+            "Both approaches will return a new numpy array with all the values from a except for the value at index 3",
+            "a[np.arange(len(a)) != 3]"
+        ],
+        [
+            "8217613-41",
+            "the provided code snippet",
+            "subprocess.check_output('echo \"foo\"', shell=True)"
+        ],
+        [
+            "14673394-12",
+            "the code snippet df['Date'].unique()",
+            "df['Date'].map(lambda t: t.date()).unique()"
+        ],
+        [
+            "3328012-17",
+            "We can use the os.path.join() function to join the directory path with the filename and check if the resulting path is a descendant of the directory '/the/dir/' using the os.path.dirname() function",
+            "os.path.commonprefix(['/the/dir/', os.path.realpath(filename)]) == '/the/dir/'"
+        ],
+        [
+            "3457673-86",
+            "The resulting dictionary is the answer code snippet",
+            "dict(x[1:] for x in reversed(myListOfTuples))"
+        ],
+        [
+            "652291-62",
+            "sorted(dictionaries, key=lambda x: x['date'], reverse=True)",
+            "list.sort(key=lambda item: item['date'], reverse=True)"
+        ],
+        [
+            "11041411-88",
+            "df.to_csv('mydf.tsv', index=True)",
+            "df.to_csv('mydf.tsv', sep='\\t')"
+        ],
+        [
+            "33435418-32",
+            "set([1, 2, 2, 3]) - set([1, 2])",
+            "Counter([1, 2, 2, 2, 3]) - Counter([1, 2])"
+        ],
+        [
+            "977491-44",
+            "the code snippet difflib.get_close_matches(file1.read(), file2.read())",
+            "difflib.SequenceMatcher(None, file1.read(), file2.read())"
+        ],
+        [
+            "15148684-45",
+            "min(list, key=lambda x: (x[0], x[1]))",
+            "min(list, key=lambda x: float('inf') if math.isnan(x[1]) else x[1])"
+        ],
+        [
+            "16127862-90",
+            "the code snippet",
+            "str_list = [tuple('{0:.8e}'.format(flt) for flt in sublist) for sublist in lst]"
+        ],
+        [
+            "16127862-87",
+            "To convert a list of sublists lst of floats to a list of sublists str_list of strings of integers in scientific notation with 8 decimal points, we can use a list comprehension to create a new list str_list that contains the same sublists as lst, but with each sublist converted to a string of integers in scientific notation with 8 decimal points",
+            "str_list = [['{0:.8e}'.format(flt) for flt in sublist] for sublist in lst]"
+        ],
+        [
+            "2111163-71",
+            "A[0][1]",
+            "A[[0, 1], [0, 1]]"
+        ],
+        [
+            "2111163-33",
+            "The code to achieve this is a[:, 0] + a[:, 1] + a[:, 2] + a[:, 0]",
+            "a[np.arange(3), (0, 1, 0)]"
+        ],
+        [
+            "24748445-94",
+            "soup.find_all('a', attrs={\"class\": \"button\"}) + soup.find_all('div', attrs={\"class\": \"container\"})",
+            "soup.find_all(['a', 'div'])"
+        ],
+        [
+            "931092-70",
+            "reverse(string)",
+            "'hello world'[::(-1)]"
+        ],
+        [
+            "931092-64",
+            "The answer code will depend on the specific list and programming language being used",
+            "s[::(-1)]"
+        ],
+        [
+            "931092-5",
+            "a code snippet that reverses a Unicode string, such as:",
+            "''.join(reversed('foo'))"
+        ],
+        [
+            "931092-74",
+            "string[::-1] which reverses the string string by slicing it with a negative step",
+            "''.join(reversed(string))"
+        ],
+        [
+            "931092-65",
+            "This will return the reversed string \"oof\"",
+            "'foo'[::(-1)]"
+        ],
+        [
+            "931092-99",
+            "a_string.reverse()",
+            "a_string[::(-1)]"
+        ],
+        [
+            "931092-20",
+            "a",
+            "def reversed_string(a_string):\n    return a_string[::(-1)]"
+        ],
+        [
+            "931092-77",
+            "reversed(s).join()",
+            "''.join(reversed(s))"
+        ],
+        [
+            "163542-7",
+            "subprocess.Popen(['grep', 'f', b'one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n'], stdin=subprocess.PIPE)",
+            "p = Popen(['grep', 'f'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)\ngrep_stdout = p.communicate(input='one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n')[0]"
+        ],
+        [
+            "163542-94",
+            "os.dup2(0, 0) and open(0, 'r')",
+            "p = subprocess.Popen(['grep', 'f'], stdout=subprocess.PIPE, stdin=subprocess.PIPE)\np.stdin.write('one\\ntwo\\nthree\\nfour\\nfive\\nsix\\n')\np.communicate()[0]\np.stdin.close()"
+        ],
+        [
+            "18594469-11",
+            "df.normalize()",
+            "df.div(df.sum(axis=1), axis=0)"
+        ],
+        [
+            "961632-89",
+            "str(i)",
+            "str(i)"
+        ],
+        [
+            "961632-44",
+            "str(a)",
+            "a.__str__()"
+        ],
+        [
+            "961632-33",
+            "The final answer is str(a)",
+            "str(a)"
+        ],
+        [
+            "27318022-32",
+            "The code to achieve this is:",
+            "result = sys.stdin.read()"
+        ],
+        [
+            "40055835-26",
+            "set(A) - set(B)",
+            "A[np.all(np.any(A - B[:, (None)], axis=2), axis=0)]"
+        ],
+        [
+            "41513324-64",
+            ":\n\n\ndf.drop(df.index[df.index < start_remove].union(df.index > end_remove), axis=0)",
+            "df.query('index < @start_remove or index > @end_remove')"
+        ],
+        [
+            "41513324-67",
+            "df.drop(start_remove, end_remove)",
+            "df.loc[(df.index < start_remove) | (df.index > end_remove)]"
+        ],
+        [
+            "8218032-86",
+            "np.where(mask)[0]",
+            "numpy.where(mask)"
+        ],
+        [
+            "32533944-71",
+            "The answer code would be import pandas as pd; df = pd.read_csv('Result.csv', sep=' ')",
+            "df.to_csv('Result.csv', index=False, sep=' ')"
+        ],
+        [
+            "20638006-85",
+            "The pandas.concat() function can be used to concatenate multiple data frames along a common column",
+            "pd.DataFrame(d)"
+        ],
+        [
+            "1883604-86",
+            "gzip.GzipFile('file.gz', 'r')",
+            "gzip.open('file.gz', 'rt', encoding='utf-8')"
+        ],
+        [
+            "29983106-25",
+            "driver.get('http://www.python.org')",
+            "driver.get('http://www.google.com.br')"
+        ],
+        [
+            "3437059-20",
+            "The answer code is if \"blah\" in somestring: print(\"blah is in somestring\")",
+            "if ('blah' not in somestring):\n    pass"
+        ],
+        [
+            "3437059-17",
+            "\"substring\" in string",
+            "string.find('substring')"
+        ],
+        [
+            "3437059-83",
+            "For example, s.find(\"is\")!= -1 will return True if the string s contains the substring \"is\", and False otherwise",
+            "if (s.find('is') == (-1)):\n    print(\"No 'is' here!\")\nelse:\n    print(\"Found 'is' in the string.\")"
+        ],
+        [
+            "3061-93",
+            "mymodule.myfunction()",
+            "globals()['myfunction']()"
+        ],
+        [
+            "3061761-63",
+            "The final code snippet is a.shape and the answer is this code snippet",
+            "a.shape"
+        ],
+        [
+            "3061761-55",
+            "(3, 3)",
+            "N.shape(a)"
+        ],
+        [
+            "3061761-89",
+            "a tuple containing the dimensions of the array a",
+            "N.shape(a)"
+        ],
+        [
+            "3061761-31",
+            "a.shape",
+            "a.shape"
+        ],
+        [
+            "13291539-54",
+            "The code to achieve this is float(0.00582811585976)",
+            "struct.unpack('f', struct.pack('f', 0.00582811585976))"
+        ],
+        [
+            "6280978-9",
+            "The answer code is set(list(dict.items()))",
+            "[dict(y) for y in set(tuple(x.items()) for x in d)]"
+        ],
+        [
+            "7745260-45",
+            "Therefore, the answer code is with open('myfile') as f: words = f.read().split()",
+            "words = open('myfile').read().split()"
+        ],
+        [
+            "7717380-65",
+            "the code block above",
+            "a = np.array(a)"
+        ],
+        [
+            "9304908-37",
+            "models.CharField.objects.filter(value__in=[1, 4, 7])",
+            "Blog.objects.filter(pk__in=[1, 4, 7])"
+        ],
+        [
+            "319426-66",
+            "string1.lower() == string2.lower()",
+            "if (string1.lower() == string2.lower()):\n    print('The strings are the same (case insensitive)')\nelse:\n    print('The strings are not the same (case insensitive)')"
+        ],
+        [
+            "319426-3",
+            "string1.casefold() == string2.casefold()",
+            "if (string1.lower() == string2.lower()):\n    pass"
+        ],
+        [
+            "319426-84",
+            "The answer code is string1.lower() == string2.lower()",
+            "(string1.lower() == string2.lower())"
+        ],
+        [
+            "319426-70",
+            "the result of the comparison",
+            "(first.lower() == second.lower())"
+        ],
+        [
+            "319426-18",
+            "str.casefold(first) == str.casefold(second)",
+            "(first.upper() == second.upper())"
+        ],
+        [
+            "15455388-38",
+            "Return df.\nThe final answer is df",
+            "pd.concat(map(pd.DataFrame, iter(d.values())), keys=list(d.keys())).stack().unstack(0)"
+        ],
+        [
+            "17679089-100",
+            "a new dataframe group_counts with two columns: 'col5' and 'col2', and a column 'count' with the count of rows in each group",
+            "df.groupby(['col5', 'col2']).size().groupby(level=1).max()"
+        ],
+        [
+            "9396706-78",
+            "the value of the x variable",
+            "getattr(your_obj, x)"
+        ],
+        [
+            "3743222-35",
+            "date_obj",
+            "datetime.datetime.now().date()"
+        ],
+        [
+            "3743222-73",
+            "datetime.date(datetime_object), where datetime_object is the datetime object to convert",
+            "datetime.datetime.now().date()"
+        ],
+        [
+            "12496531-86",
+            "The answer code is A = np.sort(A, axis=0), which sorts the elements of A along the first column (axis=0)",
+            "A = np.array(sorted(A, key=tuple))"
+        ],
+        [
+            "6797984-32",
+            "\"hello world\"",
+            "s.lower()"
+        ],
+        [
+            "6797984-49",
+            "The encode and decode methods are not relevant to this task",
+            "s.decode('utf-8').lower()"
+        ],
+        [
+            "2631935-11",
+            "the code above",
+            "session.query(User).filter_by(id=123).update({'name': 'Bob Marley'})"
+        ],
+        [
+            "13627865-82",
+            ":",
+            "globals()['something'] = 'bob'"
+        ],
+        [
+            "14766194-35",
+            "Row found",
+            "any(np.equal(a, [1, 2]).all(1))"
+        ],
+        [
+            "18200052-13",
+            "the resulting array",
+            "np.zeros((3, 3)).ravel()"
+        ],
+        [
+            "15579649-73",
+            "arr",
+            "numpy.array([(key, val) for key, val in result.items()], dtype)"
+        ],
+        [
+            "2823472-99",
+            "The answer code is sys.exit() which will immediately terminate the program",
+            "sys.exit(0)"
+        ],
+        [
+            "36139-44",
+            "The answer code is sorted(mylist)",
+            "mylist.sort(key=lambda x: x.lower())"
+        ],
+        [
+            "36139-62",
+            "sorted(mylist)",
+            "mylist.sort(key=str.lower)"
+        ],
+        [
+            "36139-23",
+            "sorted(mylist)",
+            "mylist.sort()"
+        ],
+        [
+            "36139-32",
+            "the provided code snippet",
+            "list.sort()"
+        ],
+        [
+            "5280178-72",
+            "the code block that implements this rationale",
+            "exec(compile(open('file.py').read(), 'file.py', 'exec'))"
+        ],
+        [
+            "18351951-41",
+            "if test.mp3.endswith(('.mp3', '.avi')):",
+            "\"\"\"test.mp3\"\"\".endswith(('.mp3', '.avi'))"
+        ],
+        [
+            "826284-77",
+            "pS[0] = unpack('I', pS[0:2])[0] and pS[1] = unpack('I', pS[1:3])[0]",
+            "struct.unpack('h', pS[0:2])"
+        ],
+        [
+            "3668964-35",
+            "True if all elements in list words are uppercase, and False otherwise",
+            "print(all(word[0].isupper() for word in words))"
+        ],
+        [
+            "41154648-81",
+            "df.to_sparse()",
+            "df.to_sparse(0)"
+        ],
+        [
+            "1514553-90",
+            "variable = []",
+            "variable = []"
+        ],
+        [
+            "1514553-71",
+            "arr = array('i')",
+            "intarray = array('i')"
+        ],
+        [
+            "610883-92",
+            "The answer code is:",
+            "if hasattr(a, 'property'):\n    pass"
+        ],
+        [
+            "610883-9",
+            "the code block above",
+            "if hasattr(a, 'property'):\n    pass"
+        ],
+        [
+            "610883-68",
+            ":",
+            "getattr(a, 'property', 'default value')"
+        ],
+        [
+            "13902805-83",
+            "list(set(string.ascii_lowercase + string.digits + string.punctuation))",
+            "\"\"\"\"\"\".join(list(OrderedDict.fromkeys('aaabcabccd').keys()))"
+        ],
+        [
+            "13902805-92",
+            "The answer code is list(set('aaabcabccd'))",
+            "list(set('aaabcabccd'))"
+        ],
+        [
+            "13902805-87",
+            ":",
+            "\"\"\"\"\"\".join(set('aaabcabccd'))"
+        ],
+        [
+            "674764-8",
+            "str.find('s', 16)",
+            "str.find('s', 16)"
+        ],
+        [
+            "674764-33",
+            ":",
+            "x.find('Aloha')"
+        ],
+        [
+            "674764-19",
+            ": s.find('cc')",
+            "'sdfasdf'.index('cc')"
+        ],
+        [
+            "674764-45",
+            "The answer code is print(s.find('df')), which returns the index of the sub string 'df' in the string'sdfasdf'",
+            "'sdfasdf'.index('df')"
+        ],
+        [
+            "674764-64",
+            "The resulting index is returned as the answer",
+            "str.find('a')"
+        ],
+        [
+            "674764-91",
+            "The final answer is str.find('g')",
+            "str.find('g')"
+        ],
+        [
+            "674764-3",
+            "str.find(s, 11)",
+            "str.find('s', 11)"
+        ],
+        [
+            "674764-47",
+            "str.find('s', 15)",
+            "str.find('s', 15)"
+        ],
+        [
+            "674764-5",
+            "index = str.find('s', 11, 14)",
+            "str.find('s', 11, 14)"
+        ],
+        [
+            "10194713-64",
+            "sorted(cityPopulation.items(), key=lambda x: x[1][2])",
+            "sorted(iter(cityPopulation.items()), key=lambda k_v: k_v[1][2], reverse=True)"
+        ],
+        [
+            "10194713-38",
+            "sorted(u.items(), key=lambda x: x[1])",
+            "sorted(list(u.items()), key=lambda v: v[1])"
+        ],
+        [
+            "10194713-1",
+            "the code snippet sorted_keys = sorted(list(d.keys()))sorted_keys.reverse()",
+            "sorted(list(d.items()), key=lambda k_v: k_v[1], reverse=True)"
+        ],
+        [
+            "10194713-5",
+            "sorted_d = sorted(d.items(), key=lambda x: x[1])",
+            "sorted(list(d.items()), key=lambda k_v: k_v[1])"
+        ],
+        [
+            "179369-97",
+            "the code block above",
+            "sys.exit(0)"
+        ],
+        [
+            "179369-62",
+            "the custom exception raised with the message 'aa! errors!'",
+            "sys.exit('aa! errors!')"
+        ],
+        [
+            "179369-47",
+            "the exit code 1, which indicates an error condition",
+            "sys.exit()"
+        ],
+        [
+            "19779790-35",
+            "datetime.now() - timedelta(days=1)",
+            "datetime.datetime.now() - datetime.timedelta(days=1)"
+        ],
+        [
+            "37934969-37",
+            "df = pd.DataFrame(nvalues)",
+            "df = pd.DataFrame.from_dict({k: v for k, v in list(nvalues.items()) if k != 'y3'})"
+        ],
+        [
+            "11066874-58",
+            "a code snippet using regular expressions",
+            "print(soup.find('a', href=re.compile('.*follow\\\\?page.*')))"
+        ],
+        [
+            "18461623-27",
+            "the mean of the values in old_set and new_set",
+            "np.mean(np.array([old_set, new_set]), axis=0)"
+        ],
+        [
+            "4523551-62",
+            "the code block bin(ord('P'))",
+            "bin(ord('P'))"
+        ],
+        [
+            "11399384-83",
+            "The code to do this is set(LoD.keys())",
+            "{k for d in LoD for k in list(d.keys())}"
+        ],
+        [
+            "11399384-59",
+            "the set of key names obtained by using this code snippet",
+            "set([i for s in [list(d.keys()) for d in LoD] for i in s])"
+        ],
+        [
+            "11399384-52",
+            "a list of all keys in LoD",
+            "[i for s in [list(d.keys()) for d in LoD] for i in s]"
+        ],
+        [
+            "13081090-42",
+            "list(bin(int('0b' + x, 2)))",
+            "[int(d) for d in str(bin(x))[2:]]"
+        ],
+        [
+            "42012589-82",
+            "df.groupby(['Month', 'Fruit'])",
+            "df.groupby(['Month', 'Fruit']).sum().unstack(level=0)"
+        ],
+        [
+            "3355822-45",
+            "the response object of the GET request",
+            "requests.get('https://www.mysite.com/', auth=('username', 'pwd'))"
+        ],
+        [
+            "6510477-50",
+            "zipfile.ZipFile('file').namelist()",
+            "[x for x in file.namelist() if x.endswith('/')]"
+        ],
+        [
+            "39268928-38",
+            "result = str(dict_to_str(dict_))",
+            "str({'a': 1, 'b': 'as df'}).replace(': ', ':').replace(', ', ',')"
+        ],
+        [
+            "39268928-72",
+            "keyN=valueN\"",
+            "'{' + ','.join('{0!r}:{1!r}'.format(*x) for x in list(dct.items())) + '}'"
+        ],
+        [
+            "23970693-72",
+            "For example, json_data = json.loads(json_string)",
+            "json_data = json.loads(json_string)"
+        ],
+        [
+            "2759067-52",
+            "the os.rename() function call",
+            "os.rename(src, dst)"
+        ],
+        [
+            "16389188-53",
+            "pygobject.center_window(window)",
+            "window.set_position(Gtk.WindowPosition.CENTER)"
+        ],
+        [
+            "1391026-74",
+            "The code to achieve this is:",
+            "self.request.get('var_name')"
+        ],
+        [
+            "3296499-25",
+            "dict(map(lambda x: x.lower(), thedict.keys()))",
+            "theset = set(k.lower() for k in thedict)"
+        ],
+        [
+            "41463763-99",
+            "df1",
+            "df2['revenue'] = df2.CET.map(df1.set_index('date')['revenue'])"
+        ],
+        [
+            "30405804-73",
+            "Therefore, the answer code is os.environ['PWD'] = 'C:/Users/Name/Desktop'",
+            "os.chdir('C:/Users/Name/Desktop')"
+        ],
+        [
+            "9647586-2",
+            "request.get('a')",
+            "{{request.args.get('a')}}"
+        ],
+        [
+            "6591931-80",
+            "the size of the file in bytes",
+            "os.stat('C:\\\\Python27\\\\Lib\\\\genericpath.py').st_size"
+        ],
+        [
+            "5607551-13",
+            "urllib.parse.urlencode({'string_of_characters_like_these': '$#@=?%^Q^$'})",
+            "urllib.parse.quote_plus('string_of_characters_like_these:$#@=?%^Q^$')"
+        ],
+        [
+            "439115-86",
+            "For example, the following code generates a random Decimal value between 1 and 10:\n\nimport random\nrandom_decimal = random.uniform(1, 10)\n\nThis code uses the random.uniform() function to generate a random decimal value between 1 and 10",
+            "decimal.Decimal(random.randrange(10000)) / 100"
+        ],
+        [
+            "3925096-46",
+            "os.path.split('/path/to/file')[1]",
+            "os.path.basename(os.path.normpath('/folderA/folderB/folderC/folderD/'))"
+        ],
+        [
+            "14538885-47",
+            "i = x.keys().index('c')",
+            "list(x.keys()).index('c')"
+        ],
+        [
+            "10484261-51",
+            "list(programs.keys()).lower().contains('new york')",
+            "[value for key, value in list(programs.items()) if 'new york' in key.lower()]"
+        ],
+        [
+            "8905864-66",
+            "the modified string with all special characters replaced",
+            "urllib.parse.quote(s.encode('utf-8'))"
+        ],
+        [
+            "8905864-78",
+            "the URL-encoded string \"Hello%2C%20world%21\"",
+            "urllib.parse.quote_plus('a b')"
+        ],
+        [
+            "32751229-20",
+            "the appropriate code to calculate the sum of values of columns 'Y1961', 'Y1962', 'Y1963' after group by on columns \"Country\" and \"Item_code\" in dataframe df",
+            "df.groupby(['Country', 'Item_Code'])[['Y1961', 'Y1962', 'Y1963']].sum()"
+        ],
+        [
+            "10543303-64",
+            "The answer code is len([x for x in j if x > 5])",
+            "sum(((i > 5) for i in j))"
+        ],
+        [
+            "10543303-81",
+            "For example, list(filter(lambda x: x > 5, j)) will return a new list with only the values in j that are greater than 5",
+            "len([1 for i in j if (i > 5)])"
+        ],
+        [
+            "10543303-37",
+            "the code snippet len(j[j > i])",
+            "j = np.array(j)\nsum((j > i))"
+        ],
+        [
+            "36190533-1",
+            ":",
+            "np.any(np.in1d(a1, a2))"
+        ],
+        [
+            "9775731-24",
+            "Otherwise, we return my_value",
+            "max(min(my_value, max_value), min_value)"
+        ],
+        [
+            "14931769-56",
+            "a list of lists, where each sublist represents a combination of n binary values",
+            "lst = list(itertools.product([0, 1], repeat=n))"
+        ],
+        [
+            "14931769-64",
+            "list(itertools.combinations(range(2), n))",
+            "lst = map(list, itertools.product([0, 1], repeat=n))"
+        ],
+        [
+            "14931769-0",
+            "The code to achieve this is list(itertools.combinations('01', 3))",
+            "bin = [0, 1]\n[(x, y, z) for x in bin for y in bin for z in bin]"
+        ],
+        [
+            "14931769-1",
+            ":",
+            "lst = list(itertools.product([0, 1], repeat=3))"
+        ],
+        [
+            "6310475-49",
+            "The code snippet to achieve this is:\n\ndriver.get(url)\ntime.sleep(5)\ndriver.find_element_by_xpath('//input[@name=\"q\"]').send_keys('selenium')\ndriver.find_element_by_xpath('//input[@type=\"submit\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]').click()\ntime.sleep(5)\ndriver.find_element_by_xpath('//div[@class=\"g\"]')",
+            "datetime.datetime.now() + datetime.timedelta(days=1, hours=3)"
+        ],
+        [
+            "38831808-53",
+            "the code snippet float_value = struct.unpack('<f', bytes.fromhex('4081637ef7d0424a'))[0]",
+            "struct.unpack('d', binascii.unhexlify('4081637ef7d0424a'))"
+        ],
+        [
+            "42387471-14",
+            "cbar = plt.colorbar(im, ax)",
+            "plt.colorbar(im, ax=ax)"
+        ],
+        [
+            "28134319-7",
+            "s = s[1:-1]",
+            "s[s.find('\\n') + 1:s.rfind('\\n')]"
+        ],
+        [
+            "18470323-13",
+            "data.loc[data['one'] == 'x', 'a': 'c']",
+            "data.loc[:, (list(itertools.product(['one', 'two'], ['a', 'c'])))]"
+        ],
+        [
+            "18470323-91",
+            "data.loc[:, ['a', 'c']]",
+            "data.loc[:, ([('one', 'a'), ('one', 'c'), ('two', 'a'), ('two', 'c')])]"
+        ],
+        [
+            "10040143-71",
+            "Users.filter(userprofile__gte=0)",
+            "User.objects.filter(userprofile__level__gte=0)"
+        ],
+        [
+            "27659153-69",
+            "[x for x in test if x.startswith('_')]",
+            "[list(g) for _, g in itertools.groupby(test, lambda x: x.split('_')[0])]"
+        ],
+        [
+            "27659153-76",
+            ":\n\nitems = ['apple', 'banana', 'apple', 'orange', 'banana', 'orange', 'banana']\ngroups = {}\nfor i in range(len(items)):\n    if items[i] not in groups:\n        groups[items[i]] = []\n    groups[items[i]].append(items[i])\nfor group, items in groups.items():\n    print(group)",
+            "[list(g) for _, g in itertools.groupby(test, lambda x: x.partition('_')[0])]"
+        ],
+        [
+            "11336548-53",
+            "this code",
+            "request.POST.get('title', '')"
+        ],
+        [
+            "20222485-17",
+            "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",
+            "list(accumulate(list(range(10))))"
+        ],
+        [
+            "16436133-47",
+            "the code snippet mydata = {} if mydata is None else json.loads(mydata)",
+            "json.loads(request.POST.get('mydata', '{}'))"
+        ],
+        [
+            "31950612-15",
+            "find(lambda x: x == '([{')[-1]",
+            "max(test_string.rfind(i) for i in '([{')"
+        ],
+        [
+            "8247792-19",
+            "For example, s.substring(0, 4, None) will return a new string with the same characters",
+            "\"\"\"foobar\"\"\"[:4]"
+        ],
+        [
+            "8247792-29",
+            "substrings = list(string.split(string, '&'))",
+            "s.rfind('&')"
+        ],
+        [
+            "8247792-90",
+            "The answer code is n = len(re.findall('&', s)) - 1",
+            "s[:s.rfind('&')]"
+        ],
+        [
+            "35178812-30",
+            "df['A'].value_counts(normalize=True).size()",
+            "ex.groupby(level='A').agg(lambda x: x.index.get_level_values(1).nunique())"
+        ],
+        [
+            "10346336-28",
+            "The code snippet is:\n\narr = np.array([list1, list2, list3])\n\nThis creates a numpy array arr from the lists list1, list2, and list3",
+            "numpy.array([[1, 2], [3, 4]])"
+        ],
+        [
+            "2054416-71",
+            "t = [x[0] for x in s]",
+            "t = tuple(x[0] for x in s)"
+        ],
+        [
+            "11205386-94",
+            "the code snippet tag = soup.find('meta')[0].get('content') and tag = soup.find('meta', {'name': 'City'})[0].get('name')",
+            "soup.find('meta', {'name': 'City'})['content']"
+        ],
+        [
+            "39353758-58",
+            "df.pivot_table(index='saleid', values='upc', aggfunc=np.mean)",
+            "df.pivot_table(index='saleid', columns='upc', aggfunc='size', fill_value=0)"
+        ],
+        [
+            "16249440-75",
+            ":",
+            "os.chmod(path, stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)"
+        ],
+        [
+            "13999850-72",
+            "For example:",
+            "df.to_csv(filename, date_format='%Y%m%d')"
+        ],
+        [
+            "1800187-72",
+            "the code block that implements this rationale: a.fill(0)",
+            "b = np.where(np.isnan(a), 0, a)"
+        ],
+        [
+            "39277638-98",
+            "The answer code is the np.minimum() function applied to the three arrays",
+            "np.array([np.arange(3), np.arange(2, -1, -1), np.ones((3,))]).min(axis=0)"
+        ],
+        [
+            "15509617-37",
+            "the formatted string",
+            "datetime.datetime.now().strftime('%a')"
+        ],
+        [
+            "8519599-86",
+            "s = '{}: {}'.format(d['name'], d['age']) and print(s)",
+            "\"\"\"<br/>\"\"\".join([('%s:: %s' % (key, value)) for key, value in list(d.items())])"
+        ],
+        [
+            "17071871-46",
+            "This selects all rows of the dataframe where the value in column A is equal to foo",
+            "print(df.loc[df['A'] == 'foo'])"
+        ],
+        [
+            "17071871-76",
+            ":\n\nimport pandas as pd\ndf = pd.read_csv('filename.csv')\nresult = df.loc[df['column_name']!= some_value]",
+            "df.loc[df['column_name'] != some_value]"
+        ],
+        [
+            "17071871-51",
+            "df[df['column_name'] not in some_values]",
+            "df.loc[~df['column_name'].isin(some_values)]"
+        ],
+        [
+            "17071871-83",
+            ":\n\ndf[df['column_name'] == some_value]",
+            "df.loc[df['column_name'] == some_value]"
+        ],
+        [
+            "17071871-79",
+            "df[df['B'] == 'one' | df['B'] == 'three']",
+            "print(df.loc[df['B'].isin(['one', 'three'])])"
+        ],
+        [
+            "739993-25",
+            "The answer code is:\n\n\nimport os\nimport re\nimport glob\n\npython_path = os.environ.get('PYTHONPATH', os.environ.get('PATH', ''))\npython_path = python_path.split(':')\npython_path = [d for d in python_path if os.path.exists(os.path.join(d, '__init__.py'))]\n\nmodules = glob.glob(os.path.join(python_path[0], '*.py'))\n\nprint(modules)",
+            "help('modules')"
+        ],
+        [
+            "12362542-44",
+            "The 1 argument specifies that the option should be enabled",
+            "s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)"
+        ],
+        [
+            "4116061-59",
+            "The final code snippet is import some.package.* and the answer is this code snippet",
+            "globals().update(importlib.import_module('some.package').__dict__)"
+        ],
+        [
+            "4588628-92",
+            "The code snippet is np.where(x == 0) and the answer is this code snippet",
+            "numpy.where((x == 0))[0]"
+        ],
+        [
+            "2428092-52",
+            "Therefore, the answer is json.dumps({'key1': 'value1', 'key2': 'value2'})",
+            "return HttpResponse(json.dumps(response_data), content_type='application/json')"
+        ],
+        [
+            "10824319-17",
+            "import base64; s = base64.hexlify(bytes(s, 'hex'))",
+            "s.decode('hex')"
+        ],
+        [
+            "10824319-49",
+            "The answer code is base64.hexlify(s).decode()",
+            "binascii.a2b_hex(s)"
+        ],
+        [
+            "12655007-87",
+            "result",
+            "[(x + tuple(y)) for x, y in zip(zip(a, b), c)]"
+        ],
+        [
+            "10472907-88",
+            "json.dumps(adict)",
+            "\"\"\"\"\"\".join('{}{}'.format(key, val) for key, val in sorted(adict.items()))"
+        ],
+        [
+            "10472907-5",
+            "str(adict)",
+            "\"\"\"\"\"\".join('{}{}'.format(key, val) for key, val in list(adict.items()))"
+        ],
+        [
+            "34155829-56",
+            "np.array(x)",
+            "np.array(x._data).reshape(x.size[::-1]).T"
+        ],
+        [
+            "17731822-88",
+            "the code block that implements this rationale",
+            "hex(int(''.join([str(int(b)) for b in walls]), 2))"
+        ],
+        [
+            "17731822-21",
+            "hashlib.hexlify(str(sum(walls))).decode()",
+            "hex(sum(b << i for i, b in enumerate(reversed(walls))))"
+        ],
+        [
+            "1810743-81",
+            "os.chdir('c:\\\\Users\\\\uname\\\\desktop\\\\python')",
+            "os.chdir('c:\\\\Users\\\\uname\\\\desktop\\\\python')"
+        ],
+        [
+            "1810743-84",
+            "The code snippet to achieve this is:\n\nos.chdir(path)",
+            "os.chdir(path)"
+        ],
+        [
+            "1949318-13",
+            "the status code of the response",
+            "urllib.request.urlopen('http://www.stackoverflow.com').getcode()"
+        ],
+        [
+            "1949318-62",
+            "We can then use an if statement to check if the status code is 200 (OK), and take appropriate action if it is not",
+            "conn = httplib.HTTPConnection('www.python.org')\nconn.request('HEAD', '/')\nr1 = conn.getresponse()\nprint(r1.status, r1.reason)"
+        ],
+        [
+            "1949318-89",
+            "the code block that implements this rationale",
+            "r = requests.head(url)\nreturn (r.status_code == 200)"
+        ],
+        [
+            "1949318-26",
+            "the status code of the response",
+            "print(urllib.request.urlopen('http://www.stackoverflow.com').getcode())"
+        ],
+        [
+            "19758364-39",
+            "data.rename(columns={'gdp': 'log(gdp)'}).",
+            "data.rename(columns={'gdp': 'log(gdp)'}, inplace=True)"
+        ],
+        [
+            "15271907-69",
+            "git commit -am \"commit message\"",
+            "dbb.commit()"
+        ],
+        [
+            "5352546-44",
+            "the code snippet d = {'a': 1, 'b': 2, 'c': 3, 'l': 4,'m': 5, 'n': 6}\nsubset = [{k: v for k, v in d.items() if k in ['l','m', 'n']}].items()",
+            "{k: bigdict[k] for k in list(bigdict.keys()) & {'l', 'm', 'n'}}"
+        ],
+        [
+            "5352546-80",
+            "bigdict['l'] = 'value1'\nbigdict['m'] = 'value2'\nbigdict['n'] = 'value3'\nbigdict['p'] = 'value4'\nbigdict['q'] = 'value5'\nbigdict['r'] = 'value6'\nbigdict['s'] = 'value7'\nbigdict['t'] = 'value8'\nbigdict['u'] = 'value9'\nbigdict['v'] = 'value10'\nbigdict['w'] = 'value11'\nbigdict['x'] = 'value12'\nbigdict['y'] = 'value13'\nbigdict['z'] = 'value14'\nbigdict['l'] = 'value15'\nbigdict['m'] = 'value16'\nbigdict['n'] = 'value17'\nbigdict['p'] = 'value18'\nbigdict['q'] = 'value19'\nbigdict['r'] = 'value20'\nbigdict['s'] = 'value21'\nbigdict['t'] = 'value22'\nbigdict['u'] = 'value23'\nbigdict['v'] = 'value24'\nbigdict['w'] = 'value25'\nbigdict['x'] = 'value26'\nbigdict['y'] = 'value27'\nbigdict['z'] = 'value28'\nbigdict['l'] = 'value29'\nbigdict['m'] = 'value30'\nbigdict['n'] = 'value31'\nbigdict['p'] = 'value32'\nbigdict['q'] = 'value33'\nbigdict['r'] = 'value34'\nbigdict['s'] = 'value35'\nbigdict['t'] = 'value36'\nbigdict['u'] = 'value37'\nbigdict['v'] = 'value38'\nbigdict['w'] = 'value39'\nbigdict['x'] = 'value40'\nbigdict['y'] = 'value41'\nbigdict['z'] = 'value42'\nbigdict['l'] = 'value43'\nbigdict['m'] = 'value44'\nbigdict['n'] = 'value45'\nbigdict['p",
+            "dict((k, bigdict[k]) for k in ('l', 'm', 'n'))"
+        ],
+        [
+            "5352546-22",
+            "list(bigdict.items())[:3].filter(lambda x: x[0] in ('l','m', 'n'))",
+            "{k: bigdict.get(k, None) for k in ('l', 'm', 'n')}"
+        ],
+        [
+            "5352546-75",
+            "items = list(bigdict.items())[:3]",
+            "{k: bigdict[k] for k in ('l', 'm', 'n')}"
+        ],
+        [
+            "2331943-5",
+            "the code snippet",
+            "json.load(u)"
+        ],
+        [
+            "4940032-13",
+            "the output of the code",
+            "if ('blabla' in open('example.txt').read()):\n    pass"
+        ],
+        [
+            "4940032-15",
+            "example.txt.findall('blabla')",
+            "f = open('example.txt')\ns = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)\nif (s.find('blabla') != (-1)):\n    pass"
+        ],
+        [
+            "4940032-22",
+            "The answer code would be with open('example.txt', 'r') as f: txt = f.read() found = os.search(txt, 'blabla') if found!= -1: print(found)",
+            "datafile = file('example.txt')\nfound = False\nfor line in datafile:\n    if (blabla in line):\n        return True\nreturn False"
+        ],
+        [
+            "4476373-46",
+            "The answer code is the code block that implements this rationale",
+            "r = requests.get(url)"
+        ],
+        [
+            "4476373-22",
+            "requests.post(url, json=payload)",
+            "r = requests.get(url, params=payload)"
+        ],
+        [
+            "4476373-71",
+            "requests.post(url, data=payload).json()",
+            "r = requests.post(url, data=payload)"
+        ],
+        [
+            "4476373-99",
+            ":\n\n\nimport requests\nresponse = requests.post('https://example.com/api/data', data=post_data)",
+            "post_response = requests.post(url='http://httpbin.org/post', json=post_data)"
+        ],
+        [
+            "1476-16",
+            "the code block that implements this rationale",
+            "bin(173)"
+        ],
+        [
+            "1476-88",
+            "4094",
+            "int('01010101111', 2)"
+        ],
+        [
+            "1476-71",
+            "int(bin('010101')), which returns the integer value of the binary string",
+            "int('010101', 2)"
+        ],
+        [
+            "1476-39",
+            ":\n\nint('0b0010101010', 2)",
+            "int('0b0010101010', 2)"
+        ],
+        [
+            "1476-6",
+            "binary_string = bin(21)[2:]",
+            "bin(21)"
+        ],
+        [
+            "1476-59",
+            ":",
+            "int('11111111', 2)"
+        ],
+        [
+            "41178532-76",
+            "the result of the code block above",
+            "(trace_df['ratio'] > 0).mean()"
+        ],
+        [
+            "8249836-41",
+            "the code snippet list(itertools.product([1,2,3], repeat=3)), which returns a list of all possible combinations of 3 items from the list [1,2,3]",
+            "list(itertools.product(*a))"
+        ],
+        [
+            "364519-94",
+            ":",
+            "it = iter(sorted(d.items()))"
+        ],
+        [
+            "364519-100",
+            "The answer code is sorted(d.keys())",
+            "for (key, value) in sorted(d.items()):\n    pass"
+        ],
+        [
+            "364519-2",
+            "sorted(dict.keys())",
+            "return sorted(dict.items())"
+        ],
+        [
+            "364519-33",
+            "The code to achieve this is sorted(dict.items())",
+            "return iter(sorted(dict.items()))"
+        ],
+        [
+            "364519-52",
+            "The answer code is sorted(foo.keys())",
+            "for (k, v) in sorted(foo.items()):\n    pass"
+        ],
+        [
+            "364519-98",
+            "for key in sorted(foo.keys()): print(key)",
+            "for k in sorted(foo.keys()):\n    pass"
+        ],
+        [
+            "39414085-16",
+            "the code snippet s.replace('(?<=[a-z])([A-Z])', '-\\\\1')",
+            "re.sub('(?<=[a-z])([A-Z])', '-\\\\1', s).lower()"
+        ],
+        [
+            "34097281-53",
+            "import tensorflow as tf; tf_array = tf.constant([1, 2, 3])",
+            "print(type(tf.Session().run(tf.constant([1, 2, 3]))))"
+        ],
+        [
+            "39816795-71",
+            "pd.DataFrame({'A': ['A1', 'A2'], 'B': ['B1', 'B2'], 'A1R': ['A1R1', 'A1R2'], 'B2': ['B2', 'B2'], 'AABB4': ['AABB4', 'AABB4']})",
+            "s = pd.Series(['A', 'B', 'A1R', 'B2', 'AABB4'])"
+        ],
+        [
+            "638360-2",
+            "For example, if d1 = {'a': 1, 'b': 2, 'c': 3} and d2 = {'b': 2, 'c': 3, 'd': 4}, the resulting output will be {'a': 1, 'c': 3}",
+            "dict((x, set(y) & set(d1.get(x, ()))) for x, y in d2.items())"
+        ],
+        [
+            "19961490-16",
+            "The code would look something like this:\n\ndf = pd.DataFrame([('name', 'John'), ('age', 30)], columns=['name', 'age'])",
+            "df = pandas.DataFrame(data, columns=['R_Number', 'C_Number', 'Avg', 'Std'])"
+        ],
+        [
+            "18837262-55",
+            "df = pd.DataFrame({'Date': [k for k, v in d.items()], 'DateValue': [str(v) for v in d.values()]})",
+            "pd.DataFrame(list(d.items()), columns=['Date', 'DateValue'])"
+        ],
+        [
+            "4265988-26",
+            "x",
+            "numpy.random.choice(numpy.arange(1, 7), p=[0.1, 0.05, 0.05, 0.2, 0.4, 0.2])"
+        ],
+        [
+            "35414625-11",
+            "result = pd.pivot_table(df, values='value', index=['year','month', 'item'], columns=['category'])",
+            "df.set_index(['year', 'month', 'item']).unstack(level=-1)"
+        ],
+        [
+            "35414625-17",
+            "the code snippet df.pivot_table(index=['year','month'], values='value', aggfunc=sum)",
+            "df.pivot_table(values='value', index=['year', 'month'], columns='item')"
+        ],
+        [
+            "748028-31",
+            "If p1 is a variable name, you can use the print() function to output the value of the variable",
+            "p1.communicate()[0]"
+        ],
+        [
+            "748028-100",
+            "the code snippet:\n\n\nimport subprocess\nprocess = subprocess.Popen(['exe'], stdout=subprocess.PIPE)\noutput = process.communicate()[0].decode().strip()\nprint(output)",
+            "output = subprocess.Popen(['mycmd', 'myarg'], stdout=PIPE).communicate()[0]"
+        ],
+        [
+            "10408927-95",
+            "for sub in et.find(a): print(sub)",
+            "[elem.tag for elem in a.iter()]"
+        ],
+        [
+            "10408927-56",
+            "a.findall('.//*[not(self::root)]')",
+            "[elem.tag for elem in a.iter() if elem is not a]"
+        ],
+        [
+            "29471884-33",
+            "max(num_list[i:])",
+            "min([x for x in num_list if x > 2])"
+        ],
+        [
+            "2793324-81",
+            "a.remove(\"b\")",
+            "a.remove('b')"
+        ],
+        [
+            "2793324-12",
+            "a.remove(c)",
+            "a.remove(c)"
+        ],
+        [
+            "2793324-93",
+            "the deletion of the element 6 from the list a",
+            "a.remove(6)"
+        ],
+        [
+            "2793324-3",
+            "The answer code is a.remove(6)",
+            "a.remove(6)"
+        ],
+        [
+            "2793324-97",
+            "del a[i]",
+            "if (c in a):\n    a.remove(c)"
+        ],
+        [
+            "2793324-5",
+            "a.remove(c)",
+            "try:\n    a.remove(c)\nexcept ValueError:\n    pass"
+        ],
+        [
+            "5826427-6",
+            "the code block that implements this rationale",
+            "subprocess.call('test.sh otherfunc')"
+        ],
+        [
+            "5826427-73",
+            "subprocess.run([python_script, 'function_name', 'arg1', 'arg2'])",
+            "subprocess.Popen(['bash', '-c', '. foo.sh; go'])"
+        ],
+        [
+            "30605909-89",
+            "The final code snippet is df.to_csv('c:\\\\data\\\\t.csv', index=False) and the answer is the same as the query",
+            "df.to_csv('c:\\\\data\\\\t.csv', index=False)"
+        ],
+        [
+            "9891814-38",
+            "the code snippet match_obj = re.search(r'(\\\\d+(\\\\.\\\\d+)?)', string) and the final rationale is that we can use the re.search() method to match the regex pattern with the string and access the matched string using the group() method of the match object",
+            "print(re.match('(\\\\d+(\\\\.\\\\d+)?)', '3434.35353').group(1))"
+        ],
+        [
+            "4668619-32",
+            "Sample.objects.filter(date_field__range=(2011, 1, 1, 2011, 1, 31))",
+            "Sample.objects.filter(date__range=['2011-01-01', '2011-01-31'])"
+        ],
+        [
+            "4668619-26",
+            "a queryset of objects in the Sample model that were created in the year 2011",
+            "Sample.objects.filter(date__year='2011', date__month='01')"
+        ],
+        [
+            "16387069-81",
+            "os.startfile('picture.jpg')",
+            "img = Image.open('picture.jpg')\nimg.show()"
+        ],
+        [
+            "16387069-86",
+            "This will open the file \"picture.jpg\" in the default image viewer on the user's computer",
+            "img = Image.open('picture.jpg')\nImg.show"
+        ],
+        [
+            "12426043-1",
+            "The code to do this is:\n\nopen(f, 'w')\nwrite(f, open(xxx.mp4).read())",
+            "f.write(open('xxx.mp4', 'rb').read())"
+        ],
+        [
+            "41572822-28",
+            "df.T[np.argsort(df.values)]",
+            "pd.DataFrame(df.columns[np.argsort(df.values)], df.index, np.unique(df.values))"
+        ],
+        [
+            "21558999-5",
+            "For example, df1.drop_duplicates(subset=['column1', 'column2']).value_counts().reset_index(name='count')",
+            "df1.groupby(['key', 'year']).size().reset_index()"
+        ],
+        [
+            "40963347-42",
+            "a new dataframe with the average values for each group",
+            "df.groupby(np.arange(len(df.columns)) // 3, axis=1).mean()"
+        ],
+        [
+            "7284952-22",
+            "HttpResponseRedirect('/index/')",
+            "redirect('Home.views.index')"
+        ],
+        [
+            "42352887-25",
+            "the code snippet:\n\n\nkeys = sorted(things.keys(), key=lambda x: things['weight'][x])",
+            "sorted(list(things.keys()), key=lambda x: things[x]['weight'], reverse=True)"
+        ],
+        [
+            "247770-78",
+            "The answer code is __file__",
+            "print(a_module.__file__)"
+        ],
+        [
+            "247770-2",
+            "The answer code is print(__file__), which prints the path of the current python module",
+            "print(os.getcwd())"
+        ],
+        [
+            "247770-13",
+            "__file__",
+            "path = os.path.abspath(amodule.__file__)"
+        ],
+        [
+            "40660956-52",
+            "df.sum(axis=1).sum()",
+            "df.groupby(np.arange(len(df.columns)) // 2 + 1, axis=1).sum().add_prefix('s')"
+        ],
+        [
+            "5110352-21",
+            "datetime.datetime.now().strftime(\"%H:%M:%S\")",
+            "now = datetime.datetime.now().strftime('%H:%M:%S')"
+        ],
+        [
+            "3283984-56",
+            "The code to decode a hex string '4a4b4c' to UTF-8 is hex = '4a4b4c' followed by binary = hex2bin(hex) followed by octal = bin2oct(binary) followed by hex = oct2hex(octal)",
+            "bytes.fromhex('4a4b4c').decode('utf-8')"
+        ],
+        [
+            "14971373-85",
+            "This will execute the command ps -ef | grep something | wc -l and capture the output in the variable output",
+            "subprocess.check_output('ps -ef | grep something | wc -l', shell=True)"
+        ],
+        [
+            "18079563-10",
+            "the set intersection obtained by using this code snippet",
+            "pd.Series(list(set(s1).intersection(set(s2))))"
+        ],
+        [
+            "26153795-98",
+            "datetime.strptime('when', '%Y-%m-%d').date()",
+            "then = datetime.datetime.strptime(when, '%Y-%m-%d').date()"
+        ],
+        [
+            "5123839-3",
+            "entry = Entry.objects.all().first()",
+            "Entry.objects.filter()[:1].get()"
+        ],
+        [
+            "29784889-2",
+            "warnings.filterwarnings('always')",
+            "warnings.simplefilter('always')"
+        ],
+        [
+            "22676-23",
+            "requests.get(\"http://www.example.com/songs/mp3.mp3\")",
+            "urllib.request.urlretrieve('http://www.example.com/songs/mp3.mp3', 'mp3.mp3')"
+        ],
+        [
+            "22676-91",
+            "requests.get(url, stream=True).save(file_name)",
+            "u = urllib.request.urlopen(url)\nf = open(file_name, 'wb')\nmeta = u.info()\nfile_size = int(meta.getheaders('Content-Length')[0])\nprint(('Downloading: %s Bytes: %s' % (file_name, file_size)))\nfile_size_dl = 0\nblock_sz = 8192\nwhile True:\n    buffer = u.read(block_sz)\n    if (not buffer):\n        break\n    file_size_dl += len(buffer)\n    f.write(buffer)\n    status = ('%10d  [%3.2f%%]' % (file_size_dl, ((file_size_dl * 100.0) / file_size)))\n    status = (status + (chr(8) * (len(status) + 1)))\n    print(status, end=' ')\nf.close()"
+        ],
+        [
+            "22676-14",
+            "requests.get('http://www.example.com/').content",
+            "response = urllib.request.urlopen('http://www.example.com/')\nhtml = response.read()"
+        ],
+        [
+            "22676-1",
+            "response = requests.get(url)",
+            "r = requests.get(url)"
+        ],
+        [
+            "22676-64",
+            "The answer code is requests.get(url, stream=True) followed by open('file.txt', 'wb').write(requests.get(url, stream=True).content[:10*1024*1024])",
+            "response = requests.get(url, stream=True)\nwith open('10MB', 'wb') as handle:\n    for data in tqdm(response.iter_content()):\n        handle.write(data)"
+        ],
+        [
+            "4490961-76",
+            "np.dot(P, T.T)",
+            "scipy.tensordot(P, T, axes=[1, 1]).swapaxes(0, 1)"
+        ],
+        [
+            "1592158-5",
+            "float(hex2dec('470FC614'))",
+            "struct.unpack('!f', '470FC614'.decode('hex'))[0]"
+        ],
+        [
+            "7286365-38",
+            "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]",
+            "list(reversed(list(range(10))))"
+        ],
+        [
+            "20573459-83",
+            "date.today().replace(day=today.day - 7)",
+            "(datetime.datetime.now() - datetime.timedelta(days=7)).date()"
+        ],
+        [
+            "23164058-67",
+            "Therefore, the answer is base64.b64encode(bytes('your string', 'binary')).decode()",
+            "base64.b64encode(bytes('your string', 'utf-8'))"
+        ],
+        [
+            "11236006-9",
+            "ist.unique() returns a list of unique values in mylist.\nmylist.remove(mylist.unique()) removes all duplicate values in mylist",
+            "[k for k, v in list(Counter(mylist).items()) if v > 1]"
+        ],
+        [
+            "31247198-48",
+            "df.to_csv('np.txt', index=False).encode('utf-8').write().decode('utf-8')",
+            "np.savetxt('c:\\\\data\\\\np.txt', df.values, fmt='%d')"
+        ],
+        [
+            "31247198-21",
+            "df.to_csv('c:\\\\data\\\\pandas.txt', index=False).open('w')",
+            "df.to_csv('c:\\\\data\\\\pandas.txt', header=None, index=None, sep=' ', mode='a')"
+        ],
+        [
+            "15851568-6",
+            "x.split('-')[-1]",
+            "print(x.rpartition('-')[0])"
+        ],
+        [
+            "15851568-9",
+            "The answer code would be:",
+            "print(x.rsplit('-', 1)[0])"
+        ],
+        [
+            "4172131-18",
+            "[2, 4, 6, 8, 1]",
+            "[int(1000 * random.random()) for i in range(10000)]"
+        ],
+        [
+            "6677332-3",
+            "time.time() % f",
+            "datetime.datetime.now().strftime('%H:%M:%S.%f')"
+        ],
+        [
+            "583557-14",
+            "tabulate(tab, headers='keys', tablefmt='plain')",
+            "print('\\n'.join('\\t'.join(str(col) for col in row) for row in tab))"
+        ],
+        [
+            "26053849-22",
+            "df.sum().sum(axis=1).sum()",
+            "df.astype(bool).sum(axis=1)"
+        ],
+        [
+            "30693804-5",
+            "the code snippet text.lower().replace('[^[:alnum:][:space:]]', '')",
+            "re.sub('[^\\\\sa-zA-Z0-9]', '', text).lower().strip()"
+        ],
+        [
+            "30693804-72",
+            "text.replace('[^[:alnum:][:space:]]', '').lower()",
+            "re.sub('(?!\\\\s)[\\\\W_]', '', text).lower().strip()"
+        ],
+        [
+            "14435268-66",
+            "soup.get('name')",
+            "print(soup.find('name').string)"
+        ],
+        [
+            "2011048-15",
+            "char_count = len(open(filepath).read())",
+            "os.stat(filepath).st_size"
+        ],
+        [
+            "2600191-99",
+            "list(c.most_common())[0][0]",
+            "l.count('a')"
+        ],
+        [
+            "2600191-23",
+            "the use of len() and a loop to count the occurrences of items in the list",
+            "Counter(l)"
+        ],
+        [
+            "2600191-53",
+            "Therefore, the answer is len(set(l))",
+            "[[x, l.count(x)] for x in set(l)]"
+        ],
+        [
+            "2600191-55",
+            "the total number of occurrences of items in list l",
+            "dict(((x, l.count(x)) for x in set(l)))"
+        ],
+        [
+            "2600191-98",
+            "the count of occurrences of item \"b\" in the list",
+            "l.count('b')"
+        ],
+        [
+            "12842997-15",
+            ":\n\nos.system('copy \"%s\" \"%s\"' % (srcfile, dstdir))",
+            "shutil.copy(srcfile, dstdir)"
+        ],
+        [
+            "38152389-84",
+            "This will assign the sum of the values in column 'b' and column 'a' to the corresponding value in column 'c' for each row in df",
+            "df['c'] = np.where(df['a'].isnull, df['b'], df['a'])"
+        ],
+        [
+            "16296643-89",
+            "t.items() returns a list of tuples, where each tuple contains an element from the list t and its index.\nt.items() is then converted to a list of tuples, and the list is converted to a tuple",
+            "tuple(l)"
+        ],
+        [
+            "16296643-20",
+            "The answer code is list(level1)",
+            "level1 = map(list, level1)"
+        ],
+        [
+            "3880399-74",
+            "with open(logFile, 'w') as f: pprint(dataobject, stream=f)",
+            "pprint.pprint(dataobject, logFile)"
+        ],
+        [
+            "21800169-34",
+            "The answer code is:",
+            "df.loc[df['BoolCol']]"
+        ],
+        [
+            "21800169-19",
+            "a list containing the indexes of rows where the value of column 'BoolCol' in dataframe df are equal to True",
+            "df.iloc[np.flatnonzero(df['BoolCol'])]"
+        ],
+        [
+            "21800169-92",
+            ":",
+            "df[df['BoolCol'] == True].index.tolist()"
+        ],
+        [
+            "21800169-41",
+            "df.index[df['BoolCol'] == True]",
+            "df[df['BoolCol']].index.tolist()"
+        ],
+        [
+            "299446-100",
+            "os.chdir('owd')",
+            "os.chdir(owd)"
+        ],
+        [
+            "32063985-36",
+            "the code snippet doc.find('#main-content').remove()",
+            "soup.find('div', id='main-content').decompose()"
+        ],
+        [
+            "17960441-40",
+            "list(zip(a, b))",
+            "np.array([zip(x, y) for x, y in zip(a, b)])"
+        ],
+        [
+            "17960441-39",
+            "The code to zip two 2-d arrays a and b is zip(a, b)",
+            "np.array(zip(a.ravel(), b.ravel()), dtype='i4,i4').reshape(a.shape)"
+        ],
+        [
+            "26443308-74",
+            "string.find('}', -1)",
+            "'abcd}def}'.rfind('}')"
+        ],
+        [
+            "20546419-7",
+            "The answer code is numpy.random.shuffle(r)",
+            "np.random.shuffle(np.transpose(r))"
+        ],
+        [
+            "574236-63",
+            "num_files = len(os.listdir('/path/to/directory')) - len(os.listdir('/path/to/directory/.'))",
+            "os.statvfs('/').f_files - os.statvfs('/').f_ffree"
+        ],
+        [
+            "7011291-98",
+            "import sqlite3 conn = sqlite3.connect('database.db') cursor = conn.cursor() cursor.execute('SELECT * FROM table_name') result = cursor.fetchone() print(result)",
+            "cursor.fetchone()[0]"
+        ],
+        [
+            "4454298-91",
+            "the code snippet with open('infile', 'r') as f: outfile = f.write('#test firstline\\n')",
+            "open('outfile', 'w').write('#test firstline\\n' + open('infile').read())"
+        ],
+        [
+            "9012008-0",
+            "the code block that implements this rationale",
+            "bool(re.search('ba[rzd]', 'foobarrrr'))"
+        ],
+        [
+            "7961363-85",
+            "the code snippet s = list(set(t))",
+            "list(set(t))"
+        ],
+        [
+            "7961363-86",
+            "The answer code is target_list = list(set(source_list)), which converts the source_list to a set, removes duplicates, and converts the set back to a list",
+            "list(set(source_list))"
+        ],
+        [
+            "7961363-7",
+            "new_list",
+            "list(OrderedDict.fromkeys('abracadabra'))"
+        ],
+        [
+            "5183533-81",
+            "list(a)",
+            "numpy.array(a).reshape(-1).tolist()"
+        ],
+        [
+            "5183533-11",
+            "[x]",
+            "numpy.array(a)[0].tolist()"
+        ],
+        [
+            "5999747-97",
+            "the code snippet soup.find('td', text='Address:').siblings[0].text",
+            "print(soup.find(text='Address:').findNext('td').contents[0])"
+        ],
+        [
+            "8908287-54",
+            ":\n\nimport base64\nencoded_string = base64.encode('data to be encoded')",
+            "encoded = base64.b64encode('data to be encoded')"
+        ],
+        [
+            "8908287-40",
+            "The code to encode a string data to be encoded to ascii encoding is data.encode('ascii')",
+            "encoded = 'data to be encoded'.encode('ascii')"
+        ],
+        [
+            "9035479-73",
+            "my_str = getattr(my_object,'my_str')",
+            "getattr(my_object, my_str)"
+        ],
+        [
+            "34945274-35",
+            "A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nA[A!= [1, 3, 4]] = 0\nA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nThe answer code is A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+            "np.where(np.in1d(A, [1, 3, 4]).reshape(A.shape), A, 0)"
+        ],
+        [
+            "15819980-52",
+            "the mean across the first dimension of a",
+            "np.mean(a, axis=1)"
+        ],
+        [
+            "15907200-35",
+            "headers = ['header1', 'header2', 'header3'] and with open('output.csv', 'a') as file: file.write('\\t'.join(headers)), which creates a list of headers and uses the csv module to write it to a new line in the file",
+            "writer.writeheader()"
+        ],
+        [
+            "23359886-48",
+            "a[a[:,0] == 0 & a[:,1] == 1]",
+            "a[np.where((a[:, (0)] == 0) * (a[:, (1)] == 1))]"
+        ],
+        [
+            "26097916-29",
+            ":",
+            "pd.DataFrame({'email': sf.index, 'list': sf.values})"
+        ],
+        [
+            "1405602-48",
+            "image = ImageDraw.Draw.resize(image, (x, y), filter=ImageDraw.Draw.Resampling.LANCZOS)",
+            "image = image.resize((x, y), Image.ANTIALIAS)"
+        ],
+        [
+            "9323159-38",
+            "This gives us the 10 largest differences between the respective elements of l1 and l2",
+            "heapq.nlargest(10, range(len(l1)), key=lambda i: abs(l1[i] - l2[i]))"
+        ],
+        [
+            "29877663-54",
+            "the code block above",
+            "soup.find_all('span', {'class': 'starGryB sp'})"
+        ],
+        [
+            "16193578-72",
+            "sorted(list5, key=lambda x: x.degrees)",
+            "sorted(list5, lambda x: (degree(x), x))"
+        ],
+        [
+            "16193578-58",
+            "This will sort the list in descending order based on the square of each element",
+            "sorted(list5, key=lambda vertex: (degree(vertex), vertex))"
+        ],
+        [
+            "7373219-3",
+            "The answer code is obj.attr",
+            "getattr(obj, 'attr')"
+        ],
+        [
+            "1960516-75",
+            "json.dumps(Decimal('3.9'))",
+            "json.dumps(Decimal('3.9'))"
+        ],
+        [
+            "29836836-87",
+            "df[df['A'].groupby(df['A']).size() > 1]",
+            "df.groupby('A').filter(lambda x: len(x) > 1)"
+        ],
+        [
+            "35420052-72",
+            "plt.colorbar(mappable=<mappable>, cmap=<cmap>, cformat=<cformat>)",
+            "plt.colorbar(mappable=mappable, cax=ax3)"
+        ],
+        [
+            "29903025-37",
+            "The code snippet to accomplish this is:\n\n\ndf['text'].value_counts().sort_index(ascending=False).head(100)",
+            "Counter(' '.join(df['text']).split()).most_common(100)"
+        ],
+        [
+            "4530069-65",
+            "datetime.utcnow() to obtain the current date and time in UTC",
+            "datetime.now(pytz.utc)"
+        ],
+        [
+            "9262278-9",
+            "HttpResponse(status=200) and set_cookie(key='data', value=json.dumps(data))",
+            "return HttpResponse(data, mimetype='application/json')"
+        ],
+        [
+            "3595685-42",
+            "The final code snippet is subprocess.run(['background-process', 'arguments']) and the answer is this code snippet",
+            "subprocess.Popen(['background-process', 'arguments'])"
+        ],
+        [
+            "30729735-74",
+            "list(myList).find('how', 'what')",
+            "[i for i, j in enumerate(myList) if 'how' in j.lower() or 'what' in j.lower()]"
+        ],
+        [
+            "22799300-26",
+            "DataFrame",
+            "pd.DataFrame(out.tolist(), columns=['out-1', 'out-2'], index=out.index)"
+        ],
+        [
+            "3464359-19",
+            "ax.set_xticklabels(xticklabels, rotation=45)",
+            "ax.set_xticklabels(labels, rotation=45)"
+        ],
+        [
+            "2212433-44",
+            "Therefore, the answer code is len(yourdict.keys())",
+            "len(list(yourdict.keys()))"
+        ],
+        [
+            "2212433-64",
+            "len(yourdictfile.keys())",
+            "len(set(open(yourdictfile).read().split()))"
+        ],
+        [
+            "40924332-83",
+            "a pandas data frame with multiple columns for the first column",
+            "pd.concat([df[0].apply(pd.Series), df[1]], axis=1)"
+        ],
+        [
+            "804995-74",
+            "subprocess.run(['c:\\\\Program Files\\\\VMware\\\\VMware Server\\\\vmware-cmd.bat'], shell=True)",
+            "subprocess.Popen(['c:\\\\Program Files\\\\VMware\\\\VMware Server\\\\vmware-cmd.bat'])"
+        ],
+        [
+            "26441253-42",
+            "The answer code is heapq.heappush(q, x) for x in reversed(queue) and heapq.heappop(q) for each element in queue",
+            "q.put((-n, n))"
+        ],
+        [
+            "21887754-31",
+            "the use of concatenate() with the appropriate arguments",
+            "print(concatenate((a, b), axis=0))"
+        ],
+        [
+            "21887754-88",
+            "numpy.concatenate(a, b, axis=2)",
+            "print(concatenate((a, b), axis=1))"
+        ],
+        [
+            "21887754-21",
+            "a[:, np.newaxis] + b[:, np.newaxis]",
+            "c = np.r_[(a[None, :], b[None, :])]"
+        ],
+        [
+            "21887754-64",
+            "a = np.concatenate((a, b))",
+            "np.array((a, b))"
+        ],
+        [
+            "4356842-88",
+            "HttpResponse(\"Unauthorized\", status=401)",
+            "return HttpResponse('Unauthorized', status=401)"
+        ],
+        [
+            "31793195-78",
+            "the integer value of the \"location\" column for the row where \"name\" equals \"bob\"",
+            "df.index.get_loc('bob')"
+        ],
+        [
+            "18730044-52",
+            "The code to achieve this is numpy.array([list1, list2]).reshape(2, 2)",
+            "np.column_stack(([1, 2, 3], [4, 5, 6]))"
+        ],
+        [
+            "22187233-98",
+            "The answer code is print(new_string)",
+            "\"\"\"\"\"\".join([char for char in 'it is icy' if char != 'i'])"
+        ],
+        [
+            "22187233-48",
+            "the resulting string with all instances of the character 'i' replaced with an empty string",
+            "re.sub('i', '', 'it is icy')"
+        ],
+        [
+            "22187233-75",
+            "The answer code is print(\"it is icy\".replace(\"i\", \"\"))",
+            "\"\"\"it is icy\"\"\".replace('i', '')"
+        ],
+        [
+            "22187233-63",
+            "the code block: my_string.replace('character', '')",
+            "\"\"\"\"\"\".join([char for char in 'it is icy' if char != 'i'])"
+        ],
+        [
+            "10351772-57",
+            "The answer code is list(map(int, intstringlist))",
+            "nums = [int(x) for x in intstringlist]"
+        ],
+        [
+            "10351772-10",
+            "list(map(int, string_numbers))",
+            "map(int, eval(input('Enter the unfriendly numbers: ')))"
+        ],
+        [
+            "3964681-43",
+            ":\n\n\nimport os\nfiles = os.listdir(\"/mydir\")\ntxt_files = [f for f in files if f.endswith(\".txt\")]\nprint(txt_files)",
+            "os.chdir('/mydir')\nfor file in glob.glob('*.txt'):\n    pass"
+        ],
+        [
+            "3964681-18",
+            "The code would look something like this:\n\n\nimport os\nfiles = os.listdir(\"/mydir\")\ntxt_files = [f for f in files if f.endswith(\".txt\")]\nprint(txt_files)",
+            "for file in os.listdir('/mydir'):\n    if file.endswith('.txt'):\n        pass"
+        ],
+        [
+            "3964681-62",
+            "os.listdir('/mydir')[:-1].filter(lambda x: x.endswith('.txt')).tolist()",
+            "for (root, dirs, files) in os.walk('/mydir'):\n    for file in files:\n        if file.endswith('.txt'):\n            pass"
+        ],
+        [
+            "18979111-77",
+            "the use of json.loads() with the request.body string",
+            "json.loads(request.body)"
+        ],
+        [
+            "36402748-46",
+            "the code snippet sorted_df = df.sort_values(by='column_name', ascending=True)",
+            "df.groupby('prots').sum().sort('scores', ascending=False)"
+        ],
+        [
+            "7750557-47",
+            "The answer code is print(data)",
+            "json.load(urllib.request.urlopen('url'))"
+        ],
+        [
+            "2984751-50",
+            "The final code snippet is objects = MyModel.objects.filter(date_field.hour=hour) and the answer is this code snippet",
+            "Entry.objects.filter(pub_date__contains='08:00')"
+        ],
+        [
+            "5944630-52",
+            "sorted(list, key=lambda x: (x['points'], x['time']))",
+            "list.sort(key=lambda item: (item['points'], item['time']))"
+        ],
+        [
+            "19546911-36",
+            "int(str(number))",
+            "struct.unpack('H', struct.pack('h', number))"
+        ],
+        [
+            "20107570-40",
+            "the code snippet df.to_csv('output.csv')",
+            "df.to_csv(filename, index=False)"
+        ],
+        [
+            "8740353-74",
+            ":",
+            "json_data = json.loads(unescaped)"
+        ],
+        [
+            "18367007-15",
+            "with open(newFile, 'wb') as newFileBytes: newFileBytes.write(data)",
+            "newFile.write(struct.pack('5B', *newFileBytes))"
+        ],
+        [
+            "16125229-76",
+            "last_key",
+            "list(dict.keys())[-1]"
+        ],
+        [
+            "10668585-75",
+            "the code snippet:\n\n\nfrom django.db.models import Max\nfrom myapp.models import AuthorizedEmail\nmax_added = AuthorizedEmail.objects.values_list('added', flat=True).max()",
+            "AuthorizedEmail.objects.filter(group=group).order_by('-added')[0]"
+        ],
+        [
+            "10607688-46",
+            "datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")",
+            "datetime.datetime.now()"
+        ],
+        [
+            "17794266-82",
+            "np.amax(np.abs(x))",
+            "max(x.min(), x.max(), key=abs)"
+        ]
+    ]
+}

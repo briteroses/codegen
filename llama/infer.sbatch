@@ -5,6 +5,6 @@
 #SBATCH --partition=background
 #SBATCH --output=logs/evals_%a.out
 #SBATCH --error=logs/evals_%a.err
-#SBATCH --array=1-6
+#SBATCH --array=6
 
 python inference.py --exparray $SLURM_ARRAY_TASK_ID

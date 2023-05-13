@@ -83,7 +83,7 @@ def post_process_completion(completion):
     no_stop_word = completion.split("Query:")[0].rstrip()
     final_sentence = no_stop_word.split('. ')[-1].rstrip(".")
     should_be_code_snippet = re.split('The answer is|The answer is:', final_sentence)[-1].strip()
-    no_back_quotes = should_be_code_snippet.replace("`", "").rstrip('\n ').lstrip('\n ')
+    no_back_quotes = should_be_code_snippet.replace("`", "").rstrip('\n').rstrip().lstrip('\n').lstrip()
     return no_back_quotes
 
 '''
@@ -170,6 +170,10 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
                 prompt += f"Rationale: {icl_rationale}\n\n"
             else:
                 prompt += f"Answer: {icl_rationale.split('. ')[-1]}\n\n"
+            
+            print(prompt)
+            return
+        return
         test_query, oracle_answer = query_id_to_oracle[query_id]
         test_retrieval = query_id_to_retrieval[query_id]
         # NO TEST QUERY ENHANCEMENT YET!!
@@ -213,19 +217,21 @@ def ablation_array():
 
 
 def quick_merge(saved_as="mosaic-chat"):
-    json_location = str(ROOT_DIR / f'llama/completions/{save_as}')
+    json_location = str(ROOT_DIR / f'llama/completions/{saved_as}')
     all_ablations = json_location + "/res.json"
     if Path(all_ablations).is_file():
         return
-    ablation_pairs = glob.glob(all_ablations)
+    ablation_pairs = glob.glob(json_location + '/*.json')
+    print(ablation_pairs)
     res = {}
     for pair in ablation_pairs:
         dict_ablation_and_output = json.load(open(pair, 'r'))
         for ablation, output in dict_ablation_and_output.items():
             break
+        print(ablation)
         res[ablation] = output
     with open(all_ablations, 'w') as fout:
-        fout.write(res) 
+        fout.write(json.dumps(res))
 
 
 def parse_opt(known=False):
@@ -236,7 +242,15 @@ def parse_opt(known=False):
 
 
 if __name__ == "__main__":
-    ablation_array()
+    # ablation_array()
+    assistant = "You are an expert language model in code generation. "
+    assistant += f"Come up with a rationale for a code generation problem under the following specification. "
+    assistant += "Given a query for a coding task and a list of code documentation, "
+    assistant += "please reason through the provided documentation to arrive at the answer code and "
+    assistant += "print the answer at the end of the output. "
+    assistant += "The final sentence in your response should state \"The answer is \" followed by the correct code snippet.\n\n"
+
+    print(assistant)
 
     # with open(str(ROOT_DIR / "llama/rationale_icl_example.txt"), 'r') as fin:
     #     prompt = fin.read()

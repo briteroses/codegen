@@ -136,13 +136,13 @@ def get_seed_queries():
     with open(GPT3_QUERY_AUGMENTATIONS, "r") as fin:
         for line in fin:
             exemplar = json.loads(line)
-            gpt3_seed_exemplars.append((exemplar['query'], exemplar['augmentation']))
+            gpt3_seed_exemplars.append((exemplar["query"], exemplar["augmentation"]))
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars")
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
     return seed_exemplars, gpt3_seed_exemplars
 
 
-def get_seed_rationales():
+def get_seed_rationales(qids_for_star=False):
     seed_exemplars = []
     with open(HUMAN_RATIONALES, "r") as fin:
         for line in fin:
@@ -154,7 +154,10 @@ def get_seed_rationales():
     with open(GPT3_RATIONALES, "r") as fin:
         for line in fin:
             exemplar = json.loads(line)
-            gpt3_seed_exemplars.append((exemplar['query'], exemplar['retrieval'], exemplar['rationale']))
+            if qids_for_star:
+                gpt3_seed_exemplars.append((exemplar["question_id"], exemplar["query"], exemplar["retrieval"], exemplar["rationale"]))
+            else:
+                gpt3_seed_exemplars.append((exemplar["query"], exemplar["retrieval"], exemplar["rationale"]))
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars")
         print(f"Loaded {len(gpt3_seed_exemplars)} synthetic seed exemplars", file=sys.stderr)
     return seed_exemplars, gpt3_seed_exemplars
@@ -265,21 +268,7 @@ def star_for_code():
     print("Patching incorrect synthetic samples with rationalization...")
     print("Patching incorrect synthetic samples with rationalization...", file=sys.stderr)
 
-    human_rationales = []
-    with open(HUMAN_RATIONALES, "r") as fin:
-        for line in fin:
-            exemplar = json.loads(line)
-            human_rationales.append((exemplar["query"], exemplar["retrieval"], exemplar["rationale"]))
-        print(f"Loaded {len(human_rationales)} human-written seed exemplars")
-        print(f"Loaded {len(human_rationales)} human-written seed exemplars", file=sys.stderr)
-
-    gpt3_rationales = []
-    with open(GPT3_RATIONALES, "r") as fin:
-        for line in fin:
-            exemplar = json.loads(line)
-            gpt3_rationales.append((exemplar["question_id"], exemplar['query'], exemplar['retrieval'], exemplar['rationale']))
-        print(f"Loaded {len(gpt3_rationales)} synthetic rationales")
-        print(f"Loaded {len(gpt3_rationales)} synthetic rationales", file=sys.stderr)
+    human_rationales, gpt3_rationales = get_seed_rationales(qids_for_star=True)
     
     answer_key = {}
     with open(TRAIN_ORACLE, "r") as fin:
@@ -289,12 +278,14 @@ def star_for_code():
 
     with open(STAR_RATIONALES, "w") as fout:
         star_rationales = ""
+        num_stars = 0
+
         to_be_rationalized = []
         for query_id, query, retrieval, rationale in gpt3_rationales:
             rationale = re.sub(r"\s+", " ", rationale).strip().rstrip('.').rstrip(':')
             needs_rationalization = not rationale.endswith(answer_key[query_id])
             if needs_rationalization:
-                to_be_rationalized += (query_id, query, retrieval)
+                to_be_rationalized.append((query_id, query, retrieval))
             else:
                 star_rationales += json.dumps({
                     "question_id": query_id,
@@ -302,7 +293,11 @@ def star_for_code():
                     "retrieval": retrieval,
                     "rationale": rationale,
                 }) + "\n"
+                num_stars += 1
         
+        # reform synthetic rationales in correct form
+        gpt3_rationales = [(query, retrieval, rationale) for (_, query, retrieval, rationale) in gpt3_rationales]
+
         if not to_be_rationalized:
             print("Perfect answers. gpt did a great job!!")
             print("Perfect answers. gpt did a great job!!", file=sys.stderr)
@@ -310,46 +305,57 @@ def star_for_code():
             return
 
         for query_id, query, retrieval in to_be_rationalized:
+            print(f"Rationalizing query {query_id}...")
+            print(f"Rationalizing query {query_id}...", file=sys.stderr)
+
             plus_hint = query + f" (Hint: the answer is {answer_key[query_id]})"
             
             sample_synthetic = random.sample(gpt3_rationales, min(2, len(gpt3_rationales)))
             sample_human = random.sample(human_rationales, RATIONALE_EXEMPLARS_PER_PROMPT - len(sample_synthetic))
-            rationale_exemplars = random.shuffle(sample_synthetic + sample_human)
+            rationale_exemplars = sample_synthetic + sample_human
+            random.shuffle(rationale_exemplars)
             prompt = encode_rationales(rationale_exemplars, plus_hint, retrieval)
-            pprint(prompt)
-            return
 
-            result = make_gpt3_requests(
-                engine=args.engine,
-                prompt=prompt,
-                max_tokens=1024,
-                temperature=0.5,
-                top_p=0.5,
-                frequency_penalty=0,
-                presence_penalty=0,
-                stop_sequences=["Query:", "Query :", "\n\n"],
-                api_key=args.apikey,
-                organization=args.organization,
-            )
+            allowed_tries = 3
+            for this_attempt in range(allowed_tries):
+                result = make_gpt3_requests(
+                    engine=args.engine,
+                    prompt=prompt,
+                    max_tokens=1024,
+                    temperature=0.5,
+                    top_p=0.5,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    stop_sequences=["Query:", "Query :", "\n\n"],
+                    api_key=args.apikey,
+                    organization=args.organization,
+                )
 
-            rationalization = post_process_gpt3_response(result["response"])
-            rationalization = re.sub(r"\s+", " ", rationalization).strip().rstrip('.').rstrip(':')
-            # this implements exact match as the correctness metric for rationalization metric
-            # in future iteration, we could implement a softer metric?
-            maybe_correct = rationalization.endswith(answer_key[query_id])
-            if maybe_correct:
-                star_rationales += json.dumps({
-                    "question_id": query_id,
-                    "query": query,
-                    "retrieval": retrieval,
-                    "rationale": rationalization,
-                }) + "\n"
-                print(f"Query {query_id} successfully rationalized")
-                print(f"Query {query_id} successfully rationalized", file=sys.stderr)
-            else:
-                print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...")
-                print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...", file=sys.stderr)
+                rationalization = post_process_gpt3_response(result["response"])
+                rationalization = re.sub(r"\s+", " ", rationalization).strip().rstrip('.').rstrip(':')
+                # this implements exact match as the correctness metric for rationalization metric
+                # in future iteration, we could implement a softer metric?
+                maybe_correct = rationalization.endswith(answer_key[query_id])
+                if maybe_correct:
+                    star_rationales += json.dumps({
+                        "question_id": query_id,
+                        "query": query,
+                        "retrieval": retrieval,
+                        "rationale": rationalization,
+                    }) + "\n"
+                    num_stars += 1
+                    print(f"Query {query_id} successfully rationalized")
+                    print(f"Query {query_id} successfully rationalized", file=sys.stderr)
+                    break
+                else:
+                    if this_attempt == allowed_tries - 1:
+                        print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...")
+                        print(f"Rationale from query {query_id} still wrong after rationalization; cutting from dataset...", file=sys.stderr)
+                    else:
+                        print(f"Rationale from query {query_id} still wrong after rationalization; retrying...")
+                        print(f"Rationale from query {query_id} still wrong after rationalization; retrying...", file=sys.stderr)
         
+        print(f"\n\n{num_stars} samples in final STaR dataset\n\n")
         fout.write(star_rationales)
     
     return
