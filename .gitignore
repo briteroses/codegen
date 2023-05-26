@@ -6,6 +6,7 @@ data/.DS_Store
 data/*
 .idea
 
+llama/infer.sbatch
 llama/models/
 llama/logs
 synthesize/synth.sbatch
