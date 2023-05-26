@@ -33,6 +33,7 @@ ALL_MODEL_NAMES = [LLAMA_AT, ALPACA_7B_AT, MOSAIC_INSTRUCT_AT, MOSAIC_CHAT_AT, A
 TEST_ORACLE = str(ROOT_DIR / "docprompting/data/conala/cmd_test.oracle_man.full.json")
 HUMAN_RATIONALES = str(ROOT_DIR / "synthesize/data/seed-datasets/rationale_exemplars.jsonl")
 GPT3_RATIONALES = str(ROOT_DIR / "synthesize/data/synthetic-datasets/gpt3_rationale_exemplars.jsonl")
+STAR_RATIONALES = str(ROOT_DIR / "synthesize/data/synthetic-datasets/star_rationale_exemplars.jsonl")
 
 RETRIEVAL_RESULTS = str(ROOT_DIR / "docprompting/data/conala/retrieval_results.json")
 CODE_DESCRIPTIONS = str(ROOT_DIR / "docprompting/data/conala/conala_docs.json")
@@ -115,7 +116,7 @@ def retrieve_for_query(query_ids, truncate=False):
     return {q_id: retrieve for q_id, retrieve in zip(query_ids, retrievals)}
 
 
-def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query_enhancement=True, with_retrieval=True, with_rationale=True, save_as=None):
+def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query_enhancement=True, with_retrieval=True, with_rationale=True, with_star=False, save_as=None):
     '''
     icl_exemplars: number of example (query, answer)'s to include before the test query
     with_query_enhancement: include the enhancement to the query in the test query and all icl exemplars?
@@ -135,7 +136,8 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
         for line in fin:
             exemplar = json.loads(line)
             train_rationales[exemplar["question_id"]] = (exemplar["query"], exemplar["retrieval"], exemplar["rationale"])
-    with open(GPT3_RATIONALES, "r") as fin:
+    synth_from = STAR_RATIONALES if with_star else GPT3_RATIONALES
+    with open(synth_from, "r") as fin:
         for line in fin:
             exemplar = json.loads(line)
             train_rationales[exemplar["question_id"]] = (exemplar["query"], exemplar["retrieval"], exemplar["rationale"])
@@ -180,8 +182,10 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
         prompt += f"{'Rationale: ' if with_rationale else 'Answer: '}"
         completion = inference(model, tokenizer, prompt)
         test_answer = post_process_completion(completion)
-        print(f" || For query {query_id},\n || LLM answered {test_answer}\n || and oracle answer was {oracle_answer}.\n\n")
-        print(f" || For query {query_id},\n || LLM answered {test_answer}\n || and oracle answer was {oracle_answer}.\n\n", file=sys.stderr)
+        # print(f" || For query {query_id},\n || LLM answered {test_answer}\n || and oracle answer was {oracle_answer}.\n\n")
+        # print(f" || For query {query_id},\n || LLM answered {test_answer}\n || and oracle answer was {oracle_answer}.\n\n", file=sys.stderr)
+
+        print(f"Prompt:\n{prompt}\n\nResponse:\n{completion}", file=sys.stderr)
 
         res.append((query_id, test_answer, oracle_answer))
 
@@ -194,27 +198,47 @@ def code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_query
 
 
 def ablation_array():
-    model, tokenizer = load_model(MOSAIC_INSTRUCT_AT)
-    save_as = "mosaic-instruct"
 
     opt = parse_opt()
     job_array = opt.exparray
 
-    if job_array == 7:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_retrieval=False, with_rationale=False, save_as=save_as)
-    if job_array == 8:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_rationale=False, save_as=save_as)
-    if job_array == 9:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, with_rationale=False, save_as=save_as)
-    if job_array == 10:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_rationale=False, save_as=save_as)
-    if job_array == 11:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, save_as=save_as)
-    if job_array == 12:
-        code_generation_inference_task(model, tokenizer, icl_exemplars=2, save_as=save_as)
+    if job_array == 1:
+        mosaic, tokenizer_mosaic = load_model(MOSAIC_CHAT_AT)
+        mosaic_save = "star/mosaic-chat"
+        code_generation_inference_task(mosaic, tokenizer_mosaic, icl_exemplars=2, with_retrieval=False, with_star=True, save_as=mosaic_save)
+    if job_array == 2:
+        mosaic, tokenizer_mosaic = load_model(MOSAIC_CHAT_AT)
+        mosaic_save = "star/mosaic-chat"
+        code_generation_inference_task(mosaic, tokenizer_mosaic, icl_exemplars=2, with_star=True, save_as=None)
+
+    if job_array == 3:
+        alpaca, tokenizer_alpaca = load_model(ALPACA_7B_AT)
+        alpaca_save = "star/alpaca"
+        code_generation_inference_task(alpaca, tokenizer_alpaca, icl_exemplars=2, with_retrieval=False, with_star=True, save_as=alpaca_save)
+    if job_array == 4:
+        alpaca, tokenizer_alpaca = load_model(ALPACA_7B_AT)
+        alpaca_save = "star/alpaca"
+        code_generation_inference_task(alpaca, tokenizer_alpaca, icl_exemplars=2, with_star=True, save_as=alpaca_save)
+
+    
+
+    # if job_array == 1:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_retrieval=False, with_rationale=False, save_as=save_as)
+    # if job_array == 2:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=0, with_rationale=False, save_as=save_as)
+    # if job_array == 3:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, with_rationale=False, save_as=save_as)
+    # if job_array == 4:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_rationale=False, save_as=save_as)
+    # if job_array == 5:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=2, with_retrieval=False, save_as=save_as)
+    # if job_array == 6:
+    #     code_generation_inference_task(model, tokenizer, icl_exemplars=2, save_as=save_as)
+
+    
 
 
-def quick_merge(saved_as="alpaca"):
+def quick_merge(saved_as="star/alpaca"):
     json_location = str(ROOT_DIR / f'llama/completions/{saved_as}')
     all_ablations = json_location + "/res.json"
     if Path(all_ablations).is_file():
@@ -240,7 +264,8 @@ def parse_opt(known=False):
 
 
 if __name__ == "__main__":
-    quick_merge()
+    quick_merge("star/alpaca")
+    quick_merge("star/mosaic-chat")
 
     # with open(str(ROOT_DIR / "llama/rationale_icl_example.txt"), 'r') as fin:
     #     prompt = fin.read()

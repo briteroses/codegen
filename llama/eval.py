@@ -184,6 +184,6 @@ def get_metrics(results_file):
 
 
 if __name__ == "__main__":
-    json_location = str(ROOT_DIR / f'llama/completions/alpaca')
+    json_location = str(ROOT_DIR / f'llama/completions/star/alpaca')
     all_ablations = json_location + "/res.json"
     pprint(get_metrics(all_ablations))
